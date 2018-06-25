@@ -1,0 +1,54 @@
+.dtt-top-content{
+    top: 100px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: black;
+    z-index: 998;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.dtt-top-right{
+    margin-top: 20px;
+    float: right;
+}
+.dtt-top-left {
+    display: block;
+    float: left;
+}
+.dt-content-left{
+    background-color: #1b1c1b;
+    padding-top: 20px;
+    margin-bottom: 30px;
+}
+.top-content-thingsdetail {
+    top: 100px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: black;
+    z-index: 900;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+@media screen and (max-width: 320px){
+.top-content-thingsdetail{
+    height: 200px;
+    }
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 425px) {
+    .dtt-top-content{
+        height: 200px;
+    }
+    .dtt-top-right{
+        display: block;
+        float: left;
+    }
+    .dtt-top-left {
+        display: block;
+    }
+}

@@ -1,0 +1,107 @@
+<section >
+<div class="top-content" id="topcontent">
+    <div class="warp-signin-lg">
+        <div class="topcontent-left col-xs-12 col-md-9 col-lg-10">
+            <h2 class="nameofpage">All Group</h2>&nbsp;&nbsp;&nbsp;
+            <li class="dropdown sort-dropdown" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                    <span>{{sort}}</span>
+                <b class="glyphicon glyphicon-menu-down ic-dropdown"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a ng-click="sortData('groupNameaz')">GroupName A - Z</a>
+                </li>
+                <li>
+                    <a ng-click="sortData('groupNameza')">GroupName Z - A</a>
+                </li>
+                <li>
+                    <a ng-click="sortData('amountless')">Amount Thing - less</a>
+                </li>
+                <li>
+                    <a ng-click="sortData('amountmore')">Amount Thing - more</a>
+                </li>
+                </ul>
+            </li>
+            <p>{{groups.length}} Group</p>
+        </div>
+        <div class="topcontent-right col-xs-12 col-md-3 col-lg-2">
+            <button ng-click="openCreateGroup()" class="btn btn-action position">​
+                <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Create Group
+            </button>
+        </div>
+    </div>
+    <div class="warp-signin-mobile">
+        <div class="col-xs-6 col-sm-4">
+            <h2 class="nameofpage" style="width:auto">All Group&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+        </div>
+        <div class="col-xs-2 col-sm-4">
+            <li style="display:inline;" class="dropdown sort-dropdown" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                    <span style="font-size:18px;"><b class="glyphicon glyphicon-menu-down ic-dropdown"></b></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a ng-click="sortData('groupNameaz')">GroupName A - Z</a>
+                    </li>
+                    <li>
+                        <a ng-click="sortData('groupNameza')">GroupName Z - A</a>
+                    </li>
+                    <li>
+                        <a ng-click="sortData('amountless')">Amount Thing - less</a>
+                    </li>
+                    <li>
+                        <a ng-click="sortData('amountmore')">Amount Thing - more</a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <div class="col-xs-3 col-sm-4">
+            <button style="min-width:0px;" ng-click="openCreateGroup()" class="btn btn-cre position">​
+                <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="24px" height="24px">
+            </button>
+        </div>
+        <div class="col-xs-12 col-sm-12">
+            <p>{{groups.length}} Group</p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid contentinpage content-normal">
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 things-box" ng-repeat='group in groups | orderBy:xOrderBy'>
+        <div class="group-wrapper" >
+            <li class="dropdown remove-group-btn" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                <b class="glyphicon glyphicon-option-horizontal"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="GroupEdit(group)">Edit Group</a></li>
+                    <li><a ng-click="GroupDelete(group)">Delete</a></li>
+                </ul>
+            </li>
+            <a ng-href="/groups-detail{{group._id}}">
+            <div class="things-content">
+                <div class="group-header" >
+                    <h3 id="thingName" class="ng-binding">
+                        <!--<div class="ic-group"></div>-->
+                        <img src="/modules/core/client/img/ic-group-16-px.svg" alt="">
+                        {{group.groupName}}
+                    </h3>
+                </div>
+                <div class="group-des">
+                    <!--<textarea>{{group.groupDesc}}</p>-->
+                    <textarea style="background-color:#1b1c1b;" ng-model="group.groupDesc" class="form-control input-field ais-input-text" cols="55" rows="4" readonly></textarea>
+
+                    <div class="group-desthing">
+                        <h2>{{group.things.length}}</h2>
+                        <p>Things</p>
+                    </div>
+                </div>
+                <div class="group-footer">
+                    <!--<h4 type="datetime">Created: {{group.created | date : 'MMMM d, yyyy'}}</h4>-->
+                </div>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>
+</section>

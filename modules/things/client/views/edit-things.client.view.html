@@ -1,0 +1,83 @@
+<section>
+    <div>
+        <h3 class="nameofpage"> Edit <span>'{{thingName}}'</span> Things</h3>
+    </div>
+    <hr>
+    <div class="col-lg-4">
+    <form>
+        <div class="form-group">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Name</label>
+            <input ng-model="thingName" class="form-control input-field ais-input-text" type="text" placeholder="Name of Things">
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Description</label>
+            <textarea ng-model="thingDesc" class="form-control input-field ais-input-text" name="" id="" cols="55" rows="5" placeholder="Description ( เช่น เพื่อวัดความเป็นกรดของดิน และทำการปรับสภาพดิน )"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md-3 col-lg-3 no-padding">Interval Time :</label>
+            <input type="text" ng-model="timerefresh" class="ais-form-control"  style="width:50px;display:inline;" placeholder="20">
+            <span>second (minimum 20 s)</span>
+            <label for="" class="col-md-6 col-lg-6 no-padding ais-tokenactive" ng-show="morethan">{{morethan}}</label>
+
+
+        </div>
+         <div class="form-group">
+            <label for="" class="col-md-4 col-lg-4 no-padding">Status :</label>
+            <label for="" class="col-md-6 col-lg-6 no-padding ais-tokenactive" ng-show="statusThingsOnline">{{statusThingsOnline}}</label>
+            <label for="" class="col-md-6 col-lg-6 no-padding ais-tokennoactive" ng-show="statusThingsOffline">{{statusThingsOffline}}</label>
+        </div>
+        <br>
+        <hr>
+        <div class="form-group">
+            <label for="" class="col-md-4 col-lg-4 no-padding">Token :</label>
+            <textarea ng-model="token" readonly="readonly" class="form-control input-field ais-input-readonly" rows="6"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="" class="col-md-4 col-lg-4 no-padding"> Read Token :</label>
+            <label for="" class="col-md-6 col-lg-6 no-padding ais-tokenactive" ng-show="receivetokenactive">{{receivetokenactive}}</label>
+            <label for="" class="col-md-6 col-lg-6 no-padding ais-tokennoactive" ng-show="receivetokennoactive">{{receivetokennoactive}}</label>
+            <textarea ng-model="receivetoken" readonly="readonly" class="form-control input-field ais-input-readonly" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md-4 col-lg-4 no-padding">Write Token :</label>
+            <label for="" class="col-md-6 col-lg-6 no-padding ais-tokenactive" ng-show="sendtokenactive">{{sendtokenactive}}</label>
+            <label for="" class="col-md-6 col-lg-6 no-padding ais-tokennoactive" ng-show="sendtokennoactive">{{sendtokennoactive}}</label>
+            <textarea ng-model="sendtoken" readonly="readonly" class="form-control input-field ais-input-readonly" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md-4 col-lg-4 no-padding">Data Source :</label>
+            <textarea ng-model="datasource" readonly="readonly" class="form-control input-field ais-input-readonly" rows="5"></textarea>
+        </div>
+        <div>
+            <button ng-click="save()" class="btn btn-primary ais-btn">Save</button>
+            <button ng-click="ThingsList()" class="btn btn-default ais-btn">Cancel</button>
+            &nbsp;&nbsp;&nbsp; or &nbsp;&nbsp;&nbsp;
+            <button ng-click="ThingsDelete()" class="btn btn-danger ais-btn">Delete</button>
+        </div>
+    </form>
+    </div>
+    <div class="col-md-6 col-md-offset-1">
+        <div class="form-group" ng-show="checkdweet">
+            <a for="" class="btn btn-primary" ng-href="{{dweetUrl}}" target="_blank">Open Dweet</a>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md-4 col-lg-4 no-padding">Data JSON :</label>
+            <textarea ng-model="jsonthings" readonly="readonly" class="form-control input-field ais-input-readonly"  rows="5"></textarea>
+        </div>
+        
+        <div class="col-md-3 things-box" ng-repeat="(key, thingss) in thingsblock">
+            <div class="box-size ibox float-e-margins things-wrapper" >
+                <div class="things-header" >
+                    <h2 id="thingName" class="ng-binding">{{key}}</h2>
+                </div>
+                <div class="things-des">
+                    <h2 id="thingName" class="ng-binding">{{thingss}}</h2>
+                </div>
+            </div>   
+        </div>
+        
+
+    </div>
+    </div>
+</section>

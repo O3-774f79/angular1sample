@@ -1,0 +1,115 @@
+<section style="margin-top:120px;">
+    <h1 style="color:#fff;">User Guide</h1>
+    <div class="usg-content">
+        <div class="wrap">
+            <ul class="nav-userguide">
+                <li><a href="#installation">INSTALLATION</a><span>></span></li>
+                <li><a href="#crethings">CREATE THINGS</a><span>></span></li>
+                <li><a href="#embedkey">EMBED THE KEY</a><span>></span></li>
+                <li><a href="#credash">CREATE DASHBOARD</a><span>></span></li>
+                <li><a href="#crewid">CREATE WIDGET</a><span>></span></li>
+                <li><a href="#cregroup">CREATE GROUP</a><span>></span></li>
+                <li><a href="#httpapi">HTTP API</a></li>
+            </ul>
+        </div>
+        <div class="wrap">
+            <h2 class="title-userguide" >Get Start Magellan</h2>
+            <p style="color:#888b8f;">The Magellan library use for develop with NB-IoT. This use CoAP protocol</p>
+            <ul class="ul-usg-content">
+                <li>- post method</li>
+                <li>- get method</li>
+            </ul>
+            <h3 id="installation" class="title-userguide">INSTALLATION</h3>
+            <ul class="ul-usg-content">
+                <li>1. Arduino IDE Download > <a style="color: #b1d234;" href="https://www.arduino.cc/en/Main/Software" target="blank">Download</a></li>
+                <li>2. Download library Magellan > <a style="color: #b1d234;" href="https://drive.google.com/file/d/15YtK99u76LTTgprKNaZhHXKpTtuTyYkb/view" target="blank">Magellan Library</a></li>
+                <li>3. <span style="color:#fff;">Include library</span> in Arduino IDE</li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-install-03@3x.png" width="100%"></li>
+                <li style="margin-top:48px;">4. Open <span style="color:#fff;">Magellan Example "POST_MAGELLAN"</span></li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-install-04@3x.png" width="100%"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="usg-content">
+        <div class="wrap">
+            <h2 id="crethings" class="title-userguide">Create Things</h2>
+            <p style="color:#888b8f;">First step to have a Thing proxy for connecting Things to Magellan</p>
+            <ul class="ul-usg-content">
+                <li>1. Goto <span style="color:#fff;">Things Page</span> and click on the button "Create Thing".</li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-creatething-01@3x.png" width="100%"></li>
+                <li style="margin-top: 48px;">2. Fill in the form.</li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-creatething-02@3x.png" width="100%"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="usg-content">
+        <div class="wrap">
+            <h2 id="embedkey" class="title-userguide">Embed The Key</h2>
+            <p style="color:#888b8f;">Introduce your Things to Magellan</p>
+            <ul class="ul-usg-content">
+                <li>1. Click on your <span style="color:#fff;">Thing Box</span> in page <span style="color:#fff;">All Things</span></li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-embedthekey-01@3x.png" width="100%"></li>
+                <li style="margin-top: 48px;">2. Click <span style="color:#fff;">"Copy"</span> button, then the <span style="color:#fff;">Token Key</span> will be copied in the clipboard</li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-embedthekey-02@3x.png" width="100%"></li>
+                <li style="margin-top: 48px;">3. Paste the <span style="color:#fff;">Token Key</span> in <span style="color:#fff;">POST_MAGELLAN</span> and click <span style="color:#fff;">Upload</span></li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-embedthekey-03@3x.png" width="100%"></li>
+                <li style="margin-top:48px;">4. You can <span style="color:#fff;">Monitor Data Flow</span> on thing detail in Magellan Platform or Arduino IDE Serial Monitor</li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-embedthekey-04@3x.png" width="100%"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="usg-content">
+        <div class="wrap">
+            <h2 id="credash" class="title-userguide">Create Dashboard</h2>
+            <p style="color:#888b8f;">To create a spreadsheet where you can monitor or interact with your Things</p>
+            <ul class="ul-usg-content">
+                <li>1. Goto <span style="color:#fff;">Dashboard Page</span> and click on the button <span style="color:#fff;">"Create Dashboard".</span></li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-createdashboard-01@3x.png" width="100%"></li>
+                <li style="margin-top:48px;">2. Fill in the form, <span style="color:#fff;">"Dashboard Name"</span> must not be empty. if you have no other information. you can come back and edit later</li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-createdashboard-02@3x.png" width="100%"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="usg-content">
+        <div class="wrap">
+            <h2 id="crewid"  class="title-userguide">Create Widget</h2>
+            <p style="color:#888b8f;">Widget is a controller or a monitor for your Things</p>
+            <ul class="ul-usg-content">
+                <li>1. Goto <span style="color:#fff;">Dashboard Page</span> and click on the button <span style="color:#fff;">"Create Widget".</span></li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-createwidger-01@3x.png" width="100%"></li>
+                <li style="margin-top: 48px;">2. Please ensure that you have created a Thing proxy and embeded Token Key. Check the connection between Thing and Magellan must show "Connected". </li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-createwidger-02@3x.png" width="100%"></li>
+                <li style="margin-top: 48px;">3. if you have created a widget and connected it with your thing. you can <span style="color:#fff;">Visualize Your Data</span> in the dashboard</li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-createwidger-03@3x.png" width="100%"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="usg-content">
+        <div class="wrap">
+            <h2 id="cregroup" class="title-userguide">Create Group</h2>
+            <p style="color:#888b8f;">Manage your Things in a group</p>
+            <ul class="ul-usg-content">
+                <li>1. Goto <span style="color:#fff;">Group Page</span> and click on the button <span style="color:#fff;">"Create Group".</span></li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-creategroup-01@3x.png" width="100%"></li>
+                <li style="margin-top: 48px;">2. Fill in the form.</li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-creategroup-02@3x.png" width="100%"></li>
+                <li style="margin-top: 48px;">3. Then, go in the group you have created and<span style="color:#fff;"> Add Things into the Group.</span></li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-creategroup-03@3x.png" width="100%"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="usg-content">
+        <div class="wrap">
+            <h2 id="httpapi" class="title-userguide">HTTP API</h2>
+            <p style="color:#888b8f;">You can use HTTP REST APIs to get your things data from Magellan to other application, clouds, or third party platform</p>
+            <ul class="ul-usg-content">
+                <li>1. The link to the data is shown in HTTP API, which you can copy the link to use in your application or the third party platform.</li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-http-api-01@3x.png" width="100%"></li>
+                <li style="margin-top: 48px;">2. Example data in json format.</li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-http-api-02@3x.png" width="100%"></li>
+                <li style="margin-top: 48px;">3. For example, you could use <span style="color:#fff;">dweet.io</span> or Freeboard to <span style="color:#fff;">display and control your data.</span></li>
+                <li><img class="img-userguide" src="/modules/userguides/client/img/pic-http-api-03@3x.png" width="100%"></li>
+            </ul>
+        </div>
+    </div>
+</section>

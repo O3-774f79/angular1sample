@@ -1,0 +1,793 @@
+<!--START Modal Dashboard-->
+<script type="text/ng-template" id="credbModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Create Dashboard<a class="closeModal" ng-click="cancelCreDb()"><b class="ic-close"></b></a></h3>
+    </div>
+    <form ng-submit="creDb()">
+        <div class="modal-body" id="modal-body">
+            <div class="form-group">
+                <h4>Dashboard Name<span class="req-input">*</span></h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" id="credbModal" maxlength="18" ng-model="creDashboardName" type="text" class="ais-input-text" placeholder="Dashboard Name" required autofocus></span></div>
+            <div class="form-group">
+                <h4>Description</h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="300" ng-model="creDashboardDes" type="text" class="ais-input-text" placeholder="Description"></span></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-cancel" type="button" ng-click="cancelCreDb()">Cancel</button>
+            <button class="btn btn-action" type="submit" >Create Dashboard</button>
+        </div>
+    </form>
+</script>
+<script type="text/ng-template" id="editDb.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Edit Dashboard<a class="closeModal" ng-click="cancelEditDb()"><b class="ic-close"></b></a></h3>
+    </div>
+    <form ng-submit="saveDb()">
+        <div class="modal-body" id="modal-body">
+            <div class="form-group">
+                <h4>Dashboard Name<span class="req-input">*</span></h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="18" ng-model="editDashboardName" type="text" class="ais-input-text" placeholder="Dashboard Name" required autofocus></span></div>
+            <div class="form-group">
+                <h4>Description</h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="300" ng-model="editDashboardDes" type="text" class="ais-input-text" placeholder="Description"></span></div>
+        </div>
+        <div class="modal-footer">
+            <!--<button class="btn btn-cancel" type="button" ng-click="deleteDb()" style="float:left;">Delete</button>-->
+            <div class="row" style="margin:0px;">
+                <button class="btn btn-cancel" type="button" ng-click="deleteDb()" style="float:left;">Delete</button>
+                <button class="btn btn-cancel" type="button" ng-click="cancelEditDb()">Cancel</button>
+                <button class="btn btn-action" type="submit">Update</button>
+            </div>
+        </div>
+    </form>
+</script>
+<script type="text/ng-template" id="manageWidget.html">
+    <div class="modal-header">
+        <h2 class="modal-title pull-left" id="modal-title">{{ctrl.title}}</h2>
+        <button type="button" class="close-modal pull-right" data-dismiss="modal" ng-click="ctrl.dismiss()"></button>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="groupName">Group Name</label>
+            <div class="col-xs-8">
+                <select class="form-control dropdown-ic" ng-model="ctrl.group" name="groupName" ng-change="ctrl.getThingsByGroup()">
+                    <option value="all">All Group</option>
+                    <option ng-repeat="group in ctrl.groups" value="{{group}}">{{group.groupName}}</option> 
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="thingName">Thing Name</label>
+            <div class="col-xs-8">
+                <select class="form-control dropdown-ic" ng-model="ctrl.thing" name="thingName" ng-change="ctrl.getDataSourceByThing(ctrl.thing)">
+                    <option ng-repeat="thing in ctrl.things" value="{{thing._id}}">{{thing.thingsName}}</option> 
+                    <option ng-if="ctrl.things.length === 0" value="notfound">ไม่พบข้อมูล</option> 
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="dataSource">Data Source</label>
+            <div class="col-xs-8">
+                <select class="form-control dropdown-ic" ng-model="ctrl.dataSource" name="dataSource">
+                    <option ng-show="ctrl.dataSource==='notfound'" value="notfound">Not Found</option> 
+                    <option ng-repeat="data in ctrl.dataSources" ng-selected="{{$index === 0}}" value="{{data}}">{{data}}</option> 
+                    <option ng-if="ctrl.dataSources.length === 0" value="notfound">ไม่พบข้อมูล</option> 
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4 col-sm-4 col-md-4 col-lg-4" for="widgetType">Widget Type</label>
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" style="padding:0px;">
+                <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
+                    <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="sparkline" />
+                    <div class="widgettype-box-line">
+                    <p>LINE CHART</p>
+                    </div>                        
+                </label>
+                <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
+                    <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="gauge" />
+                    <div class="widgettype-box-gauge">
+                    <p>GAUGE</p>
+                    </div>                        
+                </label>
+                <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
+                    <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="map" />
+                    <div class="widgettype-box-map">
+                    <p>GOOGLE MAP</p>
+                    </div>                        
+                </label>
+                <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
+                    <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="indicatorlight" />
+                    <div class="widgettype-box-lamp">
+                    <p>LAMP</p>
+                    </div>                        
+                </label>
+                <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
+                    <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="toggle" />
+                    <div class="widgettype-box-toggle">
+                    <p>TOGGLE</p>
+                    </div>                        
+                </label>
+                <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
+                    <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="battery" />
+                    <div class="widgettype-box-battery">
+                    <p>BATTERY</p>
+                    </div>                        
+                </label>
+            </div>
+        </div>
+        <div class="form-group row" ng-show="ctrl.widget === 'gauge'">
+            <div class="col-xs-12">
+                <div class="form-group row">
+                    <label for="Units" class="col-xs-4">Units</label>
+                    <div class="col-xs-8">
+                        <input ng-model="ctrl.unit" class="form-control" name="Units" type="text" placeholder="Units">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="MinValue" class="col-xs-4">Min Value</label>
+                    <div class="col-xs-8">
+                        <input ng-model="ctrl.min" name="MinValue"  class="form-control" min="0" max-length="13" ui-numeric-input type="tel" placeholder="Min value">
+                        <!-- <input ng-model="ctrl.min" class="form-control" name="MinValue" type="number" min="1" step="1" placeholder="Min value"> -->
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="MaxValue" class="col-xs-4">Max Value</label>
+                    <div class="col-xs-8">
+                            <input ng-model="ctrl.max" class="form-control" min="0" max-length="13" ui-numeric-input type="tel" placeholder="Max value">
+                        <!-- <input ng-model="ctrl.max" class="form-control" name="MaxValue" type="number"  min="1" step="1" placeholder="Max value"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div  class="form-group row" ng-show="ctrl.widget === 'indicatorlight'">
+            <div class="col-xs-12">
+                <div class="form-group row">
+                    <label for="OnText" class="col-xs-4">On Text</label>
+                    <div class="col-xs-8">
+                        <input ng-model="ctrl.ontext" class="form-control" type="text" placeholder="On Text">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="OffText" class="col-xs-4 col-md-4">Off Text</label>
+                    <div class="col-xs-8">
+                        <input ng-model="ctrl.offtext" class="form-control" type="text" placeholder="Off Text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div  class="form-group row" ng-show="ctrl.widget === 'toggle'">
+            <div class="col-xs-12">
+                <div class="form-group row">
+                    <label for="OnText" class="col-xs-4">On Text</label>
+                    <div class="col-xs-8">
+                        <input ng-model="ctrl.ontext" class="form-control" type="text" placeholder="On Text">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="OffText" class="col-xs-4 col-md-4">Off Text</label>
+                    <div class="col-xs-8">
+                        <input ng-model="ctrl.offtext" class="form-control" type="text" placeholder="Off Text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="widgetName">Widget Name</label>
+            <div class="col-xs-8">
+                <input maxlength="15" type="text" name="widgetName" ng-model="ctrl.widgetName" class="form-control"/>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <label class="col-xs-12 label-control text-danger">{{ctrl.errMsg}}</label>
+            <div class="col-xs-12">
+                <button class="btn btn-cancel" type="button" ng-click="ctrl.dismiss()">Cancel</button>
+                <button class="btn btn-action" type="button" ng-click="ctrl.save()">{{ctrl.title}}</button>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="confirmDeleteDB.html">
+    <div class="modal-body" id="modal-body">
+        <center>
+            <h2>Delete Dashboard?</h2>
+            <p>Once you delete a dashboard and all widgets,</p>
+            <p>you can't undo it !</p>
+        </center>
+    <div class="warp-lg modal-footer">
+        <button class="btn dialog-cancel btn-cancel" type="button" ng-click="cancelConfirmDelete()">Cancel</button>
+        <button class="btn dialog-action btn-action" type="button" ng-click="confirmDelete()">Delete Dashboard</button>
+    </div>
+    <div class="warp-mb modal-footer">
+        <button class="btn dialog-cancel btn-cancel" type="button" ng-click="cancelConfirmDelete()">Cancel</button>
+        <button class="col-xs-6 btn dialog-action btn-action" type="button" ng-click="confirmDelete()">Delete</button>
+    </div>
+</script>
+<script type="text/ng-template" id="deleteWidget.html">
+    <div class="modal-body" id="modal-body">
+        <center>
+            <h2>Delete Widget "{{nameOfWidget}}" ?</h2>
+            <p>Once you delete a widget, you can't undo it !</p>
+        </center>
+    <div class="modal-footer">
+        <button class="btn dialog-cancel btn-cancel" type="button" ng-click="cancelConfirmDeleteWidget()">Cancel</button>
+        <button class="btn dialog-action btn-action" type="button" ng-click="confirmDeleteWidget()">Delete Widget</button>
+    </div>
+</script>
+<script type="text/ng-template" id="confirmDeleteDB.html">
+    <div class="modal-body" id="modal-body">
+        <center>
+            <h2>Delete Dashboard?</h2>
+            <p>Once you delete a dashboard and all widgets,</p>
+            <p>you can't undo it !</p>
+        </center>
+    <div class="modal-footer">
+        <button class="btn dialog-cancel btn-cancel" type="button" ng-click="cancelConfirmDelete()">Cancel</button>
+        <button class="btn dialog-action btn-action" type="button" ng-click="confirmDelete()">Delete Dashboard</button>
+    </div>
+</script>
+<!--End Modal Dashboard-->
+<!--START Modal First - Dashboard-->
+<script type="text/ng-template" id="credbFirstModal.html">
+    <div class="modal-body" id="modal-body">
+        <center>    
+            <h3>Please, Search For Things, Group, Widgets... First</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> 
+            <p>Cupiditate dignissimos quasi eaque tenetur alias fugiat,</p> 
+        </center>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-nothank" type="button" ng-click="nothank()">No, Thanks</button>
+        <button class="btn btn-crething" type="button" ng-click="crething()">Create Thing</button>
+    </div>
+</script>
+<!--End Modal First - Dashboard-->
+<!--Start Modal Tutorial - Dashboard-->
+<script type="text/ng-template" id="startDbWidgetTutorial.html">
+    <style>
+        .modal-dialog{
+            position: fixed;
+            left: 400px;
+            top: 155px;
+        }
+        .modal-content{
+            background:none;
+            box-shadow: none;
+            border: none;
+        }
+        .modal-backdrop.in {
+            opacity: .7;
+        }
+    </style>
+    <div class="modal-body" id="modal-body">
+    <div id="namedashboard"  class="things-tu-text">
+        <!-- <a style="margin-left: -286px;" ng-click="toAddDbTutor()">
+            <div class="nav-ic-dash"></div>&#8203;Dashboard
+        </a> -->
+        <h2 class="nameofpage" style="margin-left: -134px;">{{dashboardData.dashboardName}}</h2>
+        <img style="transform:scaleX(-1) rotate(180deg);" src="/modules/core/client/img/ic-tutorial-arrow-80-px.svg" alt="">
+        <h3>This is name of Dashboard.</h3>
+        <p>This dashboard for collect a widgets.</p>
+        <p>Ready for widgets.</p>
+        <br>
+        <button class="btn btn-action" ng-click="NextToWidgetTutor()">Next</button>
+    </div>
+    </div>
+</script>
+<script type="text/ng-template" id="firstWidgetTutor.html">
+    <div class="modal-header none-modal-header">
+            <!-- <a class="modalclose-btn" ng-click="cancelModal()"><img src="/modules/core/client/img/ic-close-24-px.svg" alt=""></a> -->
+    </div>
+    <div class="modal-body" style="padding-top:0px;" id="modal-body">
+        <center>
+            <img src="modules/core/client/img/ic-new-dash-104-px@3x.jpg" width="104" alt="">
+            <h2 class="tutorialmodal">You got a Dashboard!!!</h2>
+            <p style="margin:0px;" class="tutorialmodal">You have create a dashboard. Now, it's time</p>
+            <p class="tutorialmodal">for widgets.</p>
+            <button class="btn btn-tutorialaction" type="button" ng-click="toCreateWidgetTutor()">Understood!</button>
+            <p></p>
+        </center>
+        <!-- <p class="tutorialmodal-subtext"><input type="checkbox">&nbsp;Don't show again<span><a class="tutorialmodal-subtext" href="#">Skip this tutorial</a></span></p> -->
+    </div>
+</script>
+<script type="text/ng-template" id="createWidgetTutor.html">
+    <style>
+        .modal-dialog{
+            position: fixed;
+            right: 26px;
+            top: 137px;
+        }
+        .modal-content{
+            background:none;
+            box-shadow: none;
+            border: none;
+        }
+        .modal-backdrop.in {
+            opacity: .5;
+        }
+    </style>
+    <div class="modal-body" id="modal-body">
+    <div class="things-tu-text text-right">
+        <img style="transform:scaleX(1) rotate(180deg);" src="/modules/core/client/img/ic-tutorial-arrow-80-px.svg" alt="">
+        <!-- <button class="btn btn-action" ng-click="openCreateDbTutor()">Add Dashboard</button> -->
+        <button ng-click="createWidgetTutor()" class="btn btn-action position">​
+            <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Create Widget
+        </button>
+        <div class="things-tu-text text-right" style="margin-right: 200px;">
+            <h3>Create Widget</h3>
+            <p>To monitor sensors from your thing.</p>
+            <p>Please select a widget for your data.</p>
+        </div>            
+    </div>
+    </div>
+</script>
+<script type="text/ng-template" id="congrateTutor.html">
+    <div class="modal-header none-modal-header">
+            <!-- <a class="modalclose-btn" ng-click="cancelModal()"><img src="/modules/core/client/img/ic-close-24-px.svg" alt=""></a> -->
+    </div>
+    <div class="modal-body" style="padding-top:0px;" id="modal-body">
+        <center>
+            <img src="modules/core/client/img/ic-start-104-px@3x.png" width="104" alt="">
+            <h2 class="tutorialmodal">Congratulations! Tutorial is Complete!</h2>
+            <p style="margin:0px;" class="tutorialmodal">For more information, a tooltip will show up when you put</p>
+            <p class="tutorialmodal">your mouse over what you want to know more!</p>
+            <button class="btn btn-tutorialaction" type="button" ng-click="done()">Done!</button>
+            <!-- <p class="tutorialmodal">If you want to see tutorial again, go to setting and turn it on.</p> -->
+        </center>
+        <!-- <p class="tutorialmodal-subtext"><input type="checkbox">&nbsp;Don't show again<span><a class="tutorialmodal-subtext" href="#">Skip this tutorial</a></span></p> -->
+    </div>
+</script>
+<!--End Modal Tutorial - Dashboard-->
+<!--Start Modal Detail Group-->
+<script type="text/ng-template" id="openSelectThingsToGroupModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Add Thing To Group<a class="closeModal" ng-click="cancelChooseThings()"><b class="ic-close"></b></a></h3>
+    </div>
+    <div class="modal-body" style="padding:0px;" id="modal-body">
+        <table class="warp-lg" width="100%">
+            <tr>
+                <th class="col-xs-12 col-sm-12 col-md-8 col-lg-8 wrapper-thingtogroup-left">
+                    <div class="wrapper-thingtogroup-search">
+                        <input type="search" class="search-input" placeholder="Search Thing Name" ng-model="search.thingsName">
+                    </div>
+                    <div class="wrapper-thingtogroup-result">
+                        <div ng-hide="(getthingsavailable|filter:search).length > 0" style="text-align: center;font-size: 24px;">Not Found</div> 
+                        <div ng-repeat="thing in getthingsavailable  | filter:search">
+                            <div class="section-choosegroup">
+                                <p>{{thing.thingsName}}</p>
+                                <button ng-click="chooseThing(thing)" class="btn-choose">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </th>
+                <th class="col-xs-12 col-sm-12 col-md-4 col-lg-4 wrapper-thingtogroup-right">
+                    <h3>Your selected : {{thingselect.length}}<h3>
+                    <div class="wrapper-thingtogroup-choose">
+                        <div ng-if="noAvailableThing">
+                            <p>Nothing for Add</p>
+                        </div>
+                        <div ng-repeat="thing in thingselect" class="group-choose-tag">
+                                <p>{{thing.thingsName}}</p>
+                                <a ng-click="removeThingAdd(thing)" class="btn-x"><img src="/modules/core/client/img/ic-close-16-px.svg" alt=""></a>
+                        </div>
+                    </div>
+                        
+                </th>
+            </tr>
+        </table>
+        <div class="warp-mb">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 wrapper-thingtogroup-left">
+                <div class="wrapper-thingtogroup-search">
+                    <input type="search" class="thing-to-group" placeholder="Search Thing Name" ng-model="search.thingsName">
+                </div>
+                <div class="wrapper-thingtogroup-result">
+                    <div ng-hide="(getthingsavailable|filter:search).length > 0" style="text-align: center;font-size: 24px;">Not Found</div>
+                    <div ng-repeat="thing in getthingsavailable  | filter:search">
+                        <div class="section-choosegroup">
+                            <p>{{thing.thingsName}}</p>
+                            <button ng-click="chooseThing(thing)" class="btn-choose">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 wrapper-thingtogroup-right">
+                <h3>Your selected : {{thingselect.length}}<h3>
+                <div class="wrapper-thingtogroup-choose">
+                    <div ng-if="noAvailableThing">
+                        <p>Nothing for Add</p>
+                    </div>
+                    <div ng-repeat="thing in thingselect" class="group-choose-tag">
+                        <p>{{thing.thingsName}}</p>
+                        <a ng-click="removeThingAdd(thing)" class="btn-x"><img src="/modules/core/client/img/ic-close-16-px.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-cancel" type="button" ng-click="cancelChooseThings()">Cancel</button>
+        <button class="btn btn-action" type="button" ng-click="DoneAddThingToGroup()">Done</button>
+    </div>
+</script>
+<script type="text/ng-template" id="editModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Edit Thing<a class="closeModal" ng-click="cancelSaveThings()"><b class="ic-close"></b></a></h3>
+    </div>
+    <form ng-submit="saveThings()">
+    <div class="modal-body" id="modal-body">
+        <div class="form-group"><h4>Thing Name<span class="req-input">*</span></h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" ng-model="editThingName" id="editThingName" type="text" class="ais-input-text" placeholder="Thing Name" required autofocus></span></div>
+        <div class="form-group"><h4>Description</h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="300" ng-model="editThingDes" id="editThingDes" type="text" class="ais-input-text" placeholder="Description"></span></div>
+        <!-- <div class="form-group"><h4>Permission</h4>
+        <span>
+            <input type="radio" name="permission" ng-model="permission" value="Public" checked>&nbsp;Public&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="permission" ng-model="permission" value="Private">&nbsp;Private&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="permission" ng-model="permission" value="ForSell" >&nbsp;For sell&nbsp;&nbsp;&nbsp;
+        </span>
+        </div>
+        <div class="form-group"><h4>Interval Time</h4>
+        <span>
+            <select ng-model="timerefresh">
+                <option ng-repeat="n in range(20,100)">{{n}}</option>
+            </select>&nbsp;&nbsp;second
+        </span></div> -->
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-cancel" type="button" ng-click="cancelSaveThings()">Cancel</button>
+        <button class="btn btn-action" type="submit">Update</button>
+    </div>
+    </form>
+</script>
+<script type="text/ng-template" id="editGroupDetailModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Edit Group<a class="closeModal" ng-click="cancelSaveGroup()"><b class="ic-close"></b></a></h3>
+    </div>
+    <form ng-submit="saveGroup()">
+    <div class="modal-body" id="modal-body">
+        <div class="form-group"><h4>Group Name<span class="req-input">*</span></h4><span><input maxlength="10"  ng-model="editGroupName" id="editGroupName" type="text" class="ais-input-text" placeholder="Group Name" required autofocus></span></div>
+        <div class="form-group"><h4>Description</h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="300" ng-model="editGroupDes" id="editGroupDes" type="text" class="ais-input-text" placeholder="Description"></span></div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-cancel" type="button" ng-click="cancelSaveGroup()">Cancel</button>
+        <button class="btn btn-action" type="submit">Update</button>
+    </div>
+    </form>
+</script>
+<!--End Modal Detail Group-->
+<!--Start Modal Index Group-->
+<script type="text/ng-template" id="createGroupModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Create Group<a class="closeModal" ng-click="cancelCreatGroup()"><b class="ic-close"></b></a></h3>
+    </div>
+    <form ng-submit="CreatGroup()">
+    <div class="modal-body" id="modal-body">
+        <div class="form-group"><h4>Group Name<span class="req-input">*</span></h4><span><input maxlength="10" ng-model="createGroupName" type="text" class="ais-input-text" placeholder="Group Name" required autofocus></span></div>
+        <div class="form-group"><h4>Description</h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="300" ng-model="createGroupDes" type="text" class="ais-input-text" placeholder="Group Description"></span></div>
+    </div>
+    <div class="modal-footer">
+        <button class="col-xs-6 btn btn-cancel" type="button" ng-click="cancelCreatGroup()">Cancel</button>
+        <button style="max-width:120px;" class="col-xs-6  btn btn-action" type="submit">OK</button>
+    </div>
+    </form>
+</script>
+<script type="text/ng-template" id="editGroupModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Edit Group<a class="closeModal" ng-click="cancelSaveGroup()"><b class="ic-close"></b></a></h3>
+    </div>
+    <form  ng-submit="saveGroup()">
+    <div class="modal-body" id="modal-body">
+        <div class="form-group"><h4>Group Name<span class="req-input">*</span></h4><span><input maxlength="10" ng-model="editGroupName" id="editGroupName" type="text" class="ais-input-text" placeholder="Group Name" required autofocus></span></div>
+        <div class="form-group"><h4>Description</h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="300" ng-model="editGroupDes" id="editGroupDes" type="text" class="ais-input-text" placeholder="Description"></span></div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-cancel" type="button" ng-click="cancelSaveGroup()">Cancel</button>
+        <button class="btn btn-action" type="submit">Update</button>
+    </div>
+    </form>
+</script>
+<script type="text/ng-template" id="deleteGroup.html">
+    <div class="modal-body" id="modal-body">
+        <center>
+            <h2>Delete Group "{{nameOfGroup}} "?</h2>
+            <p>Once you delete a Group, you can't undo it !</p>
+        </center>
+    <div class="modal-footer">
+        <button class="col-xs-12 btn dialog-cancel btn-cancel" type="button" ng-click="cancelConfirmDeleteGroup()">Cancel</button>
+        <button style="max-width:120px;" class="col-xs-12 btn dialog-action btn-action" type="button" ng-click="confirmDeleteGroup()">Delete Group</button>
+    </div>
+</script>
+<!--End Modal Index Group-->
+<!--Start Modal Detail Things-->
+<script type="text/ng-template" id="deletedetailThing.html">
+    <div class="modal-body" id="modal-body">
+        <center>
+            <h2>Delete Thing "{{nameOfThing}}"?</h2>
+            <p>Once you delete a Thing, you can't undo it !</p>
+        </center>
+    <div class="modal-footer">
+        <button class="btn dialog-cancel btn-cancel" type="button" ng-click="cancelConfirmDeleteThing()">Cancel</button>
+        <button class="btn dialog-action btn-action" type="button" ng-click="confirmDeleteThing()">Delete Thing</button>
+    </div>
+</script>
+<!--End Modal Detail Things-->
+<!--Start Modal Index Things-->
+<script type="text/ng-template" id="createModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Create Things<a class="closeModal" ng-click="cancelCreateThings()"><b class="ic-close"></b></a></h3>
+    </div>
+    <form ng-submit="createThings()">
+    <div class="modal-body" id="modal-body" style="padding:0px;">
+        <table>
+            <tr>
+                <!-- <th class="crething-modal-left">
+                <img width="128" src="/modules/core/client/img/pic-scan-qr-136-px@3x.png" alt="">
+                    <h3>Create by QR CODE</h3>
+                    <p>you can create thing by scan qr code</p>
+                    <p>in your thing device</p>
+                <button ng-click="scanqrcode()" class="btn btn-action position">​
+                    <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Scan QRCODE
+                </button>
+                </th>   -->
+                <th class="crething-modal-right">
+                <div class="form-group"><h4>Thing Name<span class="req-input">*</span></h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="13" ng-model="createThingName" type="text" class="ais-input-text" placeholder="Thing Name" required autofocus></span></div>
+                <div class="form-group"><h4>Description</h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="300" ng-model="createThingDes" type="text" class="ais-input-text" placeholder="Description"></span></div>
+                <!-- <div class="form-group"><h4>Permission</h4>
+                <span>
+                    <input type="radio" name="permission" ng-model="createpermission" value="Public" checked>&nbsp;Public&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="permission" ng-model="createpermission" value="Private">&nbsp;Private&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="permission" ng-model="createpermission" value="For sell" >&nbsp;For sell&nbsp;&nbsp;&nbsp;
+                </span>
+                </div>
+                <div class="form-group"><h4>Interval Time</h4>
+                <span>
+                    <select ng-model="createtimerefresh">
+                        <option ng-repeat="n in range(20,100)">{{n}}</option>
+                    </select>&nbsp;&nbsp;second
+                </span>
+                </div> -->
+                </th>  
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-cancel" type="button" ng-click="cancelCreateThings()">Cancel</button>
+        <button class="btn btn-action" type="submit" >Create Thing</button>
+    </div>
+    </form>
+</script>
+<script type="text/ng-template" id="openThingsToGroupModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Choose Group<a class="closeModal" ng-click="cancelGroup()"><b class="ic-close"></b></a></h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="wrapper-thing-choosegroup">
+            <div class="wrapper-thingtogroup-search-thing">
+                <input type="search" class="search-input" placeholder="Search Group Name" ng-model="search.groupName">
+            </div>
+            <div class="wrapper-thingtogroup-result">
+                <div ng-show="success" class="text-center text-success">
+                    <strong>Successfully Add Thing To Group</strong>
+                </div>
+                <div ng-show="error" class="text-center text-danger">
+                    <strong ng-bind="error"></strong>
+                </div>
+                <div ng-repeat="group in groups | filter:search">
+                    <div class="section-choosegroup">
+                        <p>{{group.groupName}}</p>
+                        
+                        <button id="{{group._id}}" ng-click="chooseGroup(group._id)" class="btn-choose">Choose</button>
+                    </div>
+                </div>
+                <div ng-hide="(groups|filter:search).length > 0" style="text-align: center;font-size: 24px;">Not Found</div> 
+            </div>
+        </div>
+    </div>
+    <!--<div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="saveThings()">Create Group</button>
+    </div>-->
+</script>
+<script type="text/ng-template" id="openScanQRmodal.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Scan QRCode<a class="closeModal" ng-click="cancelScanQR()"><b class="ic-close"></b></a></h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <center>
+            <qr-scanner ng-show="!checkqrdata" ng-success="onSuccess(data)" width="400" height="300"></qr>
+        </center>
+        <div ng-show="checkqrdata">
+            <div class="form-group" style="height:50px">
+                <label class="profile-label" for="">Token</label>
+                <p class="profile-label">{{qrcodedata}}</p>        
+                <button ng-show="!tokenused" class="btn btn-action" type="button" ng-click="createThingWithQR()">Create Thing</button>
+                <center>
+                    <p ng-show="tokenused" class="noti-usedthing">Already Register This Thing</p>
+                </center> 
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-cancel" type="button" ng-click="cancelScanQR()">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template" id="deleteThing.html">
+    <div class="modal-body" id="modal-body">
+        <center>
+            <h2>Delete Thing "{{nameOfThing}}"?</h2>
+            <p>Once you delete a Thing, you can't undo it !</p>
+        </center>
+    <div class="modal-footer">
+        <button class="btn dialog-cancel btn-cancel" type="button" ng-click="cancelConfirmDeleteThing()">Cancel</button>
+        <button class="btn dialog-action btn-action" type="button" ng-click="confirmDeleteThing()">Delete Thing</button>
+    </div>
+</script>
+<!--End Modal Index Things-->
+<!--Start Modal Tutorial Things-->
+<script type="text/ng-template" id="StartTutorial.html">
+    <div class="modal-header none-modal-header">
+            <!-- <a class="modalclose-btn" ng-click="cancelConfirmDeleteThing()"><img src="/modules/core/client/img/ic-close-24-px.svg" alt=""></a> -->
+    </div>
+    <div class="modal-body" style="padding-top:0px;" id="modal-body">
+        <center>
+            <img src="/modules/core/client/img/ic-welcom-104-px.svg" alt="">
+            <h2 class="tutorialmodal">Wellcome To Magellan!</h2>
+            <p style="margin:0px;" class="tutorialmodal">Complete this 30-second overview to get the</p>
+            <p class="tutorialmodal">essensial before you start working.</p>
+            <button class="btn btn-tutorialaction" type="button" ng-click="startbtn()">Start</button>
+        </center>
+        <p class="tutorialmodal-subtext"><input type="checkbox" ng-model="checkskip">&nbsp;Don't show again<button class="skip-btn" ng-click="skip()">Skip this tutorial</button></p>
+        <!-- <p class="tutorialmodal-subtext"><input type="checkbox">&nbsp;Don't show again<span><a class="tutorialmodal-subtext" href="#">Skip this tutorial</a></span></p> -->
+    </div>
+</script>
+<script type="text/ng-template" id="createThingsTutorial.html">
+    <style>
+        .modal-content{
+            background:none;
+            top:330px;
+            left:300px;
+            box-shadow: none;
+            border: none;
+        }
+        .modal-backdrop.in {
+            opacity: .85;
+        }
+    </style>
+    <div class="modal-body" id="modal-body">
+    <div class="things-tu-text things-tu-wrap">
+        <h3>Create Thing</h3>
+        <p>Create your thing and look for Thing key to</p>
+        <p>embed the thing key to your IoT device to</p>
+        <p>connect with Magellan</p>
+        <img style="margin-left:-50px;" src="/modules/core/client/img/ic-tutorial-arrow-80-px.svg" alt="">
+        <button style="margin-left: -252px;margin-top: 40px;" ng-click="openCreateThingsTu()" class="btn btn-action">
+                <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&#8203;Create Things
+        </button>
+    </div>
+    </div>
+</script>
+<script type="text/ng-template" id="createModalContentTutor.html">
+    <div class="modal-header">
+        <!-- <h3 class="modal-title" id="modal-title">Create Thing<a class="closeModal" ng-click="cancelCreateThings()"><b class="ic-close"></b></a></h3> -->
+    </div>
+    <form  ng-submit="saveThingsTu()">
+    <div class="modal-body" id="modal-body" style="padding:0px;">
+        <table>
+            <tr>
+                <th class="crething-modal-left">
+                <img width="128" src="/modules/core/client/img/pic-scan-qr-136-px@3x.png" alt="">
+                    <h3>Create by QR CODE</h3>
+                    <p>you can create thing by scan qr code</p>
+                    <p>in your thing device</p>
+                <button ng-click="scanqrcode()" class="btn btn-action position">​
+                    <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Scan QRCODE
+                </button>
+                </th>  
+                <th class="crething-modal-right">
+                <div class="form-group"><h4>Thing Name<span class="req-input">*</span></h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="13" ng-model="createThingName" type="text" class="ais-input-text" placeholder="Thing Name" required autofocus></span></div>
+                <div class="form-group"><h4>Description</h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="300" ng-model="createThingDes" type="text" class="ais-input-text" placeholder="Description"></span></div>
+                <!-- <div class="form-group"><h4>Permission</h4>
+                <span>
+                    <input type="radio" name="permission" ng-model="createpermission" value="Public" checked>&nbsp;Public&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="permission" ng-model="createpermission" value="Private">&nbsp;Private&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="permission" ng-model="createpermission" value="For sell" >&nbsp;For sell&nbsp;&nbsp;&nbsp;
+                </span>
+                </div>
+                <div class="form-group"><h4>Interval Time</h4>
+                <span>
+                    <select ng-model="createtimerefresh">
+                        <option ng-repeat="n in range(20,100)">{{n}}</option>
+                    </select>&nbsp;&nbsp;second
+                </span>
+                </div> -->
+                </th>  
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <!-- <button class="btn btn-cancel" type="button" ng-click="cancelCreateThings()">Cancel</button> -->
+        <button class="btn btn-action" type="submit">Create Thing</button>
+    </div>
+    </form>
+</script>
+<script type="text/ng-template" id="StartDbTutorial.html">
+    <div class="modal-header none-modal-header">
+            <!-- <a class="modalclose-btn" ng-click="cancelConfirmDeleteThing()"><img src="/modules/core/client/img/ic-close-24-px.svg" alt=""></a> -->
+    </div>
+    <div class="modal-body" style="padding-top:0px;" id="modal-body">
+        <center>
+            <img src="/modules/core/client/img/ic-thing-key-194-px.svg" alt="">
+            <h2 class="tutorialmodal">Before Goto Dashboard</h2>
+            <p style="margin:0px;" class="tutorialmodal">Please embed the thing key otherwise you</p>
+            <p class="tutorialmodal">cannot create widget in the dashboard.</p>
+            <button class="btn btn-tutorialaction" type="button" ng-click="tudb()">Understood!</button>
+            <p></p>
+        </center>
+        <!-- <p class="tutorialmodal-subtext"><input type="checkbox">&nbsp;Don't show again<span><a class="tutorialmodal-subtext" href="#">Skip this tutorial</a></span></p> -->
+    </div>
+</script>
+<script type="text/ng-template" id="dbFirstTutorial.html">
+    <style>
+        .modal-dialog{
+            position: fixed;
+            left: 300px;
+            top: 143px;
+        }
+        .modal-content{
+            background:none;
+            box-shadow: none;
+            border: none;
+        }
+        .modal-backdrop.in {
+            opacity: .7;
+        }
+    </style>
+    <div class="modal-body" id="modal-body">
+    <div class="things-tu-text">
+        <a style="margin-left: -286px;" ng-click="toAddDbTutor()">
+            <div class="nav-ic-dash"></div>&#8203;Dashboard
+        </a>
+        <img style="transform:scaleX(-1) rotate(180deg);margin-left: 110px;" src="/modules/core/client/img/ic-tutorial-arrow-80-px.svg" alt="">
+        <h3>Dashboard</h3>
+        <p>Goto Dashboard for visualization data of your</p>
+        <p>IoT device.</p>            
+    </div>
+    </div>
+</script>
+<script type="text/ng-template" id="addDbTutor.html">
+    <style>
+        .modal-dialog{
+            position: fixed;
+            left: 300px;
+            top: 186px;
+        }
+        .modal-content{
+            background:none;
+            box-shadow: none;
+            border: none;
+        }
+        .modal-backdrop.in {
+            opacity: .85;
+        }
+    </style>
+    <div class="modal-body" id="modal-body">
+    <div class="things-tu-text">
+        <button style="margin-left: -270px;"class="btn btn-adddb" ng-click="openCreateDbTutor()">Add Dashboard</button>
+        <img style="transform:scaleX(-1) rotate(180deg);margin-left: 110px;" src="/modules/core/client/img/ic-tutorial-arrow-80-px.svg" alt="">
+        <h3>Add Dashboard</h3>
+        <p>Create a Dashboard first then create widget</p>
+        <p>to see data from your thing.</p>            
+    </div>
+    </div>
+</script>
+<script type="text/ng-template" id="openCreateDbTutor.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Create Dashboard</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-group">
+            <h4>Dashboard Name<span class="req-input">*</span></h4><span><input maxlength="18" pattern="^[^\s]+(\s+[^\s]+)*$" ng-model="creDashboardName" type="text" class="ais-input-text" placeholder="Dashboard Name" autofocus></span></div>
+        <div class="form-group">
+            <h4>Description</h4><span><input pattern="^[^\s]+(\s+[^\s]+)*$" maxlength="300" ng-model="creDashboardDes" type="text" class="ais-input-text" placeholder="Description"></span></div>
+    </div>
+    <div class="modal-footer">
+        <!-- <button class="btn btn-cancel" type="button" ng-click="cancelCreDb()">Cancel</button> -->
+        <button class="btn btn-action" type="button" ng-click="creDb()">Create Dashboard</button>
+    </div>
+</script>
+<!--End Modal Tutorial Things-->

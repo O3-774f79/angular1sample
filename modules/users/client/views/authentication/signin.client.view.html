@@ -1,0 +1,116 @@
+<div class="warp-signin-mobile">
+  <div class="mb-bg-signin">
+    <div class="mb-box-signin">
+      <div style="padding:10px;">
+        <img src="/modules/core/client/img/logo-38-px.png">
+        <span class="mb-logo-word">MAGELLAN</span>
+        <p style="font-size: 58px;font-weight: bold;line-height: 1;">SIGN IN</p>
+        <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+          <fieldset>
+            <div class="form-group" show-errors>
+              <uib-alert type="danger" ng-show="vm.error" class="text-center text-danger">
+                <span ng-bind="vm.error"></span>
+              </uib-alert>
+              <label class="mb-label-signin">Your Email Address</label>
+              <input type="text" id="usernameOrEmail" name="usernameOrEmail" ng-model="vm.credentials.usernameOrEmail" class="signin-input-form" placeholder="you@example.com" required autofocus>
+              <div ng-messages="vm.userForm.usernameOrEmail.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Email is required.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label class="mb-label-signin">Password</label>
+              <input type="password" id="password" name="password" class="signin-input-form" placeholder="Password" ng-model="vm.credentials.password" required>
+              <div ng-messages="vm.userForm.password.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Password is required.</p>
+              </div>
+            </div>
+            <p>
+              <!-- <span class="signin-keep"><input class="checkbox-keep"type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label> &nbsp;Stay signed in</span> -->
+              <a class="font-size" ui-sref="password.forgot"><span class="signin-forgot">Forgot Password?</span></a>
+            </p>
+            <br>
+            <br><br>
+            <button type="submit" class="btn btn-signin">SIGN IN</button>
+          </fieldset>
+        </form>
+        <p class="signin-toregis" style="text-align:center;">Not a member yet? <a  ui-sref="authentication.signup">Register</a></p>
+        <p  class="dash-dynamic" style="text-align:center;margin-top: 40px;margin-bottom: 40px;"><span class="signin-or">OR SIGN IN WITH</span></p>
+        <div style="text-align:center;">
+        <button ng-click="vm.callOauthProvider('/api/auth/facebook')" class="btn btn-facebook"><img class="signin-ic-facebook"src="/modules/core/client/img/logo-facebook-24-px.svg" alt="">FACEBOOK</button>
+        <!--<button class="btn btn-google"><img class="signin-ic-google"src="/modules/core/client/img/lo-google-24-px.svg" alt="">GOOGLE</button>-->
+        </div>
+      </div>
+      <div style="text-align:center;color:#a3a3a3;margin-bottom: 40px;margin-top: 40px;padding-left: 10px;padding-right: 10px;">
+        <span style="display:block;">Browser Support:</span>
+        <span style="display:block;">
+          <img src="/modules/core/client/img/ic-chrome-16-px.png">&nbsp;&nbsp;Chrome 60+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <img src="/modules/core/client/img/ic-firefox-16-px.png">&nbsp;&nbsp;Firefox 55 +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <img src="/modules/core/client/img/ic-safari-16-px.png">&nbsp;&nbsp;Safari 10 / 11 </span>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="warp-signin-lg">
+  <div class="signin-left">
+    <div class="signin-intro-wrap">
+      
+      <span class="signin-logoname"><img src="/modules/core/client/img/logo-logo-84-px@3x.png" width="85"alt="">MAGELLAN</span>
+      <div class="signin-intro-word">
+        <h1>Connects Your IoTs</h1>
+        <h1>to the World Revolution</h1>
+      </div>
+      <div class="signin-intro-word-des">
+        <p>We accelerate your solution and provide you a faster way to</p>
+        <p>IoTs connectivity You are free to start small, and grow at your</p>
+        <p>own pace No need to worry, ENJOY!!</p>
+      </div>
+    </div>
+  </div>
+  <div class="signin-right">
+    <div class="box-signin">
+      <h1>SIGN IN</h1>
+      <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+        <fieldset>
+          <div class="form-group" show-errors>
+            <uib-alert type="danger" ng-show="vm.error" class="text-center text-danger">
+              <span ng-bind="vm.error"></span>
+            </uib-alert>
+            <p class="signin-topic">Your Email Address</p>
+            <input type="text" id="usernameOrEmail" name="usernameOrEmail" ng-model="vm.credentials.usernameOrEmail" class="signin-input-form" placeholder="you@example.com" required autofocus>
+            <div ng-messages="vm.userForm.usernameOrEmail.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Email is required.</p>
+            </div>
+          </div>
+          <div class="form-group" show-errors>
+            <p class="signin-topic">Password</p>
+            <input type="password" id="password" name="password" class="signin-input-form" placeholder="Password" ng-model="vm.credentials.password" required>
+            <div ng-messages="vm.userForm.password.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Password is required.</p>
+            </div>
+          </div>
+          <p>
+            <!-- <span class="signin-keep"><input class="checkbox-keep"type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label> &nbsp;Stay signed in</span> -->
+            <a class="font-size" ui-sref="password.forgot"><span class="signin-forgot">Forgot Password?</span></a>
+          </p>
+          <br>
+          <br><br>
+          <button type="submit" class="btn btn-signin">SIGN IN</button>
+        </fieldset>
+      </form>
+      <p class="signin-toregis">Not a member yet? <a  ui-sref="authentication.signup">Register</a></p>
+      <p  class="dash-dynamic" style="text-align:center;margin-top: 40px;margin-bottom: 40px;"><span class="signin-or">OR SIGN IN WITH</span></p>
+      <button ng-click="vm.callOauthProvider('/api/auth/facebook')" class="btn btn-facebook"><img class="signin-ic-facebook"src="/modules/core/client/img/logo-facebook-24-px.svg" alt="">FACEBOOK</button>
+      <!--<button class="btn btn-google"><img class="signin-ic-google"src="/modules/core/client/img/lo-google-24-px.svg" alt="">GOOGLE</button>-->
+      
+    </div>
+    <div style="text-align:center;color:#a3a3a3;">
+      <span style="display:block;">Browser Support:</span>
+      <span style="display:block;">
+        <img src="/modules/core/client/img/ic-chrome-16-px.png">&nbsp;&nbsp;Chrome 60+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="/modules/core/client/img/ic-firefox-16-px.png">&nbsp;&nbsp;Firefox 55 +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="/modules/core/client/img/ic-safari-16-px.png">&nbsp;&nbsp;Safari 10 / 11 </span>
+    </div>
+  </div>
+</div>

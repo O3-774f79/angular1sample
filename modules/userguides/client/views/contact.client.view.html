@@ -1,0 +1,39 @@
+<section style="margin-top:120px;">
+    <h1 style="color:#fff;">Contact Us</h1>
+    <div class="contentinpage col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color: #1b1c1b;overflow: auto;padding:30px;max-width: 580px;">
+        <div class="" style="padding:30px;">
+        <!-- <form action="mailto:magellan@magellan.io?subject=CONTACT FORM" method="post"enctype="text/plain"> -->
+        <form name="contactForm" ng-submit="vm.contactForm()" class="signin" autocomplete="off">
+            <fieldset>
+                <div class="profile-section form-group">
+                    <p class="profile-label" for="email">Your Email Address</p>
+                    <input type="email" class="profile-input" ng-model="data.email">
+                </div>
+                <div class="profile-section form-group" show-errors>
+                    <p class="profile-label" for="subject">Subject</p>
+                    <input type="text" name="subject" class="form-control  profile-input" ng-model="data.subject" placeholder="subject" required autofocus>
+                    <div ng-messages="contactForm.Subject.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Subject is required.</p>
+                    </div>
+                </div>
+                <div class="profile-section form-group" show-errors>
+                    <p class="profile-label" for="">How can we help?</p>
+                    <textarea style="max-width:100%;min-height: 100px;"type="text" name="message" class="form-control  profile-input" ng-model="data.message" placeholder="Type a message..." rows="3" required></textarea>
+                    <div ng-messages="contactForm.message.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Message is required.</p>
+                    </div>
+                </div>
+                <div class="profile-section" style="margin-top:50px;">
+                    <button style="float:right;" type="submit" class="btn btn-action">Send a Message</button>
+                </div>
+                <div ng-show="success" class="text-center text-success">
+                    <strong>Profile Saved Successfully</strong>
+                </div>
+                <div ng-show="error" class="text-center text-danger">
+                    <strong ng-bind="error"></strong>
+                </div>
+            </fieldset>
+        </form>
+        </div>
+    </div>
+</section>

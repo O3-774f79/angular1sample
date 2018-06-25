@@ -1,0 +1,154 @@
+<div class="topbar" id="topbar">
+        <div div class="topbar-left">
+            <button class="ais-menutoggle ais-teal ais-xlarge btn-top" ng-click="w3_open()"><img src="/modules/core/client/img/ic-menu@3x.png" width="28px" alt=""></button>
+            <div 
+            angucomplete-alt
+            id="searchcomplete"
+            placeholder="Search For Things, Group, Widgets..."
+            pause="400"
+            selected-object="objectSelected"
+            remote-url="/api/search/"
+            remote-url-request-formatter="remoteUrlRequestFn"
+            remote-url-data-field="data"
+            title-field="name"
+            description-field="type"
+            minlength="1"
+            input-class="searchbar-top form-control-small"
+            match-class="highlight"
+            maxlength="30">
+            </div>
+        </div>
+        <div class="topbar-right">
+            <ul class="btn-user" ng-show="vm.authentication.user">
+            <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
+            <li class="dropdown " uib-dropdown>
+                <a class="user-header-dropdown-toggle  dropdown-user" uib-dropdown-toggle role="button">
+                    <span class="hidden-xs">{{vm.authentication.user.displayName}}</span>
+                <b class="glyphicon glyphicon-menu-down ic-dropdown-user"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li ui-sref-active="active">
+                        <a ui-sref="profile">View Profile</a>
+                    </li>
+                    <li>
+                        <a href="/api/auth/signout" target="_self">Signout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    
+       </div>
+    </div>
+    <section>
+    <div class="top-content" id="topcontent">
+        <div class="topcontent-left">
+            <h2 class="nameofpage">All Things</h2>&nbsp;&nbsp;&nbsp;
+            <li class="dropdown sort-dropdown" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                    <span>{{sort}}</span>
+                <b class="glyphicon glyphicon-menu-down ic-dropdown"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a ng-click="sortData('thingNameaz')">ThingName A - Z</a>
+                </li>
+                <li>
+                    <a ng-click="sortData('thingNameza')">ThingName Z - A</a>
+                </li>
+                <li>
+                    <a ng-click="sortData('datecreateaz')">DateCreate - Newest</a>
+                </li>
+                <li>
+                    <a ng-click="sortData('datecreateza')">DateCreate - The oldest</a>
+                </li>
+                </ul>
+            </li>
+            <p>{{thingsobj.length}} Things, {{amountStatus}} Connect</p>
+        </div>
+        <div class="topcontent-right">
+            <!--<button ng-click="scanqrcode()" class="btn btn-action position">​
+                <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Scan QRCODE
+            </button>-->
+            <button ng-click="openCreateThingsTu()" class="btn btn-action position">​
+                <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Create Things
+            </button>
+        </div>
+        <!--<div class="col-xs-12 col-sm-6 col-md-7 col-lg-3 col-lg-offset-4">
+            <div class="input-group">
+                <input type="text" class="ais-searchbar" placeholder="Search Things name" ng-model="search.thingName">
+            </div>
+        </div>-->
+    </div>
+    <div class="container-fluid contentinpage content-normal">
+    <!--<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 things-box" ng-repeat='things in thingsobj | filter:search'>-->
+        <div ng-show="firstThingShow">
+            <center>
+                <img style="margin-bottom:20px;"src="/modules/core/client/img/ic-guide-thing-120-px.svg" alt="" width="120">
+                <h2 class="text-content">Looks like you don't have any Things</h2>
+                <p class="text-content">then embed the thing key to your IoT device to</p>
+                <p class="text-content">connect with Magellan.</p>
+                <button ng-click="openCreateThingsTu()" class="btn btn-action">
+                    <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&#8203;Create Things
+                </button>
+            </center>
+        </div>
+        <div ng-show="!firstThingShow" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 things-box" ng-repeat='things in thingsobj | orderBy:xOrderBy'>
+            <div class="things-wrapper" >
+                <!--<div class="remove-group-btn" ng-click="ThingsDelete(things._id)"><span >X</span></div>-->
+                <li class="dropdown remove-group-btn" uib-dropdown>
+                    <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                    <b class="glyphicon glyphicon-option-horizontal"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a ng-click="ThingsEdit(things)">Edit Thing</a></li>
+                        <li><a ng-click="ThingsDelete(things)">Delete</a></li>
+                        <li><a ng-click="ThingsToGroup(things._id)">Add To Group</a></li>
+                    </ul>
+                </li>
+            <!--<div class="things-content" ng-click="ThingsEdit(things._id)">-->
+                <a ng-href="/things-detail{{things._id}}">
+                <div class="things-content">
+                    <div class="things-header" >
+                        <h3 id="thingName" class="ng-binding">
+                            <div ng-show="thingsstatus[$index].data.status" class="oval-online"></div>
+                            <div ng-show="!thingsstatus[$index].data.status" class="oval-offline"></div>
+                            {{things.thingsName}}
+                        </h3>
+                    </div>
+                    <div class="things-des">
+                        <!--<h4>
+                            <div ng-if="things.datasource.batteryiot == 0">
+                                <img src="/modules/core/client/img/ic-battery-on-0-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                            </div>
+                            <div ng-if="things.datasource.batteryiot > 0 && things.datasource.batteryiot < 21">
+                                <img src="/modules/core/client/img/ic-battery-on-20-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                            </div>
+                            <div ng-if="things.datasource.batteryiot > 20 && things.datasource.batteryiot < 41">
+                                <img src="/modules/core/client/img/ic-battery-on-40-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                            </div>
+                            <div ng-if="things.datasource.batteryiot > 40 && things.datasource.batteryiot < 61">
+                                <img src="/modules/core/client/img/ic-battery-on-60-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                            </div>
+                            <div ng-if="things.datasource.batteryiot > 60 && things.datasource.batteryiot < 81">
+                                <img src="/modules/core/client/img/ic-battery-on-80-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                            </div>
+                            <div ng-if="things.datasource.batteryiot > 80 && things.datasource.batteryiot < 101">
+                                <img src="/modules/core/client/img/ic-battery-on-100-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                            </div>
+                            <div class="thing-battery-wrapper"ng-if="!things.datasource.batteryiot">
+                                <img src="/modules/core/client/img/ic-battery-on-100-48-px.svg" alt="">100 %
+                            </div>
+                            <span class="status-thing-on">Connect</span>
+                            <span ng-if="" class="status-thing-on">Connect</span>
+                            <span ng-if="" class="status-thing-off">Disconnect</span>
+                        </h4>-->
+                        <h4>{{things.created | date : 'MMMM d, yyyy'}}</h4>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    </section>
+    
+    

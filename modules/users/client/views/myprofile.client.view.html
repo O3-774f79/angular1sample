@@ -1,0 +1,127 @@
+<section>
+<div class="top-content-profile" id="topcontent">
+    <div class="topcontent-left" style="width:100%;">
+        <h2 class="nameofpage">My Profile</h2>
+    </div>
+</div>
+<div class="container-fluid contentinpage content-normal-profile">
+<div class=" col-xs-12 col-sm-12 col-md-7 col-lg-7">
+<div class="row profile-wrapper" style="margin-bottom:35px;">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <img width="100px" height="100px" ngf-src="vm.fileSelected ? picFile : '/' + vm.user.profileImageURL" alt="{{vm.user.displayName}}" class="img-thumbnail user-profile-picture" ngf-drop>
+        <br>
+        <div ng-show="vm.loading" class="form-group">
+            <img ng-src="/modules/core/client/img/loaders/loader.gif" height="50" width="50" alt="Loading image...">
+        </div>
+        <div ng-show="!vm.fileSelected" class="">
+            <button class="btn btn-adddb btn-file" ngf-select="(vm.fileSelected = true) && (vm.loading = false)" ng-model="picFile" accept="image/*" ngf-before-model-change="vm.loading = true" ngf-resize="{width: 400}" ngf-resize-if="$width > 400 || $height > 400">Change Photo</button>
+        </div>
+        <div ng-show="vm.fileSelected" class="">
+            <button class="btn btn-adddb" ng-click="vm.upload(picFile)">Use This Picture</button>
+            <button style="width:110px;margin-top:20px;" class="btn btn-cancelprofile" ng-click="vm.fileSelected = false">Cancel</button>
+        </div>
+    </div>
+    <div class="col-xs-12  col-sm-12  col-md-8 col-lg-8">
+        <form name="vm.userForm" ng-submit="vm.updateUserProfile(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+            <fieldset>
+            <p class="profile-h-box">ACCOUNT INFORMATION</p>
+            <div class="profile-section form-group">
+                <p class="profile-label" for="">Display Name</p>
+                <input class="profile-input" value="{{vm.authentication.user.displayName}}" readonly>
+            </div>
+            <div class="profile-section form-group" show-errors>
+                <p class="profile-label" for="firstName">First Name</p>
+                <input type="text" pattern="^[^\s]+(\s+[^\s]+)*$"  name="firstName" class="form-control  profile-input" ng-model="vm.user.firstName" placeholder="First Name" required autofocus>
+                <div ng-messages="vm.userForm.firstName.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">First name is required.</p>
+                </div>
+            </div>
+            <div class="profile-section form-group" show-errors>
+                <p class="profile-label" for="">Last Name</p>
+                <input type="text" id="lastName" name="lastName" class="form-control  profile-input" ng-model="vm.user.lastName" placeholder="Last Name" required>
+                <div ng-messages="vm.userForm.lastName.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Last name is required.</p>
+                </div>
+            </div>
+            <div class="profile-section form-group" show-errors>
+                <p class="profile-label" for="email">Email</p>
+                <input type="email" id="email" name="email" class="form-control  profile-input" ng-model="vm.user.email" placeholder="Email" lowercase required>
+                <div ng-messages="vm.userForm.email.$error" role="alert">
+                    <p class="help-block error-text" ng-message="required">Email address is required.</p>
+                    <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
+                </div>
+            </div>
+            <!-- <div class="profile-section">
+                <label class="profile-label" for="">Line</label>
+                <a style="margin-left:20px;"href="https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=1517608764&redirect_uri=https://iot.dld-test.com&state=login">
+                    <img style="width:150px;" src="/modules/core/client/img/icons/line/btn_login_base.png" />
+                </a>
+            </div> -->
+            <div class="profile-section" style="margin-top:50px;">
+                <center>
+                <button type="submit" class="btn btn-action-gradient">Update Information</button>
+                </center>
+                <!-- <a type="" class="btn btn-cancel" ng-href="/things">Cancel</a> -->
+                </div>
+                <div ng-show="success" class="text-center text-success">
+                    <strong>Profile Saved Successfully</strong>
+                </div>
+                <div ng-show="error" class="text-center text-danger">
+                <strong ng-bind="error"></strong>
+                </div>
+            <!-- 
+            <div class="profile-section">
+                <label class="profile-label" for="">Password</label>
+                <button ui-sref="settings.password" class="btn-profile">Change Password</button>
+            </div>
+                
+                -->
+            </fieldset>
+        </form>
+    </div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 ">
+<div class="profile-changepass profile-wrapper" style="display:table;width:100%;">
+    <form style="width:100%;" name="vm.passwordForm" ng-submit="vm.changeUserPassword(vm.passwordForm.$valid)" class="signin" novalidate autocomplete="off">
+        <fieldset>
+        <p class="profile-h-box">CHANGE PASSWORD</p>
+        <div class="form-group" show-errors>
+            <p class="profile-label" for="currentPassword">Current Password</p>
+            <input type="password" id="currentPassword" name="currentPassword" class="form-control profile-input" ng-model="vm.passwordDetails.currentPassword" placeholder="Current Password" required autofocus>
+            <div ng-messages="vm.passwordForm.currentPassword.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Your current password is required.</p>
+            </div>
+        </div>
+        <div class="form-group" show-errors>
+            <p class="profile-h-box">New Password</p>
+            <input type="password" id="newPassword" name="newPassword" class="form-control profile-input" ng-model="vm.passwordDetails.newPassword" placeholder="New Password" uib-popover="{{vm.getPopoverMsg()}}" uib-popover-trigger="focus" password-validator required>
+            <div ng-messages="vm.passwordForm.newPassword.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Enter a new password.</p>
+            <div ng-repeat="passwordError in passwordErrors">
+                <p class="help-block error-text" ng-show="vm.passwordForm.newPassword.$error.requirements">{{passwordError}}</p>
+            </div>
+            </div>
+        </div>
+        <div class="form-group" show-errors>
+            <p class="profile-h-box">Verify Password</p>
+            <input type="password" id="verifyPassword" name="verifyPassword" class="form-control profile-input" ng-model="vm.passwordDetails.verifyPassword" placeholder="Verify Password" password-verify="vm.passwordDetails.newPassword" required>
+            <div ng-messages="vm.passwordForm.verifyPassword.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Verify your new password.</p>
+            <p class="help-block error-text" ng-show="vm.passwordForm.verifyPassword.$error.passwordVerify">Passwords do not match.</p>
+            </div>
+        </div>
+        <div class="form-group" ng-show="!vm.passwordForm.newPassword.$error.required">
+            <label>Password Requirements</label>
+            <uib-progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></uib-progressbar>
+        </div>
+        <div class="text-center form-group">
+            <button type="submit" class="btn btn-action-gradient">Change Password</button>
+        </div>
+        </fieldset>
+    </form>
+</div>
+</div>
+</div>
+</section> 
+

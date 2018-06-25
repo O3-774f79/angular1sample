@@ -1,0 +1,116 @@
+/* .title-userguide{
+    top: 100px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: black;
+    z-index: 998;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.site-wrapper {
+    border-color: #191e26;
+    margin-bottom: 30px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    color: #949494;
+    display: inline-block;
+    background-color: #1b1c1b;
+}
+.site-wrapper > ul {
+    padding: 15px;
+}
+.site-wrapper > ul > li {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+.site-wrapper > ul > li > a {
+	font-size: 22px;
+	text-align: left;
+    color: #909596!important;
+    width: 100%;
+    cursor: pointer;
+}
+.site-wrapper > ul > li > a:hover{
+    color: #c5cecf!important;
+}
+.site-wrapper > ul > li > a > span {
+	float: right;
+}
+.title-sec{
+    font-size: 50px;
+    font-weight: normal;
+    color: #fff;
+    display: inline-block;
+}
+#crething, #emkey, #credash, #crewid, #cregroup {
+    top:-200px; -(some pixels above)
+    position:relative;
+    z-index:5;
+} */
+ul.nav-userguide{
+    padding-top: 20px;
+    padding-left: 0px;
+    text-align: center;
+}
+ul.nav-userguide>li {
+    display: inline-block;
+}
+ul.nav-userguide>li>a {
+    cursor: pointer;
+    font-size: 22px;
+    color: #888b8f;
+}
+ul.nav-userguide>li>a:hover {
+    cursor: pointer;
+    font-size: 22px;
+    color: #b1d234;
+}
+ul.nav-userguide > li > span{
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.ul-usg-content{
+    list-style-type: none;
+}
+.ul-usg-content > li{
+    color:#888b8f;
+    font-size: 22px;
+    margin:10px;
+}
+.usg-content{
+    background-color:#1b1c1b;
+    margin-bottom:50px;
+    padding:15px;
+}
+.usg-backtotop{
+    background-color: #3c3c3c;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    cursor: pointer;
+}
+.usg-backtotop > i{
+    position: relative;
+    top: calc(50% - 15px);
+    color: #fff;
+    left: calc(50% - 15px);
+    font-size: 30px;
+}
+.usg-none{
+    display: none;
+}
+.img-userguide{
+    margin-top: 6px;
+}
+.title-userguide{
+    color: #fff;
+    font-size: 46px;
+}

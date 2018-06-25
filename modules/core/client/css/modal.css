@@ -1,0 +1,17 @@
+.modal-header{
+    padding: 24px;
+    padding-bottom: 15px;
+}
+.modal-body{
+    padding-left: 24px;
+    padding-right: 24px;
+}
+.modal-footer{
+    padding: 24px;
+}
+select.dropdown-ic{
+    border: solid 1px #cacaca;
+    background: url('/modules/core/client/img/ic_arrow_down_24px.png') no-repeat right #fff;
+    -webkit-appearance: none;
+    background-position-x: 97%;
+}

@@ -1,0 +1,48 @@
+{
+  "name": "nb-playground",
+  "description": "Narrow Board IOT PLAYGROUND",
+  "homepage": "http://meanjs.org/",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.5.3",
+    "angular-animate": "~1.5.0",
+    "angular-bootstrap": "~1.2.1",
+    "angular-messages": "~1.5.0",
+    "angular-mocks": "~1.5.0",
+    "angular-resource": "~1.5.0",
+    "angular-ui-notification": "~0.2.0",
+    "angular-ui-router": "~0.2.18",
+    "angular-route": "~1.5.0",
+    "bootstrap": "~3.3.6",
+    "ng-file-upload": "~12.1.0",
+    "owasp-password-strength-test": "~1.3.0",
+    "angularjs-gauge": "^2.0.1",
+    "angular-chart.js": "^1.1.1",
+    "ngmap": "^1.18.4",
+    "gridstack-angular": "^0.5.0",
+    "angular-ui-sortable": "^0.17.1",
+    "angular-qr-scanner": "^0.1.0",
+    "angular-tooltips": "^1.2.2",
+    "angucomplete-alt": "2.0.0",
+    "angular-mqtt": "https://github.com/bossberry/angular-MQTT.git#^1.0.7",
+    "JavaScript-Load-Image": "https://github.com/blueimp/JavaScript-Load-Image.git#2.18.0",
+    "angular-numeric-input": "^1.0.4"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/css/bootstrap-theme.css",
+        "less/bootstrap.less"
+      ]
+    },
+    "jquery": {
+      "main": [
+        "dist/*.js"
+      ]
+    },
+    "resolutions": {
+      "angular": "~1.5.x"
+    }
+  }
+}

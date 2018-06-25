@@ -1,0 +1,383 @@
+.doctor-profile-content {
+	position: absolute;
+	top: 104px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow: auto;
+	z-index: -1;
+}
+.container-header-profile {
+    position: relative;
+    border-bottom: 1px solid #d9d9d9;
+    overflow: auto;
+    padding-bottom: 25px;
+}
+.container-header-profile img {
+    border-radius: 50%;
+    height: 72px;
+    margin-right: 16px;
+    opacity: 0.8;
+    width: 72px;
+    float: left;
+    margin-left: 40px;
+}
+.welcome-doctor {
+    float: left;
+}
+.welcome-doctor p {
+	font-family: HelveticaNeue;
+	font-size: 34px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	color: #212121;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 0;
+}
+.btn-edit {
+    float: right;
+    margin-right: 30px;
+    margin-top: 25px;
+}
+.btn-edit button {
+	width: 105px;
+	height: 32px;
+	font-family: Avenir;
+	font-size: 14px;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: center;
+    border: solid 1px #8dc63f;
+    background: white;
+    border-radius: 100px;
+    color: #8dc63f;
+}
+.list-menu-content {
+    overflow: hidden;
+    padding: 0;
+    right: 0;
+    top: 0;
+    position: relative;
+    height: 100%;
+    float: left
+}
+.list-menu {
+    position: relative;
+    margin-top: 25px;
+}
+.ul-list-menu {
+    list-style: none;
+    width: 380px;
+}
+.ul-list-menu li {
+    display: flex;
+    margin-bottom: 15px;
+}
+.ul-list-menu li a {
+    width: 80%;
+}
+.ul-list-menu li a p {
+	font-family: HelveticaNeue;
+	font-size: 24px;
+	color: #d9d9d9;
+    /*width: 80%;*/
+    float: left;
+}
+.ul-list-menu li:hover a p, .ul-list-menu li:hover a span{
+    color: #8dc63f;
+}
+.ul-list-menu li a .arrow {
+    font-family: HelveticaNeue;
+	font-size: 24px;
+	color: #d9d9d9;
+    float: right;
+}
+.info-content {
+    width: calc(100% - 380px);
+    overflow: hidden;
+    padding: 0;
+    right: 0;
+    top: 0;
+    position: relative;
+    height: 100%;
+    float: left
+}
+.wrap-info {
+    overflow-y: auto;
+    height: 86%;
+    position: relative;
+}
+.profile ,.communicate-skill, .work-edu, .password, .payment {
+    margin-top: 25px;
+}
+.profile p ,.communicate-skill p, .work-edu p, .password p, .payment p {
+    font-family: HelveticaNeue;
+	font-size: 34px;
+	color: #212121;
+    margin-bottom: 0;
+}
+.wrap-content {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #d9d9d9;
+    overflow: hidden;
+}
+.detail-content {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.detail-content p {
+    font-family: HelveticaNeue;
+	font-size: 34px;
+	color: #3c3c3c;
+} 
+.detail-content span {
+    font-family: HelveticaNeue;
+	font-size: 14px;
+	font-weight: bold;
+    color: #a3a3a3;
+}
+.skill {
+    float: left;
+    height: 32px;
+    border-radius: 100px;
+    border: solid 1px #ccc;
+    width: auto;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.skill p {
+    font-size: 14px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+}
+
+@media only screen and (max-width:480px) {
+  .container-header-profile img {
+    height: 48px;
+    width: 48px;
+    margin-left: 15px;
+    float: left;
+  }
+  .welcome-doctor {
+    margin-top: 5px;
+  }
+  .welcome-doctor p {
+    font-family: HelveticaNeue;
+    font-size: 18px;
+    color: #212121;
+    font-weight: 100;
+  }
+  .btn-edit {
+    float: right;
+    margin-top: 15px;
+  }
+  .btn-edit button {
+    width: 80px;
+    height: 30px;
+    font-size: 14px;
+  }
+  .list-menu-content {
+    visibility: hidden;
+    height: 0;
+  }
+  .info-content {
+    width: 100%;
+  }
+  .wrap-info {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .profile p ,.communicate-skill p, .work-edu p{
+    font-size: 28px;
+  }
+  .detail-content p {
+    font-size: 18px;
+  }
+  .skill {
+    float: left;
+    height: 32px;
+    border-radius: 100px;
+    border: solid 1px #ccc;
+    width: auto;
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+  .skill p {
+    font-size: 14px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+  }
+}
+
+@media only screen and (min-width:480px) and (max-width:768px) {
+    .container-header-profile {
+    padding-bottom: 10px;
+    }
+    .container-header-profile img {
+    height: 50px;
+    width: 50px;
+    }
+    .welcome-doctor p {
+    font-size: 18px;
+    }
+    .btn-edit {
+    margin-right: 20px;
+    margin-top: 5px;
+    }
+    .btn-edit button {
+    width: 90px;
+    height: 30px;
+    }
+    .list-menu {
+    margin-top: 15px;
+    }
+    .ul-list-menu {
+    width: 280px;
+    }
+    .ul-list-menu li {
+    margin-bottom: 0;
+    }
+    .ul-list-menu li a p {
+    font-size: 16px;
+    /*width: 70%;*/
+    }
+    .ul-list-menu li a .arrow {
+    font-size: 16px;
+    }
+    .info-content {
+    width: calc(100% - 280px);
+    }
+    .wrap-content {
+    padding-bottom: 10px;
+    }
+    .profile ,.communicate-skill, .work-edu {
+    margin-top: 10px;
+    }
+    .profile p ,.communicate-skill p, .work-edu p{
+    font-size: 18px;
+    }
+    .detail-content p {
+    font-size: 16px;
+    }
+    .detail-content span {
+    font-size: 12px;
+    }
+    .skill p {
+    font-size: 12px;
+    }
+ }
+
+
+/*edit profile*/
+.container-header-edit-profile {
+    position: relative;
+    border-bottom: 1px solid #d9d9d9;
+    overflow: auto;
+    /*padding-bottom: 25px;*/
+    background-color: black;
+}
+.container-header-edit-profile p {
+    color: white;
+    font-size: 34px;
+    margin-left: 40px;
+    height: 88px;
+    padding-top: 25px;
+}
+.edit-profile-content span {
+	font-size: 14px;
+    color: #cacaca;
+    font-family: Avenir;
+}
+.wrap-edit-content {
+    border-bottom: 1px solid #d9d9d9;
+    overflow: hidden;
+    margin-top: 30px;
+}
+.edit-content {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.edit-content p {
+    font-family: HelveticaNeue;
+	font-size: 34px;
+	color: #3c3c3c;
+} 
+.edit-content span {
+    font-family: HelveticaNeue;
+	font-size: 14px;
+	font-weight: bold;
+    color: #a3a3a3;
+}
+.edit-content input {
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width:300px;
+    border:none;
+    border-bottom:1px solid #757575;
+}
+.edit-content input {
+    outline:none;
+}
+.edit-content .hint {
+    /* Position the hint */
+    position: absolute;
+    left: 2px;
+    right: auto;
+    top: 35px;
+    /*bottom: 7px;*/
+    /* Copy styles from ng-messages */
+    font-size: 12px;
+    line-height: 14px;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    /* Set our own color */
+    color: #d9d9d9;
+}
+.edit-content-right {
+    float: right;
+    margin-right: 42px;
+}
+.image-upload {
+    border-radius: 100%;
+    width: 88px;
+    height: 88px;
+}
+/*input box material angular*/
+md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: #212121;
+    padding-bottom: 10px;
+}
+md-input-container:not(.md-input-invalid) label {
+    color: #cacaca;
+    font-size: 16px;
+    font-family: HelveticaNeue;
+}
+md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: #cacaca;
+    font-size: 16px;
+    font-family: HelveticaNeue;
+}
+md-input-container:not(.md-input-invalid).md-input-has-value label {
+    color: #cacaca;
+}
+md-input-container:not(.md-input-has-value) input:not(:focus) {
+    border-bottom: none;
+}
+md-input-container {
+    margin: 45px 0;
+}
+md-input-container.md-block {
+    margin-top: 20px;
+}
+.edit-content input {
+    border-bottom: 1px solid #cacaca;
+}

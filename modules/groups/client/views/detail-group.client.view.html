@@ -1,0 +1,134 @@
+<section>
+<div class="top-content" id="topcontent">
+    <div class="warp-signin-lg">
+        <div class="topcontent-left col-xs-12 col-md-9 col-lg-10">
+            <h3 style="display:block;margin-bottom:0px;" class="breadcrumgroup"><a href="/groups"> All Group > </a><span>{{groupName}}</span></h3>
+            <h2 class="nameofpagegroup" style="white-space: nowrap;width: 100%;overflow: hidden;" >{{groupName}}</h2>&nbsp;&nbsp;&nbsp;
+            <a class="dropdown-toggle" ng-click="GroupDetailEdit()" role="button">
+                <b class="glyphicon glyphicon-pencil ic-edit"></b>
+            </a>
+            <li class="dropdown sort-dropdown" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                    <span>&nbsp;&nbsp;{{sort}}</span>
+                <b class="glyphicon glyphicon-menu-down ic-dropdown"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a ng-click="sortData('thingNameaz')">ThingName A - Z</a>
+                </li>
+                <li>
+                    <a ng-click="sortData('thingNameza')">ThingName Z - A</a>
+                </li>
+                <li>
+                    <a ng-click="sortData('datecreateaz')">DateCreate - Newest</a>
+                </li>
+                <li>
+                    <a ng-click="sortData('datecreateza')">DateCreate - The oldest</a>
+                </li>
+                </ul>
+            </li>
+            <p>{{data.length}} Things</p>
+        </div>
+        <div class="topcontent-right col-xs-12 col-md-3 col-lg-2">
+            <button ng-click="openSelectThingsToGroup()" class="btn btn-action position">​
+                <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Add Thing to Group
+            </button>
+        </div>
+    </div>
+    <div class="warp-signin-mobile">
+        <div class="col-xs-12 col-sm-12">
+            <h3 style="display:block;margin-bottom:0px;" class="breadcrumgroup"><a href="/groups"> All Group > </a><span>{{groupName}}</span></h3>
+        </div>
+        <div class="row">
+            <div class="col-xs-8 col-sm-8">
+                <h2 class="nameofpagegroup" style="white-space: nowrap;width: 100%;overflow: hidden;">{{groupName}}</h2>&nbsp;&nbsp;&nbsp;
+                <button class="btn-g-edit"style="min-width:0px;" ng-click="GroupDetailEdit()" role="button">
+                    <b class="glyphicon glyphicon-pencil ic-edit"></b>
+                </button>
+                <li style="display:inline;float:right;" class="dropdown sort-dropdown" uib-dropdown>
+                    <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                        <span class="sm-hide">{{sort}}</span>&nbsp;&nbsp;
+                        <b class="glyphicon glyphicon-menu-down ic-dropdown"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a ng-click="sortData('thingNameaz')">ThingName A - Z</a>
+                        </li>
+                        <li>
+                            <a ng-click="sortData('thingNameza')">ThingName Z - A</a>
+                        </li>
+                        <li>
+                            <a ng-click="sortData('datecreateaz')">DateCreate - Newest</a>
+                        </li>
+                        <li>
+                            <a ng-click="sortData('datecreateza')">DateCreate - The oldest</a>
+                        </li>
+                    </ul>
+                </li>
+                
+            </div>
+            <div class="col-xs-4 col-sm-4">
+                <button style="min-width:0px;" ng-click="openSelectThingsToGroup()" class="btn btn-cre position">​
+                    <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="24px" height="24px">
+                </button>
+            </div>
+        </div>
+        <p>{{data.length}} Things&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+</div>
+<div style="margin-top: 285px;" class="container-fluid contentinpage content-normal">
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 things-box" ng-repeat='things in thingsObj | orderBy:xOrderBy'>
+        <div class="things-wrapper" >
+            <li class="dropdown remove-group-btn" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                <b class="glyphicon glyphicon-option-horizontal"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="ThingsEdit(things)">Edit Thing</a></li>
+                    <li><a ng-click="ThingRemoveGroup(things._id)">Remove From Group</a></li>
+                </ul>
+            </li>
+            <a ng-href="/things-detail{{things._id}}">
+            <div class="things-content">
+                <div class="things-header" >
+                    <h3 id="thingName" class="ng-binding">
+                        <div ng-show="thingsstatus[thingsObj.indexOf(things)]" class="oval-online"></div>
+                        <div ng-show="!thingsstatus[thingsObj.indexOf(things)]" class="oval-offline"></div>
+                        {{things.thingsName}}
+                    </h3>
+                </div>
+                <div class="things-des">
+                  <!--<h4>
+                        <div ng-if="things.datasource.batteryiot == 0">
+                            <img src="/modules/core/client/img/ic-battery-on-0-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                        </div>
+                        <div ng-if="things.datasource.batteryiot > 0 && things.datasource.batteryiot < 21">
+                            <img src="/modules/core/client/img/ic-battery-on-20-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                        </div>
+                        <div ng-if="things.datasource.batteryiot > 20 && things.datasource.batteryiot < 41">
+                            <img src="/modules/core/client/img/ic-battery-on-40-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                        </div>
+                        <div ng-if="things.datasource.batteryiot > 40 && things.datasource.batteryiot < 61">
+                            <img src="/modules/core/client/img/ic-battery-on-60-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                        </div>
+                        <div ng-if="things.datasource.batteryiot > 60 && things.datasource.batteryiot < 81">
+                            <img src="/modules/core/client/img/ic-battery-on-80-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                        </div>
+                        <div ng-if="things.datasource.batteryiot > 80 && things.datasource.batteryiot < 101">
+                            <img src="/modules/core/client/img/ic-battery-on-100-48-px.svg" alt="">{{things.datasource.batteryiot}} %
+                        </div>
+                        <div class="thing-battery-wrapper"ng-if="!things.datasource.batteryiot">
+                            <img src="/modules/core/client/img/ic-battery-on-100-48-px.svg" alt="">100 %
+                        </div>
+                        <span class="status-thing-on">Connect</span>
+                        <span ng-if="" class="status-thing-on">Connect</span>
+                        <span ng-if="" class="status-thing-off">Disconnect</span>
+                    </h4>-->
+                    <h4>{{things.created | date : 'MMMM d, yyyy'}}</h4>
+                </div>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>
+</section>

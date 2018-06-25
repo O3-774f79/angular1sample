@@ -1,0 +1,100 @@
+<section>
+<div class="row topbar-content">
+    <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
+        <h2 class="nameofpage">Dashboard Overview</h2>
+        <!-- <button ui-sref="dashboards.create" class="btn btn-add btn-primary position">​
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button> -->
+        <button ng-click="createWidget()" class="btn btn-add btn-primary position">​
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-7 col-lg-3 col-lg-offset-4">
+        <div class="input-group">
+            <input type="text" class="ais-searchbar" placeholder="Search Widget name" ng-model="search.widgetName">
+        </div>
+    </div>
+</div>
+<div class="row col-lg-12 col-md-12">
+    <div  class="col-xs-12 col-sm-6 col-md-3 col-lg-3 things-box" ng-repeat='data in dashboardsObj | filter:search'>
+        <div  class="box-size ibox float-e-margins things-wrapper" >
+            <div class="remove-group-btn" ng-click="WidgetDelete(data._id)"><span >X</span></div>
+                <!--<div class="things-content" ng-click="WidgetEdit(data._id)">-->
+                <div class="things-content" ng-click="">
+                    <div class="things-header">
+                        <h4 id="thingName">Widget Name : {{data.widgetName}}</h4>
+                    </div>
+                    <div ng-if="data.widgetType==='gauge'">
+                    <center>
+                        <ng-gauge size="150" type="arch" thick="20" min="data.settings.minvalue" max="data.settings.maxvalue" value="data.datavalue[data.datavalue.length-1]"
+                            cap="butt" label="{{data.settings.minvalue+' - '+data.settings.maxvalue}}" append="{{data.settings.units}}"
+                            foreground-color="#ffcc66" background-color="#EEE" >
+                        </ng-gauge>
+                    </center>
+                    </div> 
+                    <div ng-if="data.widgetType==='sparkline'">
+                        <div>
+                        <canvas class="chart chart-line" chart-colors="colors" 
+                        chart-data="data.datavalue" chart-labels="data.datalabel" >
+                        </canvas> 
+                        </div>
+                    </div>
+                    <div ng-if="data.widgetType==='googlemap'">
+                        <div id="{{data._id}}"></div>
+                        <!--<ng-map style="height:160px!important" id="map" zoom="11" center="13.79509,100.549812">
+                            <marker position="13.79509,100.549812"></marker>
+                        </ng-map>-->
+                        <!--<ng-map style="height:160px!important" id="map" zoom="11" center="{{data.datavalue | convertmapdata}}">
+                            <marker position="{{data.datavalue | convertmapdata}}"></marker>
+                        </ng-map>-->
+                        <!--<ng-map style="height:160px!important" id="map" zoom="11" center="[40.74, -74.18]">
+                            <marker position="[40.74, -74.18]"></marker>
+                        </ng-map>-->
+                        <!--{{mapfunc(data._id, data.datavalue[0]);}}-->
+                    </div>
+                    <div ng-if="data.widgetType==='indicatorlight'">
+                        <br>
+                        <center>
+                            <div ng-switch="data.datavalue[data.datavalue.length-1]">
+                                <div ng-switch-when="1">
+                                    <div class="indicator-light on"></div>
+                                    <h2>{{data.settings.ontext}}</h2>
+                                </div>
+                                <div ng-switch-when="0">
+                                    <div class="indicator-light"></div>
+                                    <h2>{{data.settings.offtext}}</h2>
+                                </div>
+                                <div ng-switch-default>
+                                    <p>Something Wrong</p>
+                                    <p>{{data.datavalue[0]}}</p>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                </div>   
+        </div>
+    </div>
+
+</div>
+
+
+<!--<div class="row">
+    <div  class="col-xs-12 col-sm-6 col-md-3 col-lg-3 things-box" >
+        <div  class="box-size ibox float-e-margins things-wrapper" >
+            <div class="remove-group-btn" ng-click="WidgetDelete(data._id)"><span >X</span></div>
+            <div class="things-content" ng-click="WidgetEdit(data._id)">
+                <div class="things-header">
+                        <p id="thingName">Widget Name : Line</p>
+                        <br>
+                        <center>
+                        <canvas id="chartboss" class="chart chart-line" chart-colors="colors" 
+                        chart-data="bosstest" chart-labels="bosstest" >
+                        </canvas> 
+                        </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>-->
+</section>

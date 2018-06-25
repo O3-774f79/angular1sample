@@ -1,0 +1,236 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'AIS IOT API'
+host: iot.dld-test.com
+basePath: /api
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /things/send/activate:
+    post:
+      description: 'active things'
+      tags:
+        - active
+      operationId: ActiveThings
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: thingId
+          in: formData
+          required: true
+          type: string
+        - name: token
+          in: formData
+          required: true
+          type: string
+          description: Write Token
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/DefaultResp'
+  /things/receive/activate:
+    post:
+      description: 'active things'
+      tags:
+        - active
+      operationId: ActiveThingsReceive
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: thingId
+          in: formData
+          required: true
+          type: string
+        - name: token
+          in: formData
+          required: true
+          type: string
+          description: Read Token
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/DefaultResp'
+  /things/push/:
+    post:
+      description: 'things push data'
+      tags:
+        - pushData
+      operationId: PushData
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: token
+          description: Write Token
+          in: formData
+          required: true
+          type: string
+        - name: playload
+          in: formData
+          required: true
+          type: string
+          description: 'example {name: value, name1: value1}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/DefaultResp'
+  '/things/pull/{WriteToken}':
+    get:
+      description: 'things pull data'
+      tags:
+        - pullData
+      operationId: PullData
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: WriteToken
+          description: Write Token
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ThingsDataLastResponse'
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/DefaultResp'
+  '/things/pullWithStatus/{WriteToken}':
+    get:
+      description: 'things pull data'
+      tags:
+        - pullData
+      operationId: PullDataWithStatus
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: WriteToken
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ThingsDataLastWithStatusResponse'
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/DefaultResp'
+  /things/getData/:
+    post:
+      description: 'things pull data'
+      tags:
+        - pullData
+      operationId: PullDataList
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: token
+          in: formData
+          required: true
+          type: string
+          description: Token
+        - name: startDate
+          in: formData
+          required: true
+          type: string
+          format: date
+        - name: endDate
+          in: formData
+          required: true
+          type: string
+          format: date
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ThingsDataResponse'
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/DefaultResp'
+definitions:
+  DefaultResp:
+    title: Default Client response
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+    required:
+      - success
+      - message
+  ThingsDataLastResponse:
+    title: Things response Data Last
+    type: object
+    properties:
+      name:
+        type: string
+      value:
+        type: number
+      name1:
+        type: string
+      value1:
+        type: number
+  ThingsDataLastWithStatusResponse:
+    title: Things response Data Last with status
+    type: object
+    properties:
+      success:
+        type: boolean
+      status:
+        type: boolean
+      data:
+        type: object
+        properties:
+          name: 
+            type: string
+          value:
+            type: number
+          name1:
+            type: string
+          value1:
+            type: number
+  ThingsDataResponse:
+    title: Things response Data list
+    type: object
+    properties:
+      data:
+        type: object
+        properties:
+          name: 
+            type: string
+          value:
+            type: number
+          name1:
+            type: string
+          value1:
+            type: number
+      created:
+        type: string
+        format: date 

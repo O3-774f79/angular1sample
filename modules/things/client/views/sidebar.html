@@ -1,0 +1,69 @@
+<!-- <div class="" ng-controller="SidebarController as vm">
+    <div class="ais-sidebar ais-bar-block ais-card ais-animate-left" style="display:block;width:250px;" id="mySidebar">
+        <div class="">
+            <center>   
+                <a href="/things"><img src="/modules/core/client/img/img_logo_B01.png" class="logo-sidebar" alt=""></a>
+            </center> 
+            <div ng-if="!dashboardmenu" class="wrapper-menu">
+                <div class="dashboardmenu"><a href="/first-dashboard"><div id="ic-first-db" class="nav-ic-dash"></div><span id="first-db">Dashboard</span></a></div>
+            </div>
+            <uib-accordion close-others="true">
+                <div ng-if="dashboardmenu">
+                    <div ng-if="dashboardseven">
+                        <div uib-accordion-group class="">
+                            <uib-accordion-heading>
+                                <a class="head-menu"><div class="nav-ic-dash"></div>Dashboard</a>
+                            </uib-accordion-heading>
+                            <div class="dashboard-scroll">
+                                <a ng-href="/dashboards{{db._id}}" class="dbmenulink" ng-repeat="db in dashboards"><div class="oval-sidebar"></div>{{db.dashboardName}}</a>
+                            </div>
+                            <button class="btn-adddb" ng-click="openCreateDb()">Add Dashboard</button>
+                        </div uib-accordion-group>
+                    </div>
+                    <div ng-if="!dashboardseven">
+                        <div uib-accordion-group>
+                                <uib-accordion-heading>
+                                    <a class="head-menu"><div class="nav-ic-dash"></div>Dashboard</a>
+                                </uib-accordion-heading>
+                                <div class="dashboard-scroll-none">
+                                    <a ng-href="/dashboards{{db._id}}" class="dbmenulink" ng-repeat="db in dashboards"><div class="oval-sidebar"></div>{{db.dashboardName}}</a>
+                                </div>
+                                <button class="btn btn-adddb" ng-click="openCreateDb()">Add Dashboard</button>
+                        </div uib-accordion-group>
+                    </div>
+                </div>
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        <a class="head-menu"><div class="nav-ic-thing"></div>Thing</a>
+                    </uib-accordion-heading>
+                        <a ng-href="things" class="dbmenulink"><div class="oval-sidebar"></div>All Thing</a>
+                        <a ng-href="groups" class="dbmenulink"><div class="oval-sidebar"></div>All Group</a>
+                </div uib-accordion-group>
+    
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        <a class="head-menu"><div class="nav-ic-dev"></div>Developer</a>
+                    </uib-accordion-heading>
+                        <a ng-href="/userguide" class="dbmenulink"><div class="oval-sidebar"></div>User Guide</a>
+                </div uib-accordion-group>
+            </uib-accordion>
+    </div>
+    <!-- <div class="ais-small-sidebar ais-bar-block ais-card ais-animate-left" style="display:none;" id="smallSidebar">
+        <div class="container">
+            <h1 class="sidebar-logo">M</h1>
+           
+            <ul class="sidebar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
+                <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+                    <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
+                    <ul ng-switch-when="dropdown" class="dropdown-menu">
+                    <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
+                        <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
+                    </li>
+                    </ul>
+                    <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+
+</div> -->

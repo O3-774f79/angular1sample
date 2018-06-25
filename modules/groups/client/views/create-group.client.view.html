@@ -1,0 +1,22 @@
+<section>
+    <div>
+        <h2><span ui-sref="groups.index">Group Overview</span> > Create a New Group</h2>
+    </div>
+    <hr>
+    <div class="col-lg-4">
+        <form>
+            <div class="form-group">
+                <label for="" class="col-md-12 col-lg-12 no-padding">Group Name</label>
+                <input ng-model="groupname" class="form-control input-field ais-input-text" type="text" placeholder="Name of Group ( เช่น สวนลำไย )">
+            </div>
+            <div class="form-group">
+                <label for="" class="col-md-12 col-lg-12 no-padding">Description</label>
+                <textarea ng-model="groupdesc" class="form-control input-field ais-input-text" name="" id="" cols="55" rows="5" placeholder="Description ( เช่น เพื่อสวนเกษตรออแกนิก )"></textarea>
+            </div>
+            <div>
+                <button class="btn btn-primary ais-btn" ng-click="createGroup()">Create Group</button>
+                <button ui-sref="groups.index" class="btn btn-default ais-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+</section>

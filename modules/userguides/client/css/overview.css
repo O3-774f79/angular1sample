@@ -1,0 +1,272 @@
+.text-dev > h1{
+    font-size: 46px;
+    font-weight: bold;
+    color: #FFF;
+    word-wrap: break-word;
+    line-height: 46px;
+}
+.arrow-right {
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.arrow-down {
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.font-header{
+    font-size: 26px;
+    color: #888b8f;
+}
+.font-description{
+    font-size: 30px;
+    color: #FFF;
+    font-weight: bold;
+}
+.text-dev > p.description{
+    font-size: 27px;
+    color: #888b8f;
+    font-weight: normal;
+}
+.ovw-more{
+    font-size: 26px;
+    color: #b2d234;
+    cursor: pointer;
+    display: block;
+}
+a.more{
+    font-size: 26px;
+    color: #b2d234;
+    cursor: pointer;
+    display: block;
+}
+a.more:hover{
+ color:#def77c
+}
+a.more:active, a.more:focus{
+    color:#8aa229
+   }
+.dac-section.dac-slim {
+    padding-bottom: 0;
+    padding-top: 0;
+    z-index: 1;
+}
+.dac-section {
+    background-position: 50% 50%;
+    background-size: cover;
+    padding-bottom: 84px;
+    padding-top: 84px;
+    position: relative;
+}
+.dac-offset-parent {
+    position: relative !important;
+}
+.wrap {
+    margin: 0 auto;
+    /* max-width: 940px; */
+    clear: both;
+    padding-left: 17px;
+    padding-right: 17px;
+}
+.dac-expand, .dac-section, .dac-samples-index-wrapper .navrow, .dac-samples-index-wrapper main {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.dac-hero {
+    background-size: cover;
+    position: relative;
+}
+.dac-hero {
+    background-position: 50% 30%;
+    background-size: cover;
+    box-sizing: border-box;
+    font-size: 16px;
+    min-height: 550px;
+    padding-top: 44px;
+    padding-bottom: 60px;
+}
+.dac-scroll-button {
+    height: 54px;
+    line-height: 54px;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: -27px;
+    width: 54px;
+    z-index: 1;
+}
+.dac-fab, .dac-button-social {
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    border-radius: 50%;
+    margin: 0;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0;
+    vertical-align: middle;
+}
+.dac-fab, .dac-button-social, .button, .landing-button, .dac-button {
+    border: 0;
+    box-sizing: border-box;
+    color: currentColor;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: inherit;
+    font-variant: inherit;
+    font-family: inherit;
+    letter-spacing: .5px;
+    outline: 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+ul.dac-actions{
+    text-align: center;
+    padding-left: 0px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.dac-action{
+    display: inline-block;
+    margin-right: 20px;
+    /* padding-top: 25px; */
+    /* padding-bottom: 25px; */
+}
+.dac-action-link {
+    color: #515151;
+    font-size: 27px;
+    font-weight: 300;
+    line-height: 50px;
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+    cursor: pointer;
+}
+.dac-action-link:hover{
+    color: inherit;
+    opacity: .54;
+  
+}
+.dac-section-title {
+    /* text-align: center; */
+    padding-bottom: 40px;
+    padding-top: 0;
+    font-size: 50px;
+    color: #fff;
+}
+.dac-section-subtitle {
+    font-size: 24px;
+    padding-bottom: 40px;
+    margin-top: -24px;
+    color: #888b8f;
+    font-weight: normal;
+}
+.dac-gray.dac-section {
+    margin-top: 25px;
+}
+.dac-section {
+    background-position: 50% 50%;
+    background-size: cover;
+    padding-bottom: 84px;
+    padding-top: 84px;
+    position: relative;
+}
+
+.devsite-footer-promos {
+    background: none;
+    clear: both;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+.devsite-footer-promos .devsite-footer-promos-list {
+    margin: 0;
+}
+.devsite-footer-promos-list {
+    padding: 20px 4px;
+    text-align: center;
+}
+.devsite-footer-promo {
+    display: inline-block;
+    margin: 20px;
+    vertical-align: top;
+    width: 192px;
+}
+.devsite-footer-promo-icon {
+    color: rgba(0,0,0,.87);
+    display: inline-block;
+    font-size: 48px;
+    height: 48px;
+    margin: 0 auto 8px;
+    width: 48px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.devsite-footer-promo-des{
+    display: inline-block;
+    color: #888b8f;
+    font-size: 20px;
+    font-weight: normal;
+}
+.img-dev{
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.arr-right {
+    font-size: 12px;
+    color: #b1d234;
+
+}
+.userguide > div.panel-group > div {
+    background: none;
+}
+.userguide > div.panel-group > div > div.panel-heading{
+    border-left: 0px;
+    padding: 0px;
+}
+.userguide > div.panel-group > div > div.panel-heading[aria-selected="true"] {
+    border-left: 0px;
+    padding: 0px;
+}
+.font-description> i.pull-right {
+    font-size: 14px;
+}
+.row.dac-expand.dac-hero:before, section.dac-section.dac-gray::before, div#studio:before{
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    bottom: 0;
+    width: 80%;
+    border-bottom: 1px solid #313131;
+}
+.ovv-ic{
+    max-width: 100px; 
+    width:calc(100%); 
+    float:left; 
+}
+@media screen and (min-width: 769px) {
+    .ovv-ic{
+        max-width: 100px; 
+        width:calc(100% - 100px); 
+        float:left; 
+    }
+    .ovv-icon-block{
+        min-height:222px;
+    }
+}

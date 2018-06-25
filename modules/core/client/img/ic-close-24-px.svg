@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g fill="none" fill-rule="evenodd">
+        <path d="M0 0h24v24H0z" opacity=".521"/>
+        <path fill="#CACACA" fill-rule="nonzero" stroke="#CACACA" stroke-linecap="round" stroke-linejoin="round" d="M18.846 5.549a.438.438 0 0 0-.635 0l-6.13 6.111L5.79 5.35a.438.438 0 0 0-.635 0 .438.438 0 0 0 0 .634l6.293 6.31-6.311 6.312a.438.438 0 0 0 0 .634c.09.091.2.127.326.127a.437.437 0 0 0 .327-.127l6.31-6.31 6.112 6.11c.09.092.2.128.327.128a.437.437 0 0 0 .326-.127.438.438 0 0 0 0-.635l-6.13-6.111 6.112-6.112c.163-.181.163-.471 0-.634z"/>
+    </g>
+</svg>

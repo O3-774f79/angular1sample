@@ -1,0 +1,29 @@
+.search-content-wrapper > h1 {
+    font-size: 56px;
+	color: #ffffff;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.search-thingresult-wrapper{
+    border-bottom: 1px solid #fff;
+    padding-bottom: 30px;
+}
+div.search-thingresult-wrapper >  h3, div.search-groupresult-wrapper >  h3  {
+    font-size: 24px;
+	color: #ffffff;
+}
+div.search-thingresult-wrapper >  div, div.search-groupresult-wrapper >  div {
+    padding: 10px;
+}
+div.search-thingresult-wrapper >  div > p, div.search-groupresult-wrapper >  div > p {
+    color: #fff;
+}
+div.search-thingresult-wrapper >  div > p > a, div.search-groupresult-wrapper >  div > p > a{
+    float: right;
+}
+div.search-thingresult-wrapper >  div:hover, div.search-groupresult-wrapper >  div:hover {
+    background-color: #1b1c1b;
+}
+.angucomplete-dropdown {
+    overflow-y: auto;
+    max-height: 300px;
+}

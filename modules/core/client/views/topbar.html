@@ -1,0 +1,84 @@
+<div class="topbar" id="topbar" ng-controller="TopbarController as vm">
+    <div div class="topbar-left">
+        <button class="ais-menutoggle ais-teal ais-xlarge btn-top" ng-click="w3_open()"><img src="/modules/core/client/img/ic-menu@3x.png" width="28px" alt=""></button>
+        <div
+        angucomplete-alt
+        id="searchcomplete"
+        placeholder="Search For Things, Group, Widgets..."
+        pause="400"
+        selected-object="objectSelected"
+        remote-url="/api/search/"
+        remote-url-request-formatter="remoteUrlRequestFn"
+        remote-url-data-field="data"
+        title-field="name"
+        description-field="type"
+        minlength="1"
+        input-class="searchbar-top form-control-small warp-signin-lg"
+        match-class="highlight"
+        maxlength="30"
+        >
+        </div>
+        <div
+        angucomplete-alt
+        id="searchcomplete"
+        placeholder="Search..."
+        pause="400"
+        selected-object="objectSelected"
+        remote-url="/api/search/"
+        remote-url-request-formatter="remoteUrlRequestFn"
+        remote-url-data-field="data"
+        title-field="name"
+        description-field="type"
+        minlength="1"
+        input-class="searchbar-top-mobile form-control-small warp-signin-mobile"
+        match-class="highlight"
+        maxlength="30"
+        >
+        </div>
+    </div>
+    <div class="topbar-right">
+        <div class="warp-signin-mobile">
+            <div style="padding:15px;">
+                <ul style="display:inline-block;padding-left: 10px;margin-top: 10px;">
+                    <li class="dropdown " uib-dropdown>
+                        <a class="user-header-dropdown-toggle  dropdown-user" uib-dropdown-toggle role="button">
+                            <img src="/modules/core/client/img/ic-setting@3x.png" width="32px">
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li style="text-align:center;">
+                                <img ng-src="/{{vm.authentication.user.profileImageURL}}" class="header-profile-image">
+                                <a ui-sref="profile"><span>{{vm.authentication.user.displayName}}</span></a>
+                            </li>
+                            <li ui-sref-active="active">
+                                <a ui-sref="profile">View Profile</a>
+                            </li>
+                            <li>
+                                <!-- <a href="/api/auth/signout" target="_self">Signout</a> -->
+                                <a ng-click="signout()" style="cursor: pointer;" target="_self">Signout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="warp-signin-lg">
+            <ul class="btn-user" ng-show="vm.authentication.user">
+                <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
+                <li class="dropdown " uib-dropdown>
+                    <a class="user-header-dropdown-toggle  dropdown-user" uib-dropdown-toggle role="button">
+                        <div class="displayname-wrap"><span class="hidden-xs">{{vm.authentication.user.displayName}}</span></div>
+                    <b class="glyphicon glyphicon-menu-down ic-dropdown-user"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ui-sref-active="active">
+                            <a ui-sref="profile">View Profile</a>
+                        </li>
+                        <li>
+                            <a ng-click="signout()" style="cursor: pointer;"  target="_self">Signout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

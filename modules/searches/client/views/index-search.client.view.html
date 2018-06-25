@@ -1,0 +1,28 @@
+<section>
+  <div class="top-content" id="topcontent">
+  <div class="search-content-wrapper"> 
+  <h1>Search Result</h1>
+  <!-- <div class="" ng-show="selectedObject" style="color:#fff" ng-change="testselectedObject()">
+    You selected <span class="bold-span">{{selectedObject.originalObject.name}}</span> which has a country code of <span class="bold-span">{{selectedObject.originalObject.id}}</span>
+ </div> -->
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 search-thingresult-wrapper">
+  <h3>Thing result {{thingquery.length}}</h3>
+  <div ng-repeat="thing in thingquery">
+    <p>- {{thing.thingsName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a ng-href="/things-detail{{thing._id}}" class="btn btn-action">Jump To</a></p>
+  </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  search-thingresult-wrapper">
+    <h3>Group result {{groupquery.length}}</h3>
+    <div ng-repeat="group in groupquery">
+      <p>- {{group.groupName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a ng-href="/groups-detail{{group._id}}" class="btn btn-action">Jump To</a></p>
+    </div>
+  </div>
+   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  search-thingresult-wrapper">
+    <h3>Widget result {{widgetquery.length}}</h3>
+    <div ng-repeat="widget in widgetquery">
+      <p>- {{widget.widgetName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a ng-href="/dashboards{{widget.dashboardId}}" class="btn btn-action">Jump To</a></p>
+    </div>
+  </div>
+</div>
+  </div>
+</section>

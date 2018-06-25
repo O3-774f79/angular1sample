@@ -1,0 +1,58 @@
+<section style="margin-top:120px;">
+    <h1 class="title-userguide">ปัญหาต่างๆ และคำแนะนำในการใช้ Magellan</h1>
+    <div class="contentinpage" style="background-color: #1b1c1b;overflow: auto;padding-bottom: 30px;max-width: 950px;">
+        <div class="wrap-faqs">
+            <uib-accordion class="userguide" close-others="false">
+                <div uib-accordion-group is-open="status1.open" class="faqs-group col-lg-xs col-sm-12 col-md-12 col-lg-12">
+                    <uib-accordion-heading>
+                        <a class="head-menu-faqs" ><i class="glyphicon ic-faqs" ng-class="{'glyphicon-minus': status1.open, 'glyphicon-plus': !status1.open}"></i>ไม่สามารถอัพโหลดโปรแกรมไปที่ Arduino ได้</a>
+                    </uib-accordion-heading>
+                    <p>ลองตรวจสอบว่าได้ติดตั้งไลบรารี่ "Altsoftserial" ไว้แล้วหรือไม่
+                        หากยังไม่ได้ติดตั้งลองทำตามขั้นตอนดังต่อไปนี้
+                    </p>
+                    <p>
+                        เปิด arduino IDE &#8594; sketch &#8594; Manage Libraries &#8594; and search "Altsoftserial" and install
+                    </p>
+                    <img src="/modules/userguides/client/img/pic-arduino-faq.png" width="100%" style="max-width: 488px;">
+                </div>
+                <div uib-accordion-group is-open="status2.open" class="faqs-group col-lg-xs col-sm-12 col-md-12 col-lg-12">
+                    <uib-accordion-heading>
+                            <a class="head-menu-faqs"><i class="glyphicon ic-faqs" ng-class="{'glyphicon-minus': status2.open, 'glyphicon-plus': !status2.open}"></i>จำนวนข้อมูลสูงสุดที่สามารถส่งได้สำหรับแมคเจลเลน</a>
+                    </uib-accordion-heading>
+                    <p>หน่วยความจำภายใน (dynamic memory) ของ Arduino มีผลกับจำนวนตัวอักษรของ payload หรือ จำนวนข้อความที่ส่งขึ่นไปที่แมคเจลเลน</p>
+                    <p>เนื่องจากบางบอร์ดมีหน่วยความจำ (dynamic memory) ค่อนข้างน้อย เช่น arduino UNO ดังนั้น การใช้งานจึงอาจมีข้อจำกัดเมื่อต้องการส่งข้อความเป็นจำนวนมาก แนะนำให้ใช้บอร์ดรุ่นอื่นๆ เพื่อประสิทธิภาพและความยืดหยุ่นในการส่งข้อมูล</p>
+                    <p>หมายเหตุ จากการทดสอบกับ example post.ino สามารถส่งข้อมูลได้สูงสุด 100 ตัวอักษรของการส่งข้อมูลต่อครั้ง</p>
+                </div>
+                <div uib-accordion-group is-open="status3.open" class="faqs-group col-lg-xs col-sm-12 col-md-12 col-lg-12">
+                    <uib-accordion-heading>
+                            <a class="head-menu-faqs"><i class="glyphicon ic-faqs" ng-class="{'glyphicon-minus': status3.open, 'glyphicon-plus': !status3.open}"></i>Serial monitor ใน Arduino โชว์ "connecting........ >> Create Socket" แล้วค้าง</a>
+                    </uib-accordion-heading>
+                    <p>ให้ลองตรวจสอบโปรแกรมดูว่า ในฟังก์ชั่น SETUP มีการใช้คำสั่งใดๆ ที่ทำให้ไม่สามารถ เข้าในฟังก์ชั่น Loop ได้หรือไม่ เนื่องจากบางครั้งมีโค้ดมีการวนซ้ำ (Loop) เพื่อเช็คอะไรบางอย่าง เช่น การเชื่อมต่อของเซ็นเซอร์ อุณหภูมิแบบ l2C ซึ่งเป็นผลให้ไม่สามารถทำงานต่อในฟังก์ชั่นอื่นๆ ได้</p>
+                    <p>หมายเหตุ เพื่อเป็นการพิสูจน์ข้อเท็จจริง แนะนำให้ลองทดสอบกับ example ของ Magellan โดยอาจจะลองใช้ "post.ino" ในการทดสอบ</p>
+                    <img src="/modules/userguides/client/img/pic-example.png" width="100%" style="max-width:279px;">
+                </div>
+                <div uib-accordion-group is-open="status4.open" class="faqs-group col-lg-xs col-sm-12 col-md-12 col-lg-12">
+                    <uib-accordion-heading>
+                            <a class="head-menu-faqs"><i class="glyphicon ic-faqs" ng-class="{'glyphicon-minus': status4.open, 'glyphicon-plus': !status4.open}"></i>รูปแบบของ payload ต้องใช้แบบใด</a>
+                    </uib-accordion-heading>
+                    <p>ให้ใช้ payload ในรูปแบบ json เช่น {"temperature":32.5}</p>
+                    <p>ตัวอย่างการเขียนโปรแกรมใน Arduino เช่น payload="{\"temperature\":23.5}"</p>
+                </div>
+                <div uib-accordion-group is-open="status5.open" class="faqs-group col-lg-xs col-sm-12 col-md-12 col-lg-12">
+                    <uib-accordion-heading>
+                            <a class="head-menu-faqs"><i class="glyphicon ic-faqs" ng-class="{'glyphicon-minus': status5.open, 'glyphicon-plus': !status5.open}"></i>ได้รับข้อความตอบกลับ(response) "invalid json payload format" จากเซิร์ฟเวอร์</a>
+                    </uib-accordion-heading>
+                    <p>รูปแบบของ Payload ไม่ถูกต้อง ต้องแก้ไขให้อยู่ในรูปแบบ json</p>
+                </div>
+                <div uib-accordion-group is-open="status6.open" class="faqs-group col-lg-xs col-sm-12 col-md-12 col-lg-12">
+                    <uib-accordion-heading>
+                            <a class="head-menu-faqs"><i class="glyphicon ic-faqs" ng-class="{'glyphicon-minus': status6.open, 'glyphicon-plus': !status6.open}"></i>ได้รับข้อความตอบกลับ(response) "invalid token" จากเซิร์ฟเวอร์</a>
+                    </uib-accordion-heading>
+                    <p>ตรวจสอบว่าได้ใส่ key ลงในฟังก์ชั่น begin หรือไม่ ลองดูรูปแบบได้ในตัวอย่างของแมคเจลเลน</p>
+                    <p>ตัวอย่าง char auth[]="abcdefg-hijkml-wxyz-1111-0987654321x";</p>
+                </div>
+            </uib-accordion>
+        </div>
+    </div>
+</section>
+    

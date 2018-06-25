@@ -1,0 +1,59 @@
+<section>
+    <div>
+        <h2>Edit - Widget</h2>
+    </div>
+    <hr>
+    <div class="col-lg-4">
+    <form>
+        <div class="form-group">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Group Name</label>
+            <select name="" id="groupName" ng-model="data.model" ng-change="groupListSelectValue(data.model)">
+                <option ng-repeat="group in groups" value="{{group._id}}">{{group.groupName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Things Name</label>
+            <select name="" id="thingName" ng-model="things.select" ng-change="thingsListSelectValue(things.select)">
+               <option ng-repeat="things in thingsobj" value="{{things._id}}">{{things.thingName}}</option>
+            </select>
+        </div>
+        <div class="form-group" ng-show="datasource">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Data Source</label>
+            <select ng-model="datasourcevalue">
+                <option ng-repeat="(key, value) in thingsjson" value="{{key}}">{{key}}</option>
+            </select>
+        </div>
+        <div class="form-group" ng-show="widgetselect">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Widget Type</label>
+            <select ng-model="widgetType" ng-change="widgetSelect(widgetType)">
+               <option value="gauge">Gauge</option>
+               <option value="sparkline">Sparkline</option>
+               <option value="googlemap">Google Map</option>
+               <option value="indicatorlight">Indicator Light</option>
+            </select>
+        </div>
+        <div class="form-group" ng-show="widgetselect">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Widget Name</label>
+            <input ng-model="widgetName" class="form-control input-field ais-input-text" type="text" placeholder="Name of Widget">
+        </div>
+        <div  class="form-group" ng-show="widgetgauge">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Units</label>
+            <input ng-model="settings.units" class="form-control input-field ais-input-text" type="text" placeholder="Units">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Min Value</label>
+            <input ng-model="settings.minvalue" class="form-control input-field ais-input-text" type="text" placeholder="Min value">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Max Value</label>
+            <input ng-model="settings.maxvalue" class="form-control input-field ais-input-text" type="text" placeholder="Max value">
+        </div>
+        <div  class="form-group" ng-show="widgetIndicatorLight">
+            <label for="" class="col-md-12 col-lg-12 no-padding">On Text</label>
+            <input ng-model="settings.ontext" class="form-control input-field ais-input-text" type="text" placeholder="On Text">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Off Text</label>
+            <input ng-model="settings.offtext" class="form-control input-field ais-input-text" type="text" placeholder="Off Text">
+        </div>
+        <div>
+            <button class="btn btn-primary ais-btn" ng-click="UpdateWidget(widgetName, data.model, things.select, datasourcevalue, widgetType, settings)">Update Widget</button>
+            <button ui-sref="dashboards.index" class="btn btn-default ais-btn">Cancel</button>
+        </div>
+    </form>
+    </div>
+</section>

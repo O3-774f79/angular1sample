@@ -1,0 +1,34 @@
+Magellan docker 
+
+ฝั่ง build docker file
+
+1. docker ps -a
+// list ดู container ที่ใช้ image "magellan-prod" ถ้าไม่มีให้ข้ามไปข้อ 4
+2. docker stop <container ID>
+// stop container ที่ใช้ image ของ "magellan-prod"
+3. docker rm <container ID>
+// ลบ container ที่ใช้ image ของ "magellan-prod"
+4. docker images
+//จะได้ list ของ image ทั้งหมด
+5. docker rmi  <image ID>
+//ลบ images ของ magellan-prod
+6. docker build -t magellan-prod -f Dockerfile-production .
+//ทำการ build image จาก Dockerfile
+7. docker save magellan-prod > ~/Desktop/magellan-prod.tar
+//export file image แล้วนำขึ้น server
+
+
+
+//ฝั่ง server
+
+1. docker load < magellan-prod.tar
+//ทำการ restore file เป็น docker image
+2. นำไฟล์ cert กับ config app ไปว่างไว้ที่ต้องการ
+3. docker run -td -i -p 3000:3000 -e NODE_ENV=production --restart unless-stopped \
+-v <path logs>:/opt/mean.js/logs \
+-v <path image>:/opt/mean.js/modules/users/client/img/profile/uploads \
+-v <path cert>:/opt/mean.js/config/cert \
+-v <path config>:/opt/mean.js/config/env \
+--name magellan-app01
+magellan-prod
+// start App

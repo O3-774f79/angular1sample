@@ -1,0 +1,109 @@
+<section>
+<div class="top-content-thingsdetail" id="top-content">
+    <div class="topcontent-left">
+        <h3 class="breadcrumThingDetail"><a href="/things"> All Things > </a><span>{{thingName}}</span></h3>
+        <h2 class="nameofpageThingDetail">Thing Detail</h2>
+    </div>
+    <div class="dtt-top-right">
+        <button ng-click="ThingsEdit()" class="btn btn-edit-black position">​&nbsp;Edit Thing</button>
+    </div>
+</div>
+<hr class="hrthingdetail">
+    <div class="content-normal-detail">
+        <div class="col-xs-12 col-lg-6 dt-content-left">
+            <div class="tr-thingdetail row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 column-th"><p class="topic-thingdetail">Thing Name</p></div>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 column-th">
+                    <p class="data-thingdetail">{{thingName}}</p>
+                </div>
+            </div>
+            <div class="tr-thingdetail row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 column-th"><p class="topic-thingdetail">Description</p></div>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 column-th">
+                    <p for="" class="data-thingdetail">{{thingDesc}}</p>
+                </div>
+            </div>
+            <div class="tr-thingdetail row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 column-th"><p class="topic-thingdetail">Permission</p></div>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 column-th">
+                    <p class="data-thingdetail">{{permission}}</p>
+                </div>
+            </div>
+            <div class="tr-thingdetail row">
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 column-th"><p class="topic-thingdetail">Status</p></div>
+                <div class="col-xs-6 col-sm-9 col-md-9 col-lg-9 column-th">
+                    <label class="col-md-6 col-lg-6 no-padding ais-tokenactive thing-detail-status" ng-show="statusThingsOnline">{{statusThingsOnline}}</label>
+                    <label class="col-md-6 col-lg-6 no-padding ais-tokennoactive thing-detail-status" ng-show="statusThingsOffline">{{statusThingsOffline}}</label>
+                </div>
+            </div>
+            <div class="tr-thingdetail row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 column-th"><p class="topic-thingdetail">Last Edit</p></div>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 column-th"><p class="data-thingdetail">{{lastEdit | date : 'EEEE, MMMM d, yyyy'}} at {{lastEdit | date : 'h:mm a'}}</p></div>
+            </div>
+            <div class="tr-thingdetail row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 column-th"><p class="topic-thingdetail">Token Key</p></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7 column-th">
+                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding ais-tokenactive thing-detail-status" ng-show="sendtokenactive">{{sendtokenactive}}</label>
+                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding ais-tokennoactive thing-detail-status" ng-show="sendtokennoactive">{{sendtokennoactive}}</label>
+                    <textarea id="writekey" ng-model="sendtoken" readonly="readonly" class="data-thingdetail-textarea input-field ais-input-readonly" rows="3"></textarea>
+                    <div class="column-th-howto">
+                        <a href="#" class="howtouse" tooltips tooltip-template="A key for a thing to connect with Magellan. Please embed this key to your thing via Arduino 
+                        IDE or other program. Magellan cannot read any data from the thing without Token Key." >How to use</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 column-th"><button class="btn-border copytextarea" ng-click="copyToClip('writekey')">Copy</button></div>
+            </div>
+            <div class="tr-thingdetail row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 column-th"><p class="topic-thingdetail">Data Source</p></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7 column-th">
+                    <textarea ng-model="datasource" id="datasource" readonly="readonly" class="data-thingdetail-textarea input-field ais-input-readonly" rows="3"></textarea>
+                    <div class="column-th-howto">
+                        <a href="#" class="howtouse" 
+                        tooltips tooltip-template="A link to visualise real time data from a thing - Not the thing data history -. You can use this link to show the thing data in 
+                        applications, websites, or other softwares for further data analytic." >
+                        How to use
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 column-th"><button class="btn-border copytextarea" ng-click="copyToClip('datasource')">Copy</button></div>
+            </div>
+            <div class="tr-thingdetail row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 column-th"><p class="topic-thingdetail">Data JSON</p></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7 column-th">
+                    <textarea ng-model="jsonthings" readonly="readonly" class="data-thingdetail-textarea input-field ais-input-readonly"  rows="3"></textarea>
+                    <div class="column-th-howto"><a href="#" class="howtouse" tooltips tooltip-template="Similar to Data Source but in JSON form" >How to use</a></div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 column-th" ng-show="checkdweet">
+                <a style="line-height:1.6;"class="btn-border copytextarea" ng-href="{{dweetUrl}}" target="_blank">Dweet</a>
+                </div>
+            </div>
+
+            <!-- <div>
+                <div class="column-th"><p for="" class="topic-thingdetail">Data JSON</p></div>
+                <div class="column-th">
+                    <textarea ng-model="jsonthings" readonly="readonly" class="data-thingdetail-textarea input-field ais-input-readonly"  rows="3"></textarea>
+                </div>
+                <div class="column-th">
+                    <div class="btn btn-border copytextarea" ng-show="checkdweet">
+                    <a for=""  ng-href="{{dweetUrl}}" target="_blank">Dweet</a>
+                    </div>
+                </div>
+            </div>
+            <div> 
+                <div></div>
+                <div class="column-th-howto"><a href="#" class="howtouse" tooltips tooltip-template="Similar to Data Source but in JSON form" >How to use</a></div>
+            </div> -->
+
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <p class="topic-thingdetail-noinline">Data</p>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 things-box" ng-repeat="(key, thingss) in thingsblock">
+                <div class="box-size ibox float-e-margins thingsdetail-wrapper" >
+                    <h4 id="thingName">{{thingss}}</h4>
+                    <p id="thingName">{{key}}</p>
+                </div>   
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,35 @@
+<section>
+    <div class="row topbar-content">
+        <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
+            <h2 class="nameofpage"><span ui-sref="groups.index">Group Overview</span> > Add Thing to Group <span ui-sref="groups.view">'{{groupName}}'</span></h2>
+            <button ng-click="addSelectedThingToGroup()" class="btn btn-action btn-primary position">​
+                Done
+            </button>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-7 col-lg-3 col-lg-offset-4">
+            <div class="input-group">
+                <input type="text" class="ais-searchbar" placeholder="Search Things name" ng-model="search.thingName">
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 things-box" ng-repeat='things in thingsobj | filter:search'>
+            <div class="box-size ibox float-e-margins things-wrapper">
+                <!--<div class="remove-group-btn" ng-click="ThingsDelete(things._id)"><span>X</span></div>-->
+                <input type="checkbox" ng-model="things.selected">
+                <div class="things-content">
+                    <div class="things-header">
+                        <h2 id="thingName" class="ng-binding">{{things.thingName}}</h2>
+                    </div>
+                    <div class="things-des">
+                        <h4>Description : {{things.thingDesc}}</h4>
+                        <h4>ReceiveToken : {{things.receiveTokenActive}}</h4>
+                        <h4>SendToken : {{things.sendTokenActive}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

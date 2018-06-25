@@ -1,0 +1,22 @@
+<section>
+    <div>
+        <h2>Group > {{groupName}} > Create a New IoT Product</h2>
+    </div>
+    <hr>
+    <div class="col-lg-4">
+    <form>
+        <div class="form-group">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Name</label>
+            <input ng-model="thingName" class="form-control input-field ais-input-text" type="text" placeholder="Name of Things">
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md-12 col-lg-12 no-padding">Description</label>
+            <textarea ng-model="thingDesc" class="form-control input-field ais-input-text" name="" id="" cols="55" rows="5" placeholder="Description ( เช่น เพื่อวัดความเป็นกรดของดิน และทำการปรับสภาพดิน )"></textarea>
+        </div>
+        <div>
+            <button class="btn btn-primary ais-btn" ng-click="add()">Create Things</button>
+            <button ng-click="ThingsIndex()" class="btn btn-default ais-btn">Cancel</button>
+        </div>
+    </form>
+    </div>
+</section>

@@ -1,0 +1,39 @@
+.ic-faqs{
+    font-size: 12px;
+    margin-right: 10px;
+    color: #b2d234;
+}
+.head-menu-faqs{
+    color: #fff;
+    font-size: 46px;
+}
+div.panel-heading[aria-selected="true"]>h4.panel-title>a>span>a.head-menu-faqs {
+    color: #fff;
+    font-weight: 500;
+}
+.head-menu-faqs:hover {
+    color: #b2d234;
+    font-size: 46px;
+}
+div.faqs-group > div.panel-collapse > div.panel-body > p{
+    font-size: 22px;
+    color: #888b8f;
+    margin: 0px;
+}
+div.faqs-group > div.panel-collapse > div.panel-body {
+    padding-left: 0px!important;
+}
+.faqs-group{
+    margin: 20px!important;
+    border-bottom: 1px solid #464646!important;
+    padding-bottom: 30px;
+    width: 100%;
+    margin-left: 0px!important;
+}
+.wrap-faqs{
+    margin: 0 auto;
+    max-width: 900px;
+    clear: both;
+    padding-left: 17px;
+    padding-right: 17px;
+}

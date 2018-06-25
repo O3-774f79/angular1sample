@@ -1,0 +1,67 @@
+<section>
+    <div class="topbar" id="topbar">
+        <div div class="topbar-left">
+            <button class="ais-menutoggle ais-teal ais-xlarge btn-top" ng-click="w3_open()"><img src="/modules/core/client/img/ic-menu@3x.png" width="28px" alt=""></button>
+            <div 
+            angucomplete-alt
+            id="searchcomplete"
+            placeholder="ss For Things..dd."
+            pause="400"
+            selected-object="objectSelected"
+            remote-url="/api/search/"
+            remote-url-request-formatter="remoteUrlRequestFn"
+            remote-url-data-field="data"
+            title-field="name"
+            description-field="type"
+            minlength="1"
+            input-class="searchbar-top form-control-small"
+            match-class="highlight"
+            maxlength="30">
+            </div>
+        </div>
+        <div class="topbar-right">
+            <ul class="btn-user" ng-show="vm.authentication.user">
+            <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
+            <li class="dropdown " uib-dropdown>
+                <a class="user-header-dropdown-toggle  dropdown-user" uib-dropdown-toggle role="button">
+                    <span class="hidden-xs">{{vm.authentication.user.displayName}}</span>
+                <b class="glyphicon glyphicon-menu-down ic-dropdown-user"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li ui-sref-active="active">
+                        <a ui-sref="profile">View Profile</a>
+                    </li>
+                    <li>
+                        <a ng-click="signout()" style="cursor: pointer;" target="_self">Signout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    
+       </div>
+    </div>
+  <div class="page-header">
+    <h1>My Profile</h1>
+  </div>
+  <div class="">
+    <!--<nav class="col-sm-3 col-md-3">
+      <ul class="nav nav-pills nav-stacked">
+        <li ui-sref-active="active">
+          <a ui-sref="settings.profile">Edit Profile</a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="settings.picture">Change Profile Picture</a>
+        </li>
+        <li ui-sref-active="active" ng-show="vm.user.provider === 'local'">
+          <a ui-sref="settings.password">Change Password</a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="settings.accounts">Manage Social Accounts</a>
+        </li>
+      </ul>
+    </nav>-->
+    <div class="settings-view">
+      <div ui-view></div>
+    </div>
+  </div>
+</section>

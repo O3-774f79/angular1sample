@@ -1,0 +1,83 @@
+<div class="" ng-controller="SidebarController as vm">
+    <div class="ais-sidebar ais-card ais-animate-left" id="mySidebar">
+        <div class="">
+            <div ng-controller="TopbarController as vm" class="topbar-left hbg-ic-mb">
+                <button class="ais-menutoggle ais-teal ais-xlarge btn-top" ng-click="w3_open()"><img src="/modules/core/client/img/ic-menu@3x.png" width="28px" alt=""></button>
+            </div>
+            <center>   
+                <a ng-click="pushTo()" ng-class="getClass('/things')" ng-href="/things"><img src="/modules/core/client/img/img_logo_B01.png" class="logo-sidebar" alt=""></a>
+            </center> 
+            <div ng-if="!dashboardmenu" class="wrapper-menu">
+                <div class="dashboardmenu"><a ng-click="pushTo()" ng-class="getClass('/first-dashboard')"  ng-href="/first-dashboard"><div id="ic-first-db" class="nav-ic-dash"></div><span id="first-db">Dashboard</span></a></div>
+            </div>
+            <uib-accordion close-others="true">
+                <div ng-if="dashboardmenu">
+                    <div ng-if="dashboardseven">
+                        <div uib-accordion-group class="db-side" is-open="status.open">
+                            <uib-accordion-heading>
+                                <a class="head-menu">
+                                    <div class="nav-ic-dash"></div>Dashboard
+                                    <i style="font-size: 12px; margin-top: 5px;" class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                </a>
+                            </uib-accordion-heading>
+                            <div class="dashboard-scroll">
+                                <a  ng-class="getClass('/dashboards{{db._id}}')" ng-click="pushTo()" ng-href="/dashboards{{db._id}}" class="dbmenulink" ng-repeat="db in dashboards"><div class="oval-sidebar"></div>{{db.dashboardName}}</a>
+                            </div>
+                            <button class="btn-adddb" ng-click="openCreateDb()">Add Dashboard</button>
+                        </div uib-accordion-group>
+                    </div>
+                    <div ng-if="!dashboardseven">
+                        <div uib-accordion-group class="db-side" is-open="statuss.open" >
+                                <uib-accordion-heading>
+                                    <a class="head-menu">
+                                        <div class="nav-ic-dash"></div>Dashboard
+                                        <i style="font-size: 12px; margin-top: 5px;" class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': statuss.open, 'glyphicon-chevron-right': !statuss.open}"></i>
+                                    </a>
+                                </uib-accordion-heading>
+                                <div class="dashboard-scroll-none">
+                                    <a ng-class="getClass('/dashboards{{db._id}}')" ng-click="pushTo()"  ng-href="/dashboards{{db._id}}" class="dbmenulink" ng-repeat="db in dashboards"><div class="oval-sidebar"></div>{{db.dashboardName}}</a>
+                                </div>
+                                <button class="btn btn-adddb" ng-click="openCreateDb()">Add Dashboard</button>
+                        </div uib-accordion-group>
+                    </div>
+                </div>
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        <a class="head-menu"><div class="nav-ic-thing"></div>Thing</a>
+                    </uib-accordion-heading>
+                        <a ng-class="getClass('/things')" ng-click="pushTo()" ng-href="/things" class="dbmenulink"><div class="oval-sidebar"></div>All Things</a>
+                        <a ng-class="getClass('/groups')" ng-click="pushTo()" ng-href="/groups" class="dbmenulink"><div class="oval-sidebar"></div>All Group</a>
+                        <a ng-class="getClass('/histories')" ng-click="pushTo()" ng-href="/histories" class="dbmenulink"><div class="oval-sidebar"></div>History</a>
+                </div uib-accordion-group>
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        <a class="head-menu"><div class="nav-ic-dev"></div>User Guide</a>
+                    </uib-accordion-heading>
+                        <a ng-class="getClass('/overview')" ng-click="pushTo()" ng-href="/overview" class="dbmenulink"><div class="oval-sidebar"></div>Overview</a>
+                        <a ng-class="getClass('/userguide-platform')" ng-click="pushTo()" ng-href="/userguide-platform" class="dbmenulink"><div class="oval-sidebar"></div>User Guide</a>
+                        <a ng-class="getClass('/faqs')" ng-click="pushTo()" ng-href="/faqs" class="dbmenulink"><div class="oval-sidebar"></div>FAQs</a>
+                </div uib-accordion-group>
+            </uib-accordion>
+            <div class="dashboardmenu"><a ng-class="getClass('/contact')" ng-click="pushTo()" ng-href="/contact"><div id="ic-contact" class="nav-ic-contact"></div><span id="span-contact">Contact Us</span></a></div>
+ 
+            <!-- <div class="dashboardmenu" style="padding-left:60px;"><a href="/userguide-platform" style="bottom: 10px;position: absolute;"><span>USER GUIDE</span></a></div>             -->
+    </div>
+    <!-- <div class="ais-small-sidebar ais-bar-block ais-card ais-animate-left" style="display:none;" id="smallSidebar">
+        <div class="container">
+            <h1 class="sidebar-logo">M</h1>
+           
+            <ul class="sidebar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
+                <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+                    <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
+                    <ul ng-switch-when="dropdown" class="dropdown-menu">
+                    <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
+                        <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
+                    </li>
+                    </ul>
+                    <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+
+</div>

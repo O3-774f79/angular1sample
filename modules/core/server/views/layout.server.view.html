@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" ng-strict-di>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title page-title></title>
+  <meta name="description" content="{{description}}">
+  <meta name="fragment" content="!">
+
+  <!-- Apple META -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- Facebook META -->
+  <meta property="fb:app_id" content="{{facebookAppId}}">
+  <meta property="og:site_name" content="{{title}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="{{url}}">
+  <meta property="og:image" content="{{logo}}">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter META -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="{{twitterUsername}}">
+  <meta name="twitter:title" content="{{title}}">
+  <meta name="twitter:description" content="{{description}}">
+  <meta name="twitter:image" content="{{logo}}">
+  <!-- Fav Icon -->
+  <link href="/{{favicon}}" rel="shortcut icon" type="image/x-icon">
+
+  <!-- Application CSS Files -->
+  {{#each cssFiles}}<link rel="stylesheet" href="/{{this}}">{{/each}}
+<!--<script src="http://maps.google.com/maps/api/js"></script>-->
+<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>-->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-KsenClXL-nNTCdGM9gcCLlY08ZnUYy4"></script>
+<!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>-->
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-76185197-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-76185197-2');
+</script>
+
+
+ </head>
+
+<body class="ng-cloak" style="overflow-x:hidden;">
+  <!--<header id="navbar-top" class="navbar-top" data-ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>-->
+  <aside id="navbar-top"  class="navbar-top" data-ng-include="'/modules/core/client/views/sidebar.html'" class="navbar navbar-fixed-top navbar-inverse"></aside>
+  <!-- <aside id="navbar-top" class="navbar-top-new" data-ng-include="'/modules/core/client/views/sidebar.html'"></aside> -->
+  
+  <section class="row section-wrapper" id="main">
+  <aside data-ng-include="'/modules/core/client/views/topbar.html'"></aside>     
+    {{{block "content"}}}
+  <aside data-ng-include="'/modules/core/client/views/modal.html'"></aside> 
+  </section>
+  <div id="btntotop"></div>
+  
+  <noscript>
+    <style>
+      [ng\:cloak], [ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: block !important;
+      }
+    </style>
+    <div class="alert alert-warning">
+      <strong>This page requires JavaScript.</strong> Please enable it in your browser.
+    </div>
+  </noscript>
+
+  <!--Embedding The User Object-->
+  <script type="text/javascript">
+    var user = {{{ user }}};
+    var env = "{{ env }}";
+  </script>
+  <script type="text/javascript">
+    
+  </script>
+  <!--Load The Socket.io File-->
+  <!-- <script type="text/javascript" src="/socket.io/socket.io.js"></script> -->
+  
+  <!--Application JavaScript Files-->
+    {{#each jsFiles}}<script type="text/javascript" src="/{{this}}"></script>{{/each}}
+  
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  -->
+
+  <!--owasp config sync-->
+  <script type="text/javascript">
+    var sharedConfig = {{{ sharedConfig }}};
+    owaspPasswordStrengthTest.config(sharedConfig.owasp);
+  </script>
+  {{#if livereload}}
+  <!--Livereload script rendered -->
+  <!--<script type="text/javascript" src="{{host}}:35729/livereload.js"></script>-->
+  
+  {{/if}}
+  
+</body>
+
+</html>

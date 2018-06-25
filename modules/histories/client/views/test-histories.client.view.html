@@ -1,0 +1,53 @@
+<section>
+        <div class="top-content-his" id="topcontent">
+            <div class="topcontent-left">
+                <h2 class="nameofpage">History</h2>
+            </div>
+            <div class="topcontent-right">
+                
+            </div>
+        </div>
+        <div class="container-fluid contentinpage content-normal-his">
+            <div class="row history-ctrl">
+                <li style="float:right;" class="col-xs-12 col-sm-4 col-md-3 col-lg-2 dropdown sort-dropdown box-select-history" uib-dropdown>
+                    <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                        <span>{{selectName}}</span>
+                    <b class="glyphicon glyphicon-menu-down ic-dropdown"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                    <li ng-show="thingsobj" ng-repeat="thing in thingsobj">
+                        <a ng-click="selectThing(thing)">{{thing.thingsName}}</a>
+                    </li>
+                    <li ng-show="!thingsobj">
+                            <a href="/things">No thing!, Click for create thing</a>
+                        </li>
+                    </ul>
+                </li>
+                <div class="col-xs-12 col-sm-8 col-md-9  col-lg-6">
+                    <button id="hour" ng-click="selectTimeframe('1h')" class="btn-timeframe" ng-disabled="disableBtn">1h</button>
+                    <button id="threehour" ng-click="selectTimeframe('3h')" class="btn-timeframe" ng-disabled="disableBtn">3h</button>
+                    <button id="twelvehour" ng-click="selectTimeframe('12h')" class="btn-timeframe" ng-disabled="disableBtn">12h</button>
+                    <button id="oneday" ng-click="selectTimeframe('1d')" class="btn-timeframe" ng-disabled="disableBtn">1D</button>
+                    <button id="twoday" ng-click="selectTimeframe('2d')" class="btn-timeframe" ng-disabled="disableBtn">2D</button>
+                </div>
+            </div>
+            <div class="his-wrapper">
+                <div class="his-content">
+                    <div class="his-header">
+                        <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget" src="/modules/core/client/img/ic-linechart.svg" alt="">{{selectName}}</h3>
+                    </div>
+                    <div>
+                        <div ng-show="datanull">
+                            <h1>Data Not Found</h1>
+                        </div>
+                        <div id="loading" class="loader"></div>
+                        <canvas ng-show="!datanull" class="chart chart-line" chart-series="keys" chart-colors="colors" chart-data="values" chart-labels="labels" chart-options="options">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</section>
+    
+    
