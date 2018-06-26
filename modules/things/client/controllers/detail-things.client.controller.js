@@ -14,8 +14,8 @@
       if (window.location.protocol === 'https:') {
         websocket_protocol = 'wss';
       }
-      // MQTTProvider.setHref(websocket_protocol + '://' + window.location.hostname + '/ws');
-      MQTTProvider.setHref(websocket_protocol + '://103.20.205.104/ws');
+      MQTTProvider.setHref(websocket_protocol + '://' + window.location.hostname + '/ws');
+      // MQTTProvider.setHref(websocket_protocol + '://103.20.205.104/ws');
       MQTTProvider.setOption(option);
       // MQTTService.connect(websocket_protocol + '://103.20.205.104/ws', option);
     }])
