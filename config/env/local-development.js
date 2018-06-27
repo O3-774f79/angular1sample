@@ -23,11 +23,11 @@ module.exports = {
     // uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://172.17.0.12:27019/magellen',
     // uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://localhost:27017/iot-v2',
     // uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://103.20.205.104:27019/magellen',
-    // uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://103.20.204.176:27018/myfarm',
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://localhost:27018/myfarm',
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://103.20.204.176:27018/admin/myfarm',
+    // uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://localhost:27018/myfarm',
     options: {
-      user: 'magellenUser',
-      pass: 'M4ge11eN'
+      user: 'admin',
+      pass: 'ais.co.th'
       // user: 'iot',
       // pass: 'mimo'
       // pass: 'P@ssw0rd_IOT_MIMO'
