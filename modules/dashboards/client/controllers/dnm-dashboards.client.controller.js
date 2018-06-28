@@ -1,7 +1,6 @@
 (function () {
   'use strict';
 
-  // Dashboards controller
   angular
     .module('dashboards')
     .config(['MQTTProvider', function(MQTTProvider) {
@@ -19,27 +18,15 @@
       MQTTProvider.setOption(option);
       // MQTTService.connect(websocket_protocol + '://103.20.205.104/ws', option);
     }])
-    // .config(['ChartJsProvider', function (ChartJsProvider) {
-    //   // Configure all charts
-    //   ChartJsProvider.setOptions({
-    //     responsive: true
-    //   });
-    //   // Configure all line charts
-    //   ChartJsProvider.setOptions('line', {
-    //     showLines: true
-    //   });
-    // }])
     .filter('convertmapdata', function () {
       return function (datalocation) {
         if (datalocation) {
           if (datalocation.length === 1) {
             return datalocation.join();
           } else {
-            // console.log(datalocation.slice(datalocation.length - 2, datalocation.length - 1).join());
             return datalocation.slice(datalocation.length - 2, datalocation.length - 1).join();
           }
         } else {
-          // console.log('!datalocation : ' + datalocation);
           return '0,0';
         }
       };
@@ -73,21 +60,13 @@
 
     // MQTTService.connect(websocket_protocol + '://' + window.location.hostname + '/ws', option);
 
-    // canvas.style.width = '100%';
-    // canvas.style.height = '100%';
-    // canvas.width = canvas.offsetWidth;
-    // canvas.height = canvas.offsetHeight;
 
-    var key = '';
-    var widgetDisplay = '';
     var keydatas = [];
-    var reqThings = [];
     var dateV = [];
     var tmpListData = [];
     $scope.datavalues = [];
     var currentLocation = window.location.href;
     var dashBoardId = currentLocation.substring(currentLocation.search('dashboards') + 10);
-    var refreshTime = 5000;    // milli sec
     vm.authentication = Authentication;
     $scope.bossdata = [65, -59, 80, 81, -56, 55, -40];
     $scope.dashboardsObj = [];
@@ -98,11 +77,7 @@
       $scope.hidedm = false;
       document.getElementById('loading').style.display = 'none';
     };
-    // $http.get('/api/dashboards/' + dashBoardId + '/widgets').then(function (response) {
-    //   if (response.data.data.widgetId) {
-    //     document.getElementById('loading').style.display = 'none';
-    //   }
-    // });
+
     if (!vm.authentication.user) {
       $state.go('authentication.signin');
       return true;
@@ -148,7 +123,6 @@
         var logEntry = tmpListData.map(function (i) {
           return i.value;
         }).join(', ');
-        // console.log(logEntry);
       },
       stop: function (e, ui) {
         // this callback has the changed model
@@ -255,24 +229,6 @@
       password: accToken
     };
     $scope.toggleClick = function (data) {
-      // $http.get('/api/things/pull/' + data.things.sendToken)
-      // .then(function (res) {
-      //   $scope.resdata = res.data;
-      //   var values = $scope.resdata[data.dataKey];
-      //   if (values === 1) {
-      //     $scope.chVl = 0;
-      //     $scope.resdata[data.dataKey] = 0;
-      //     var topic2 = 'things/data/' + data.things.sendToken;
-      //     MQTTService.send(topic2, $scope.resdata);
-      //   } else if (values === 0) {
-      //     $scope.chVl = 1;
-      //     $scope.resdata[data.dataKey] = 1;
-      //     var topic = 'things/data/' + data.things.sendToken;
-      //     MQTTService.send(topic, $scope.resdata);
-      //   } else {
-      //     return false;
-      //   }
-      // });
       $http.get('/api/thingdashboard/pull/' + data.things.sendToken)
       .then(function (res) {
         var values = res.data[data.dataKey];
@@ -373,50 +329,6 @@
       }
     });
     // new API End
-    // $scope.updateDataWidget = function () {
-    //   $interval.cancel($scope.intervaldnm);
-    //   var reqThingsData = [];
-    //   for (var i = 0; i < $scope.dashboardsObj.length; i++) {
-    //     var sendtoken = $scope.dashboardsObj[i].things.sendToken;
-    //     var date = dateV[sendtoken];
-    //     reqThingsData.push($http.get('/api/things/pullWithStatus/' + sendtoken + '/' + date));
-    //   } // End for
-    //   Promise.all(reqThingsData)
-    //     .then(function (results) {
-    //       var isUpdate = false;
-    //       for (var i = 0; i < results.length; i++) {
-    //         if (results[i].data.data) {
-    //           isUpdate = true;
-    //           dateV[results[i].data.sendToken] = results[i].data.date;
-    //           if ($scope.dashboardsObj[i].datavalue.length > 20) {
-    //             $scope.dashboardsObj[i].datavalue.splice(20, 1, results[i].data.data[keydatas[i]]);
-    //             $scope.dashboardsObj[i].datalabel.splice(20, 1, '');
-    //           } else {
-    //             $scope.dashboardsObj[i].datavalue.push(results[i].data.data[keydatas[i]]);
-    //             $scope.dashboardsObj[i].datalabel.push('');
-    //           }
-    //           tmpListData[i] = $scope.dashboardsObj[i];
-    //         } else {
-    //           isUpdate = false;
-    //         }
-    //       }
-
-    //       if (isUpdate) {
-    //         $scope.dashboardShowList = tmpListData;
-    //       }
-
-    //       $scope.$apply();
-
-    //       $scope.intervaldnm = $interval($scope.updateDataWidget, refreshTime);
-
-    //     })
-    //     .catch(function (err) {
-    //       // console.log(err);
-    //       $scope.intervaldnm = $interval($scope.updateDataWidget, refreshTime);
-    //     });
-    //   // $scope.intervaldnm = $interval($scope.updateDataWidget, refreshTime);
-    //   // console.log('intervaldnm');
-    // };
   }
 
 }());
@@ -581,56 +493,123 @@ angular.module('dashboards').controller('manageWidget', function ($state, $windo
       if (checkIssetting) {
         if (ctrl.widgetEdit) {
           $http.post('/api/dashboards/' + dashboardId + '/widgets/' + ctrl.widgetEdit._id + '/edit', JSON.stringify(param)).then(function (result) {
-            location.reload();
-          }, function (err) {
-            // console.log(err);
-          });
-        } else {
-          // console.log('save');
-          $http.post('/api/dashboards/' + dashboardId + '/widgets/add', JSON.stringify(param)).then(function (result) {
             if (param.type === 'toggle') {
               $http.get('/api/things/pullWithStatus/' + param.thingToken)
               .then(function (res) {
                 $scope.datapullthing = res.data.data[param.dataKey];
                 $scope.dataobj = res.data.data;
-                console.log(param.dataKey);
                 if (res.data.data[param.dataKey] === 0 || res.data.data[param.dataKey] === 1) {
-                  console.log(param.thingToken);
-                  $http.get('/api/thingdashboard/pull/' + param.thingToken).then(function(res) {
-                    console.log(res.data);
-                    if (res.data) {
-                      if (param.dataKey in res.data) {
-                        console.log('found');
+                  $http.get('/api/thingdashboard/pull/' + param.thingToken).then(function(resdb) {
+                    if (resdb.data.success || resdb.status === 200) {
+                      if (param.dataKey in resdb.data) {
+                        location.reload();
                         return false;
                       } else {
                         $scope.objreplace = {};
-                        if (res.data.message != null) {
-                          $scope.objreplace = res.data;
+                        if (resdb.data.message != null) {
+                          $scope.objreplace = resdb.data;
                           $scope.objreplace[param.dataKey] = $scope.datapullthing;
+                          for (var key in resdb.data) {
+                            if (resdb.data.hasOwnProperty(key)) {
+                              $scope.objreplace[key] = resdb.data[key];
+                            }
+                          }
                         } else {
                           $scope.objreplace[param.dataKey] = $scope.datapullthing;
+                          for (var k in resdb.data) {
+                            if (resdb.data.hasOwnProperty(k)) {
+                              $scope.objreplace[k] = resdb.data[k];
+                            }
+                          }
                         }
                         $http.post('/api/thingdashboard/push',
                           {
                             token: param.thingToken,
                             playload: $scope.objreplace
                           }).then(function (result) {
-                            console.log(result);
+                            location.reload();
                           });
                       }
                     } else {
-                      console.log('null');
+                      $scope.objreplace = {};
+                      $scope.objreplace[param.dataKey] = $scope.datapullthing;
+                      $http.post('/api/thingdashboard/push',
+                        {
+                          token: param.thingToken,
+                          playload: $scope.objreplace
+                        }).then(function (result) {
+                          location.reload();
+                        });
                     }
                   });
 
                 } else {
-                  console.log('!0');
-                  console.log(res.data.data);
+                  location.reload();
                   return false;
                 }
               });
             }
-            // location.reload();
+          }, function (err) {
+            // console.log(err);
+          });
+        } else {
+          $http.post('/api/dashboards/' + dashboardId + '/widgets/add', JSON.stringify(param)).then(function (result) {
+            if (param.type === 'toggle') {
+              $http.get('/api/things/pullWithStatus/' + param.thingToken)
+              .then(function (res) {
+                $scope.datapullthing = res.data.data[param.dataKey];
+                $scope.dataobj = res.data.data;
+                if (res.data.data[param.dataKey] === 0 || res.data.data[param.dataKey] === 1) {
+                  $http.get('/api/thingdashboard/pull/' + param.thingToken).then(function(resdb) {
+                    if (resdb.data.success || resdb.status === 200) {
+                      if (param.dataKey in resdb.data) {
+                        location.reload();
+                        return false;
+                      } else {
+                        $scope.objreplace = {};
+                        if (resdb.data.message != null) {
+                          $scope.objreplace = resdb.data;
+                          $scope.objreplace[param.dataKey] = $scope.datapullthing;
+                          for (var key in resdb.data) {
+                            if (resdb.data.hasOwnProperty(key)) {
+                              $scope.objreplace[key] = resdb.data[key];
+                            }
+                          }
+                        } else {
+                          $scope.objreplace[param.dataKey] = $scope.datapullthing;
+                          for (var k in resdb.data) {
+                            if (resdb.data.hasOwnProperty(k)) {
+                              $scope.objreplace[k] = resdb.data[k];
+                            }
+                          }
+                        }
+                        $http.post('/api/thingdashboard/push',
+                          {
+                            token: param.thingToken,
+                            playload: $scope.objreplace
+                          }).then(function (result) {
+                            location.reload();
+                          });
+                      }
+                    } else {
+                      $scope.objreplace = {};
+                      $scope.objreplace[param.dataKey] = $scope.datapullthing;
+                      $http.post('/api/thingdashboard/push',
+                        {
+                          token: param.thingToken,
+                          playload: $scope.objreplace
+                        }).then(function (result) {
+                          location.reload();
+                        });
+                    }
+                  });
+
+                } else {
+                  location.reload();
+                  return false;
+                }
+              });
+            }
           }, function (err) {
             // console.log(err);
           });
