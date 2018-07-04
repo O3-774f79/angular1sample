@@ -75,39 +75,57 @@
             <label class="control-label col-xs-4 col-sm-4 col-md-4 col-lg-4" for="widgetType">Widget Type</label>
             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" style="padding:0px;">
                 <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
+                    <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="temperature" />
+                    <div class="widgettype widgettype-box-temp">
+                    <p>Temperature</p>
+                    </div>                        
+                </label>
+                <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
+                    <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="humidity" />
+                    <div class="widgettype widgettype-box-humid">
+                    <p>Humidity</p>
+                    </div>                        
+                </label>
+                <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
                     <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="sparkline" />
-                    <div class="widgettype-box-line">
+                    <div class="widgettype widgettype-box-line">
                     <p>LINE CHART</p>
                     </div>                        
                 </label>
                 <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
                     <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="gauge" />
-                    <div class="widgettype-box-gauge">
+                    <div class="widgettype widgettype-box-gauge">
                     <p>GAUGE</p>
                     </div>                        
                 </label>
                 <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
                     <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="map" />
-                    <div class="widgettype-box-map">
+                    <div class="widgettype widgettype-box-map">
                     <p>GOOGLE MAP</p>
                     </div>                        
                 </label>
                 <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
                     <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="indicatorlight" />
-                    <div class="widgettype-box-lamp">
+                    <div class="widgettype widgettype-box-lamp">
                     <p>LAMP</p>
                     </div>                        
                 </label>
                 <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
                     <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="toggle" />
-                    <div class="widgettype-box-toggle">
+                    <div class="widgettype widgettype-box-toggle">
                     <p>TOGGLE</p>
                     </div>                        
                 </label>
                 <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
                     <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="battery" />
-                    <div class="widgettype-box-battery">
+                    <div class="widgettype widgettype-box-battery">
                     <p>BATTERY</p>
+                    </div>                        
+                </label>
+                <label class="col-xs-6 col-sm-6 col-md-6 col-lg-4 ">
+                    <input class="selectwidget" type="radio" name="widgetType" ng-model="ctrl.widget" value="video" />
+                    <div class="widgettype widgettype-box-video">
+                    <p>VIDEO</p>
                     </div>                        
                 </label>
             </div>
@@ -164,6 +182,16 @@
                     <label for="OffText" class="col-xs-4 col-md-4">Off Text</label>
                     <div class="col-xs-8">
                         <input ng-model="ctrl.offtext" class="form-control" type="text" placeholder="Off Text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" ng-show="ctrl.widget === 'video'">
+            <div class="col-xs-12">
+                <div class="form-group row">
+                    <label for="url" class="col-xs-4">URL</label>
+                    <div class="col-xs-8">
+                        <input ng-model="ctrl.url" class="form-control" name="url" type="text" placeholder="URL for HLS/RTSP">
                     </div>
                 </div>
             </div>
@@ -229,7 +257,7 @@
 <script type="text/ng-template" id="credbFirstModal.html">
     <div class="modal-body" id="modal-body">
         <center>    
-            <h3>Please, Search For Things, Group, Widgets... First</h3>
+            <h3>Please, Search For Widgets</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> 
             <p>Cupiditate dignissimos quasi eaque tenetur alias fugiat,</p> 
         </center>

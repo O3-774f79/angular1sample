@@ -3,17 +3,26 @@
 
   angular
     .module('dashboards')
+    .filter('trustUrl', ['$sce', function ($sce) {
+      return function (recordingUrl) {
+        return $sce.trustAsResourceUrl(recordingUrl);
+      };
+    }])
     .config(['MQTTProvider', function(MQTTProvider) {
       var accToken = localStorage.getItem('accToken');
       var option = {
-        username: 'user-' + accToken,
-        password: accToken
+        // username: 'user-' + accToken,
+        // password: accToken
+        username: 'admin',
+        password: 'admin'
       };
       var websocket_protocol = 'ws';
       if (window.location.protocol === 'https:') {
         websocket_protocol = 'wss';
       }
-      MQTTProvider.setHref(websocket_protocol + '://' + window.location.hostname + '/ws');
+      // MQTTProvider.setHref('ws://104.215.191.117:15674/ws');
+      MQTTProvider.setHref(websocket_protocol + '://104.125.191.117:15675/ws');
+      // MQTTProvider.setHref(websocket_protocol + '://' + window.location.hostname + '/ws');
       // MQTTProvider.setHref(websocket_protocol + '://103.20.205.104/ws');
       MQTTProvider.setOption(option);
       // MQTTService.connect(websocket_protocol + '://103.20.205.104/ws', option);
@@ -38,7 +47,6 @@
   function DashboardsDnmController($location, MQTTService, $log, $uibModal, $document, NgMap, $interval, $timeout, $compile, $http, $scope, $state, $window, Authentication) {
     var vm = this;
     var accToken = localStorage.getItem('accToken');
-    document.getElementById('topbar').style.display = 'none';
     // if (accToken === undefined || accToken === null || accToken === '') {
     //   $state.go('authentication.signin');
     // }
@@ -86,6 +94,24 @@
       $interval.cancel($scope.intervaldnm);
       $interval.cancel($scope.intervalthing);
     });
+    // var userAgent = $window.navigator.userAgent;
+    // $scope.videoIfram = false;
+    // $scope.videoSrc = false;
+
+    // var browsers = { chrome: /chrome/i, safari: /safari/i, firefox: /firefox/i, ie: /internet explorer/i };
+    // for (var key in browsers) {
+    //   if (browsers[key].test(userAgent)) {
+    //     if (key === 'chrome') {
+    //       $scope.videoIfram = true;
+    //     } else if (key === 'safari') {
+    //       if ($scope.videoIfram) {
+    //         $scope.videoSrc = false;
+    //       } else {
+    //         $scope.videoSrc = true;
+    //       }
+    //     }
+    //   }
+    // }
     // Callback Search Auto Complete
     $scope.options = {
       scales: {
@@ -280,7 +306,6 @@
         }
       }
       $scope.dashboardShowList = tmpListData;
-      console.log($scope.dashboardShowList);
       $scope.hidedm = false;
       // $scope.$apply();
       // $scope.intervaldnm = $interval($scope.updateDataWidget, refreshTime);
@@ -347,6 +372,7 @@ angular.module('dashboards').controller('manageWidget', function ($state, $windo
     ctrl.widget = ctrl.widgetEdit.type;
     ctrl.widgetName = ctrl.widgetEdit.widgetName;
     if (ctrl.widgetEdit.settings) {
+      ctrl.url = ctrl.widgetEdit.settings.url;
       ctrl.unit = ctrl.widgetEdit.settings.unit;
       ctrl.min = ctrl.widgetEdit.settings.minValue;
       ctrl.max = ctrl.widgetEdit.settings.maxValue;
@@ -466,7 +492,7 @@ angular.module('dashboards').controller('manageWidget', function ($state, $windo
   }
 
   ctrl.save = function () {
-    if (ctrl.thing !== 'notfound' && ctrl.dataSource !== 'notfound' && ctrl.widgetName !== '' && ctrl.widgetName !== undefined && ctrl.widget !== undefined) {
+    if (ctrl.thing !== 'notfound' && ctrl.dataSource !== 'notfound' && ctrl.widgetName !== '' && ctrl.widgetName !== undefined && ctrl.widget !== undefined || ctrl.widget === 'video' && ctrl.widgetName !== '' && ctrl.widgetName) {
       ctrl.errMsg = '';
       var param = {};
       param.dashboard = ctrl.dashboardId;
@@ -478,6 +504,7 @@ angular.module('dashboards').controller('manageWidget', function ($state, $windo
       if (ctrl.max === null) {
         ctrl.max = 100;
       }
+      param.url = ctrl.url;
       param.unit = ctrl.unit;
       param.minValue = ctrl.min;
       param.maxValue = ctrl.max;
@@ -548,6 +575,8 @@ angular.module('dashboards').controller('manageWidget', function ($state, $windo
                   return false;
                 }
               });
+            } else {
+              location.reload();
             }
           }, function (err) {
             // console.log(err);
@@ -609,6 +638,8 @@ angular.module('dashboards').controller('manageWidget', function ($state, $windo
                   return false;
                 }
               });
+            } else {
+              location.reload();
             }
           }, function (err) {
             // console.log(err);
@@ -652,6 +683,13 @@ angular.module('dashboards').controller('manageWidget', function ($state, $windo
       if (!isEmpty(ctrl.offtext) && !isEmpty(ctrl.ontext)) {
         param.offText = ctrl.offtext;
         param.onText = ctrl.ontext;
+      } else {
+        ctrl.errMsg = 'Please fill in the specific field';
+        return false;
+      }
+    } else if (widgetType === 'video') {
+      if (!isEmpty(ctrl.url)) {
+        param.url = ctrl.url;
       } else {
         ctrl.errMsg = 'Please fill in the specific field';
         return false;

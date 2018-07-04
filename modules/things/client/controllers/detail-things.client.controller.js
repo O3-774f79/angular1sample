@@ -7,14 +7,19 @@
     .config(['MQTTProvider', function(MQTTProvider) {
       var accToken = localStorage.getItem('accToken');
       var option = {
-        username: 'user-' + accToken,
-        password: accToken
+        // username: 'user-' + accToken,
+        // password: accToken
+        username: 'admin',
+        password: 'admin'
       };
       var websocket_protocol = 'ws';
       if (window.location.protocol === 'https:') {
         websocket_protocol = 'wss';
       }
-      MQTTProvider.setHref(websocket_protocol + '://' + window.location.hostname + '/ws');
+      // MQTTProvider.setHref('wss://104.215.191.117:15674/ws');
+      MQTTProvider.setHref(websocket_protocol + '://104.215.191.117:15675/ws');
+      // MQTTProvider.setHref(websocket_protocol + '://104.125.191.117:15675/ws');
+      // MQTTProvider.setHref(websocket_protocol + '://' + window.location.hostname + '/ws');
       // MQTTProvider.setHref(websocket_protocol + '://103.20.205.104/ws');
       MQTTProvider.setOption(option);
       // MQTTService.connect(websocket_protocol + '://103.20.205.104/ws', option);
@@ -141,7 +146,8 @@
               $scope.statusThingsOffline = 'Disconnect';
             }
           });
-          MQTTService.on('things/data/' + $scope.sendtoken, function (results) {
+          MQTTService.on('devices/data/' + $scope.sendtoken, function (results) {
+          // MQTTService.on('things/data/' + $scope.sendtoken, function (results) {
             $scope.statusThingsOnline = 'Connected';
             $scope.statusThingsOffline = null;
             $scope.jsonthings = JSON.stringify(results);

@@ -72,13 +72,13 @@
       $scope.w3_open = function() {
         if (screen.width >= 768) {
           if (document.getElementById('mySidebar').style.transform === 'translate3d(-100%, 0px, 0px)') {
-            document.getElementById('main').style.width = 'calc(100% - 275px)';
+            document.getElementById('main').style.width = 'calc(100% - 254px)';
             document.getElementById('main').style.transform = 'translate3d(250px, 0, 0)';
             document.getElementById('main').style.transition = 'transform .5s ease,-webkit-transform .5s ease';
             document.getElementById('mySidebar').style.transform = 'translate3d(0, 0, 0)';
             document.getElementById('mySidebar').style.transition = 'transform .5s ease,-webkit-transform .5s ease';
           } else {
-            document.getElementById('main').style.width = 'calc(100% - 25px)';
+            document.getElementById('main').style.width = '100%';
             document.getElementById('main').style.transform = 'translate3d(0, 0, 0)';
             document.getElementById('main').style.transition = 'transform .5s ease,-webkit-transform .5s ease';
             document.getElementById('mySidebar').style.transform = 'translate3d(-100%,0,0)';
@@ -96,34 +96,6 @@
             document.getElementById('main').style.transition = 'transform .5s ease,-webkit-transform .5s ease';
           }
         }
-        // if (!vm.sidebarFlag) {
-        //   vm.sidebarFlag = true;
-        //   if (screen.width >= 768) {
-        //     document.getElementById('main').style.width = 'calc(100% - 275px)';
-        //     document.getElementById('main').style.transform = 'translate3d(250px, 0, 0)';
-        //     document.getElementById('main').style.transition = 'transform .5s ease,-webkit-transform .5s ease';
-        //     document.getElementById('mySidebar').style.transform = 'translate3d(0, 0, 0)';
-        //     document.getElementById('mySidebar').style.transition = 'transform .5s ease,-webkit-transform .5s ease';
-        //   } else {
-        //     console.log('if else');
-        //     // document.getElementById('main').style.width = 'calc(100% - 25px)';
-        //     document.getElementById('mySidebar').style.transform = 'translate3d(0, 0, 0)';
-        //     document.getElementById('mySidebar').style.transition = 'transform .5s ease,-webkit-transform .5s ease';
-        //   }
-        // } else {
-        //   vm.sidebarFlag = false;
-        //   if (screen.width >= 768) {
-        //     document.getElementById('main').style.width = 'calc(100% - 25px)';
-        //     document.getElementById('main').style.transform = 'translate3d(0, 0, 0)';
-        //     document.getElementById('main').style.transition = 'transform .5s ease,-webkit-transform .5s ease';
-        //     document.getElementById('mySidebar').style.transform = 'translate3d(-100%,0,0)';
-        //     document.getElementById('mySidebar').style.transition = 'transform .5s ease,-webkit-transform .5s ease';
-        //   } else {
-        //     console.log('else else');
-        //     document.getElementById('mySidebar').style.transform = 'translate3d(-100%,0,0)';
-        //     document.getElementById('mySidebar').style.transition = 'transform .5s ease,-webkit-transform .5s ease';
-        //   }
-        // }
       };
 
     }

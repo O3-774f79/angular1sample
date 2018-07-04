@@ -1,5 +1,71 @@
-.content-dashboard{
-    margin-top: 200px;
+.cover-wrapper-db{
+    padding: 16px;
+    height: 260px;
+    margin-bottom: 15px;
+    background-image: url(/modules/core/client/img/page-1@3x.png);
+    background-size: contain;
+}
+.cover-wrapper-db > h1{
+    color: white;
+    text-align: center;
+}
+.cover-wrapper-db > h2{
+    font-size: 38px;
+    color: #b2d234;
+    margin-top: 0px;
+    display: inline-block;
+}
+.cover-wrapper-db > h3{
+    font-size: 22px;
+    color: #fff;
+    margin-top: 0px;
+}
+h1.ac-db{
+    font-size: 48px;
+    color: #fff;
+    margin-top: 0px;
+}
+h2.ac-db{
+    font-size: 26px;
+    color: #ced2dc;
+    margin: 0px;
+}
+h3.ac-db{
+    font-size: 20px;
+    color: #fff;
+    margin-top: 0px;
+}
+h4.ac-db{
+    font-size: 18px;
+    color: #89949d;
+    margin-top: 0px;
+}
+.crewidget, .crewidget:focus, .crewidget:visited{
+    float:right;
+    margin-top: 25px;
+    min-width: 120px;
+    border-radius: 100px;
+    background-image: linear-gradient(to left, #77a740, #b2d234);
+    font-size: 22px;
+    letter-spacing: 0.8px;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 2px 6px 0 rgba(64, 161, 74, 0.5);
+    letter-spacing: 0.8px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+    padding: 6px 20px;
+}
+.widget-value{
+    font-size: 50px;
+    color: #8dc63f;
+}
+@media screen and (max-width: 768px) {
+    .crewidget{
+        float: none;
+        margin-top: 0px;
+        margin: 0 auto;
+        display: block;
+    }
 }
 @media screen and (max-width: 768px) {
     .content-dashboard{
@@ -106,7 +172,7 @@
     box-shadow: 0 1px 1px -1px rgba(0, 0, 0, .34), 0 0 6px 0 rgba(0, 0, 0, .14);
     color: #949494;
     min-height: 230px;
-    background-color: #1b1c1b;
+    background-color: #111417;
 }
 
 .positive-btn{
@@ -189,7 +255,7 @@ label > input { /* IMAGE STYLES */
   border:2px solid transparent;
 }
 
-.widgettype-box-line{
+/* .widgettype-box-line{
     padding: 10px;
     border-radius: 4px;
 	background-color: #ffffff;
@@ -205,9 +271,9 @@ label > input:checked + div.widgettype-box-line{
     background-image: url('/modules/core/client/img/ic-line-chart-46-px-active.svg');
     background-position: 50% 20%; 
     background-repeat: no-repeat;
-}
+} */
 
-.widgettype-box-gauge{
+/* .widgettype-box-gauge{
     padding: 10px;
     border-radius: 4px;
 	background-color: #ffffff;
@@ -224,8 +290,8 @@ label > input:checked + div.widgettype-box-gauge{
     background-image: url('/modules/core/client/img/ic-gauge-46-px-active.svg');
     background-position: 50% 20%; 
     background-repeat: no-repeat;
-}
-.widgettype-box-map{
+} */
+/* .widgettype-box-map{
     padding: 10px;
     border-radius: 4px;
 	background-color: #ffffff;
@@ -242,9 +308,9 @@ label > input:checked + div.widgettype-box-map{
     background-image: url('/modules/core/client/img/ic-map-46-px-active.svg');
     background-position: 50% 20%; 
     background-repeat: no-repeat;
-}
+} */
 
-.widgettype-box-lamp{
+/* .widgettype-box-lamp{
     padding: 10px;
     border-radius: 4px;
 	background-color: #ffffff;
@@ -261,9 +327,9 @@ label > input:checked + div.widgettype-box-lamp{
     background-image: url('/modules/core/client/img/ic-lamp-46-px-active.svg');
     background-position: 50% 20%; 
     background-repeat: no-repeat;
-}
+} */
 
-.widgettype-box-toggle{
+/* .widgettype-box-toggle{
     padding: 10px;
     border-radius: 4px;
 	background-color: #ffffff;
@@ -280,8 +346,8 @@ label > input:checked + div.widgettype-box-toggle{
     background-image: url('/modules/core/client/img/ic-toggle-46-px-active.svg');
     background-position: 50% 20%; 
     background-repeat: no-repeat;
-}
-.widgettype-box-battery{
+} */
+/* .widgettype-box-battery{
     padding: 10px;
     border-radius: 4px;
 	background-color: #ffffff;
@@ -298,7 +364,7 @@ label > input:checked + div.widgettype-box-battery{
     background-image: url('/modules/core/client/img/ic-battery-46-px-active.svg');
     background-position: 50% 20%; 
     background-repeat: no-repeat;
-}
+} */
 .widgettype-box-line > p, 
 .widgettype-box-gauge > p, 
 .widgettype-box-map > p, 
@@ -333,7 +399,7 @@ p.text-content{
 .layer-imgcover{
     width: 100%;
     height: 400px;
-    background-image: linear-gradient(to bottom, rgba(17, 21, 29, 0.0), #000000);
+    /* background-image: linear-gradient(to bottom, rgba(17, 21, 29, 0.0), #000000); */
     position: absolute;
 }
 /* Rounded sliders */
@@ -442,4 +508,7 @@ text-align: right;
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+  video:-webkit-full-page-media{
+      min-width: 0px;
   }

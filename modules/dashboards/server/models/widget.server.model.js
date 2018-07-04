@@ -32,6 +32,7 @@ var WidgetSchema = new Schema({
   type: String,
   order: { type: Number, index: true },
   settings: {
+    url: String,
     unit: String,
     minValue: Number,
     maxValue: Number,

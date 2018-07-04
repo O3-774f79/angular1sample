@@ -2,7 +2,7 @@
 .topbar-piccover{
     height: 400px;
     color: #fff!important;
-    top: 0;
+    top: 100px;
     position: fixed;
     left: 0;
     right: 0;
@@ -10,22 +10,16 @@
 }
 .topbar{
     top: 0;
-    position: fixed;
+    position: relative;
     left: 0;
     right: 0;
-    height: 100px;
-    background-color: black;
+    height: 70px;
     z-index: 901;
 }
 .topbar-dmn {
-    top: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
+    position: relative;
     height: 100px;
-    background-color: black;
-    z-index: 900;
-    background: transparent;
+    /* background-color: black; */
 }
 .image-container{
     position: absolute;
@@ -267,7 +261,7 @@ a.accordion-toggle{
     text-decoration: none;
 }
 .panel-default > .panel-heading {
-    background: #1b1c1b;
+    background: #111417;
 }
 
 .db-side.panel-default > .panel-heading + .panel-collapse > .panel-body{
@@ -347,7 +341,7 @@ div.panel-body > p.ng-scope > a {
 }
 .ais-sidebar {
     height: 100%;
-    background-color: #1b1c1b;
+    background-color: #111417;
     position: fixed!important;
     z-index: 902;
     overflow: auto;
@@ -384,7 +378,7 @@ div.panel-body > p.ng-scope > a {
     background-color: #ccc!important;
 }
 .nav-ic-dash{
-    background-image: url(/modules/core/client/img/ic-menu-dash-notac.svg);
+    background-image: url(/modules/core/client/img/fill-3.png);
     height: 20px;
     width: 18px;
     background-repeat: no-repeat;
@@ -395,7 +389,7 @@ div.panel-body > p.ng-scope > a {
 }
 
 .nav-ic-dash-ac{
-    background-image: url(/modules/core/client/img/ic-menu-dash-active.svg);
+    background-image: url(/modules/core/client/img/fill-3.png);
     height: 24px;
     width: 24px;
     background-repeat: no-repeat;
@@ -405,7 +399,7 @@ div.panel-body > p.ng-scope > a {
     margin-right: 10px;
 }
 div.panel-heading[aria-selected="true"]>h4.panel-title>a>span>a.head-menu>div.nav-ic-dash{
-   background-image: url('/modules/core/client/img/ic-menu-dash-active.svg');
+   background-image: url('/modules/core/client/img/fill-3.png');
 }
 .nav-ic-thing{
     background-image: url('/modules/core/client/img/ic-menu-thing-notac.svg');
@@ -480,7 +474,7 @@ a.dbfirst:active{
     color: #fff!important;
 }
 .active>div#ic-first-db{
-    background-image: url(/modules/core/client/img/ic-menu-dash-active.svg);
+    background-image: url(/modules/core/client/img/fill-3.png;
     height: 24px;
     width: 24px;
     background-repeat: no-repeat;
@@ -490,7 +484,7 @@ a.dbfirst:active{
     margin-right: 10px;
 }
 .active>div#ic-first-db{
-    background-image: url(/modules/core/client/img/ic-menu-dash-active.svg);
+    background-image: url(/modules/core/client/img/fill-3.png);
     height: 24px;
     width: 24px;
     background-repeat: no-repeat;

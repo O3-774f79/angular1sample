@@ -242,6 +242,7 @@ exports.addWidget = function (req, res) {
   widget.order = req.body.order;
   widget.selectedGroup = req.body.group;
   widget.settings = {
+    url: req.body.url,
     unit: req.body.unit,
     minValue: req.body.minValue,
     maxValue: req.body.maxValue,
@@ -360,6 +361,7 @@ exports.editWidget = function (req, res) {
         _widget.dashboardId = req.params.dashboard;
         _widget.owner = req.user._id;
         _widget.settings = {
+          url: req.body.url,
           unit: req.body.unit,
           minValue: req.body.minValue,
           maxValue: req.body.maxValue,

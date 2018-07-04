@@ -44,45 +44,45 @@ exports.search = function (req, res) {
   var result = [];
   const escapedString = escapeStringRegexp(search);
   async.waterfall([
-    function (callback) {
-      Thing.find({ thingsName: new RegExp('.*' + escapedString + '.*', 'i'), owner: userid }, function(err, doc) {
-        if (err) {
-          logController.logError(req, 'Searchfind', 'false',
-          JSON.stringify({ success: false, error: err.message }),
-          res, function (err, result) {
+    // function (callback) {
+    //   Thing.find({ thingsName: new RegExp('.*' + escapedString + '.*', 'i'), owner: userid }, function(err, doc) {
+    //     if (err) {
+    //       logController.logError(req, 'Searchfind', 'false',
+    //       JSON.stringify({ success: false, error: err.message }),
+    //       res, function (err, result) {
 
-          });
-          return res.jsonp({ success: false, message: err });
-        } else {
-          doc.forEach(function(item) {
-            var thing = {};
-            thing.name = item.thingsName;
-            thing.id = item._id;
-            thing.type = 'Things';
-            result.push(thing);
-          });
-          // result.things = doc;
-          callback();
-        }
-      });
-    },
-    function (callback) {
-      Group.find({ groupName: new RegExp('.*' + escapedString + '.*', 'i'), owner: userid }, function(err, doc) {
-        if (err) {
-          return res.jsonp({ success: false, message: err });
-        } else {
-          doc.forEach(function(item) {
-            var group = {};
-            group.name = item.groupName;
-            group.id = item._id;
-            group.type = 'Group';
-            result.push(group);
-          });
-          // result.items.push(doc);
-          callback();
-        }
-      });
-    },
+    //       });
+    //       return res.jsonp({ success: false, message: err });
+    //     } else {
+    //       doc.forEach(function(item) {
+    //         var thing = {};
+    //         thing.name = item.thingsName;
+    //         thing.id = item._id;
+    //         thing.type = 'Things';
+    //         result.push(thing);
+    //       });
+    //       // result.things = doc;
+    //       callback();
+    //     }
+    //   });
+    // },
+    // function (callback) {
+    //   Group.find({ groupName: new RegExp('.*' + escapedString + '.*', 'i'), owner: userid }, function(err, doc) {
+    //     if (err) {
+    //       return res.jsonp({ success: false, message: err });
+    //     } else {
+    //       doc.forEach(function(item) {
+    //         var group = {};
+    //         group.name = item.groupName;
+    //         group.id = item._id;
+    //         group.type = 'Group';
+    //         result.push(group);
+    //       });
+    //       // result.items.push(doc);
+    //       callback();
+    //     }
+    //   });
+    // },
     function (callback) {
       Widget.find({ widgetName: new RegExp('.*' + escapedString + '.*', 'i'), owner: userid }, function(err, doc) {
         if (err) {

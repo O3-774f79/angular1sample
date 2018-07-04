@@ -1,5 +1,5 @@
 body{
-  background-color:black!important;
+  background-color:#23272c!important;
   font-family: 'DB Ozone X';
   /*font-size: 20px;*/
 }
@@ -16,7 +16,6 @@ a:hover,a:focus,a:visited{
 .section-wrapper{
   margin-left: 0px;
   padding-bottom:30px;
-  padding-left:32px;
   /* padding-right:40px; */
 }
 .glyphicon{
@@ -104,6 +103,7 @@ a:hover,a:focus,a:visited{
   display: none !important;
 }
 .header-profile-image {
+  margin-top: 15px;
   border-radius: 50%;
   height: 28px;
   width: 28px;
@@ -487,7 +487,7 @@ a.dropdown-toggle{
 @media screen and (min-width: 768px) {
   .section-wrapper{
     transform:translate3d(250px, 0, 0);
-    width: calc(100% - 275px);
+    width: calc(100% - 254px);
   }
   
 }

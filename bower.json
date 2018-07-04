@@ -26,7 +26,8 @@
     "angucomplete-alt": "2.0.0",
     "angular-mqtt": "https://github.com/bossberry/angular-MQTT.git#^1.0.7",
     "JavaScript-Load-Image": "https://github.com/blueimp/JavaScript-Load-Image.git#2.18.0",
-    "angular-numeric-input": "^1.0.4"
+    "angular-numeric-input": "^1.0.4",
+    "vjs-video": "^0.1.11"
   },
   "overrides": {
     "bootstrap": {

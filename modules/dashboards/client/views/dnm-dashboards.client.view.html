@@ -1,279 +1,317 @@
-<div ng-controller="TopbarController" class="topbar-dmn" id="topbar">
-    <div class="topbar-left">
-        <button class="ais-menutoggle ais-teal ais-xlarge btn-top" ng-click="w3_open()"><img src="/modules/core/client/img/ic-menu@3x.png" width="28px" alt=""></button>
-        <div
-        angucomplete-alt
-        id="searchcomplete"
-        placeholder="Search For Things, Group, Widgets..."
-        pause="400"
-        selected-object="objectSelected"
-        remote-url="/api/search/"
-        remote-url-request-formatter="remoteUrlRequestFn"
-        remote-url-data-field="data"
-        title-field="name"
-        description-field="type"
-        minlength="1"
-        input-class="searchbar-top form-control-small warp-signin-lg"
-        match-class="highlight"
-        maxlength="30"
-        >
+<section class="content-dashboard">
+<div class="cover-wrapper-db">
+    <h1>สถาบันราชานุกุล</h1>
+    <h2>{{dashboardData.dashboardName}}</h2>&nbsp;&nbsp;&nbsp;
+    <a class="dropdown-toggle" ng-click="openEditDb()" role="button">
+        <b class="glyphicon glyphicon-pencil ic-edit"></b>
+    </a>
+    <h3>{{dashboardData.dashboardDesc}}</h3>
+</div>
+<!-- <div ng-hide="hidedm" class="warp-lg top-db">
+    <div class="topcontent-left">
+        <h2 class="nameofpage">{{dashboardData.dashboardName}}</h2>&nbsp;&nbsp;&nbsp;
+        <a class="dropdown-toggle" ng-click="openEditDb()" role="button">
+            <b class="glyphicon glyphicon-pencil ic-edit"></b>
+        </a>
+    </div>
+    <div class="topcontent-right">
+        <button ng-click="createWidget()" class="btn btn-cre position">​
+        <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Create Widget
+    </button>
+    </div>
+</div>
+<div ng-hide="hidedm" class="warp-mb top-db">
+    <div class="col-xs-6 col-sm-6">
+        <h2 class="nameofpage">{{dashboardData.dashboardName}}</h2>&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="col-xs-3 col-sm-2">
+        <a class="dropdown-toggle" ng-click="openEditDb()" role="button">
+            <b class="glyphicon glyphicon-pencil ic-edit"></b>
+        </a>
+    </div>
+    <div class="col-xs-3 col-sm-4">
+        <button ng-click="createWidget()" class="btn btn-cre position" style="">
+            <img style="margin-left:-5px;"src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="24px" height="24px">​
+            <span class="sm-hide">&nbsp;Create Widget</span>
+        </button>
+    </div>
+</div> -->
+<div class="action-wrapper-db row" style="margin:0px;">
+    <div class="col-lg-3 col-md-3 col-sm3 col-xs-6" style="border-right: 1px solid #ffffff;">
+        <div style="display: none;">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <img src="/modules/core/client/img/emo-1.png">
+            </div>
+            <div class="col-lg-7">
+                <h2 class="ac-db">ระดับความสุข</h2>
+                <h1 class="ac-db">แจ่มใส</h1>
+            </div>
         </div>
-        <div
-        angucomplete-alt
-        id="searchcomplete"
-        placeholder="Search..."
-        pause="400"
-        selected-object="objectSelected"
-        remote-url="/api/search/"
-        remote-url-request-formatter="remoteUrlRequestFn"
-        remote-url-data-field="data"
-        title-field="name"
-        description-field="type"
-        minlength="1"
-        input-class="searchbar-top-mobile form-control-small warp-signin-mobile"
-        match-class="highlight"
-        maxlength="30"
-        >
+        <div style="display:none;">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <img src="/modules/core/client/img/emo-2.png">
+            </div>
+            <div class="col-lg-7">
+                <h2 class="ac-db">ระดับความสุข</h2>
+                <h1 class="ac-db"> ใจคอไม่ดี</h1>
+            </div>
+        </div>
+        <div style="display: ;">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <img src="/modules/core/client/img/emo-3.png">
+            </div>
+            <div class="col-lg-7">
+                <h2 class="ac-db">ระดับความสุข</h2>
+                <h1 class="ac-db"> มีน้ำโห </h1>
+            </div>
         </div>
     </div>
-    <div class="topbar-right">
-        <div class="warp-signin-mobile">
-            <div style="padding:15px;">
-                <ul style="display:inline-block;padding-left: 10px;margin-top: 10px;">
-                    <li class="dropdown " uib-dropdown>
-                        <a class="user-header-dropdown-toggle  dropdown-user" uib-dropdown-toggle role="button">
-                            <img src="/modules/core/client/img/ic-setting@3x.png" width="32px">
+    <div class="col-lg-5 col-md-5 col-sm5 col-xs-6">
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <img src="/modules/core/client/img/group-5.png">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="ac-db">Sunny, Partly Cloudy</h2>
+            <div class="col-lg-4">
+                <h1 class="ac-db">35&nbsp;<span style="font-size: 28px;">o</span></h1>
+            </div>
+            <div class="col-lg-8">
+                <h3 class="ac-db">Sunday, 10:15 am</h1>
+                <h4 class="ac-db">July 14, 2018</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm3 col-xs-12">
+        <button ng-click="createWidget()" class="btn crewidget position">​
+            <img src="/modules/core/client/img/fill-4.png" alt="" width="16px" height="16px">&nbsp;Create Widget
+        </button>
+    </div>
+</div>
+<div class="container-fluid contentinpage" style="margin-top:15px;">
+    <div id="loading" class="loader"></div>
+    <ul ui-sortable="sortableOptions" ng-model="dashboardShowList" class="list-unstyled" style="overflow-y:hidden;width:100%;padding-left: 0px;">
+        <li ng-init="load()" ng-repeat="data in dashboardShowList | orderBy: 'order'" class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="dashboard-wrapper">
+                <ul>
+                    <li class="dropdown remove-group-btn" uib-dropdown>
+                        <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                            <b class="glyphicon glyphicon-option-horizontal"></b>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li style="text-align:center;">
-                                <img ng-src="/{{vm.authentication.user.profileImageURL}}" class="header-profile-image">
-                                <a ui-sref="profile"><span>{{vm.authentication.user.displayName}}</span></a>
-                            </li>
-                            <li ui-sref-active="active">
-                                <a ui-sref="profile">View Profile</a>
-                            </li>
-                            <li>
-                                <a ng-click="signout()" style="cursor: pointer;"  target="_self">Signout</a>
-                            </li>
+                            <li><a ng-click="editWidget(data)">Edit Widget</a></li>
+                            <li><a ng-click="deleteWidget(data)">Delete</a></li>
                         </ul>
                     </li>
                 </ul>
-            </div>
-        </div>
-        <div class="warp-signin-lg">
-            <ul class="btn-user" ng-show="vm.authentication.user">
-                <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
-                <li class="dropdown " uib-dropdown>
-                    <a class="user-header-dropdown-toggle  dropdown-user" uib-dropdown-toggle role="button">
-                        <span class="hidden-xs">{{vm.authentication.user.displayName}}</span>
-                    <b class="glyphicon glyphicon-menu-down ic-dropdown-user"></b>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li ui-sref-active="active">
-                            <a ui-sref="profile">View Profile</a>
-                        </li>
-                        <li>
-                            <a ng-click="signout()" style="cursor: pointer;"  target="_self">Signout</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div  class="topbar-piccover" id="topbar">
-    <div class="image-container">
-        <div class="layer-imgcover"></div>
-        <img src="/modules/core/client/img/pic-cover@2x.jpg" />
-   </div>
-</div>
-<section class="content-dashboard">
-    <div ng-hide="hidedm" class="warp-lg top-db">
-        <div class="topcontent-left">
-            <h2 class="nameofpage">{{dashboardData.dashboardName}}</h2>&nbsp;&nbsp;&nbsp;
-            <a class="dropdown-toggle" ng-click="openEditDb()" role="button">
-                <b class="glyphicon glyphicon-pencil ic-edit"></b>
-            </a>
-        </div>
-        <div class="topcontent-right">
-            <button ng-click="createWidget()" class="btn btn-cre position">​
-            <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Create Widget
-        </button>
-        </div>
-    </div>
-    <div ng-hide="hidedm" class="warp-mb top-db">
-        <div class="col-xs-6 col-sm-6">
-            <h2 class="nameofpage">{{dashboardData.dashboardName}}</h2>&nbsp;&nbsp;&nbsp;
-        </div>
-        <div class="col-xs-3 col-sm-2">
-            <a class="dropdown-toggle" ng-click="openEditDb()" role="button">
-                <b class="glyphicon glyphicon-pencil ic-edit"></b>
-            </a>
-        </div>
-        <div class="col-xs-3 col-sm-4">
-            <button ng-click="createWidget()" class="btn btn-cre position" style="">
-                <img style="margin-left:-5px;"src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="24px" height="24px">​
-                <span class="sm-hide">&nbsp;Create Widget</span>
-            </button>
-        </div>
-    </div>
-
-    <div class="container-fluid contentinpage">
-        <div id="loading" class="loader"></div>
-        <ul ui-sortable="sortableOptions" ng-model="dashboardShowList" class="list-unstyled row" style="overflow-y:hidden;width:100%;">
-            <li ng-init="load()" ng-repeat="data in dashboardShowList | orderBy: 'order'" class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                <div class="dashboard-wrapper">
-                    <ul>
-                        <li class="dropdown remove-group-btn" uib-dropdown>
-                            <a class="dropdown-toggle" uib-dropdown-toggle role="button">
-                                <b class="glyphicon glyphicon-option-horizontal"></b>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a ng-click="editWidget(data)">Edit Widget</a></li>
-                                <li><a ng-click="deleteWidget(data)">Delete</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="things-content">
-
-                        <div ng-if="data.type==='gauge'">
-                            <div class="things-header">
-                                <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-gauge.svg" alt="">{{data.widgetName}}</h3>
-                            </div>
-                            <center>
-                                <div ng-if="data.datavalue[data.datavalue.length-1]===undefined">
-                                    <p style="margin-top:60px;">Something Wrong</p>
-                                </div>
-                                <div ng-if="data.datavalue[data.datavalue.length-1]!==undefined" >
-                                    <ng-gauge size="150" type="semi" thick="10" min="data.settings.minValue" max="data.settings.maxValue" value="data.datavalue[data.datavalue.length-1]" cap="round" label="{{data.settings.minValue+' - '+data.settings.maxValue}}" append="{{data.settings.unit}}"
-                                        foreground-color="#b2d234" background-color="#000" class="ng-guage">
-                                    </ng-gauge>
-                                </div>
-                            </center>
+                <div class="things-content">
+                    <div ng-if="data.type==='temperature'">
+                        <div class="things-header">
+                            <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-lamp.svg" alt="">{{data.widgetName}}</h3>
                         </div>
-                        <div ng-if="data.type==='sparkline'">
-                            <div class="things-header">
-                                <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget" src="/modules/core/client/img/ic-linechart.svg" alt="">{{data.widgetName}}</h3>
+                        <center>
+                            <div ng-if="data.datavalue[data.datavalue.length-1]===undefined">
+                                <p style="margin-top:60px;">Something Wrong</p>
                             </div>
-                            <div>
-                                <canvas class="chart chart-line" chart-colors="colors" chart-data="[data.datavalue]" chart-labels="data.datalabel" chart-options="options">
-                                </canvas>
+                            <div ng-if="data.datavalue[data.datavalue.length-1]!==undefined" >
+                                <img src="/modules/core/client/img/group-33.png">
+                                <h3 class="widget-value">{{data.datavalue[data.datavalue.length-1]}} <sup>o</sup></h3>
+                                <span class="widget-value">Celsius  0-100</span>
                             </div>
+                        </center>
+                    </div>
+                    <div ng-if="data.type==='humidity'">
+                        <div class="things-header">
+                            <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-lamp.svg" alt="">{{data.widgetName}}</h3>
                         </div>
-                        <div ng-if="data.type==='map'">
-                            <div class="things-header">
-                                <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-map.svg" alt="">{{data.widgetName}}</h3>
+                        <center>
+                            <div ng-if="data.datavalue[data.datavalue.length-1]===undefined">
+                                <p style="margin-top:60px;">Something Wrong</p>
                             </div>
-                            <div id="{{data._id}}"></div>                            
-                            <ng-map style="height:160px!important" id="map" zoom="11" center="{{data.datavalue | convertmapdata}}">
-                                <marker position="{{data.datavalue | convertmapdata}}"></marker>
-                            </ng-map>
-                            <!-- <ng-map style="height:160px!important" id="map" zoom="11">
-                                <marker></marker>
-                            </ng-map> -->
+                            <div ng-if="data.datavalue[data.datavalue.length-1]!==undefined" >
+                                <img src="/modules/core/client/img/group-32.png">
+                                <h3 class="widget-value" style="color:#39c480;">{{data.datavalue[data.datavalue.length-1]}} <span style="color:#39c480;">%</span></h3>
+                                <span class="widget-value">Humidity  0-100</span>
+                            </div>
+                        </center>
+                    </div>
+                    <div ng-if="data.type==='gauge'">
+                        <div class="things-header">
+                            <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-gauge.svg" alt="">{{data.widgetName}}</h3>
                         </div>
-                        <div ng-if="data.type==='indicatorlight'">
-                            <div class="things-header">
-                                <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-lamp.svg" alt="">{{data.widgetName}}</h3>
+                        <center>
+                            <div ng-if="data.datavalue[data.datavalue.length-1]===undefined">
+                                <p style="margin-top:60px;">Something Wrong</p>
                             </div>
-                            <br>
-                            <center>
-                                <div ng-switch="data.datavalue[data.datavalue.length-1]">
-                                    <div ng-switch-when="1">
-                                        <div class="indicator-light on"></div>
-                                        <h2>{{data.settings.onText}}</h2>
-                                    </div>
-                                    <div ng-switch-when="0">
-                                        <div class="indicator-light off"></div>
-                                        <h2>{{data.settings.offText}}</h2>
-                                    </div>
-                                    <div ng-switch-default>
-                                        <p>Something Wrong</p>
-                                        <p>{{data.datavalue[0]}}</p>
-                                    </div>
-                                </div>
-                            </center>
+                            <div ng-if="data.datavalue[data.datavalue.length-1]!==undefined" >
+                                <ng-gauge size="150" type="semi" thick="10" min="data.settings.minValue" max="data.settings.maxValue" value="data.datavalue[data.datavalue.length-1]" cap="round" label="{{data.settings.minValue+' - '+data.settings.maxValue}}" append="{{data.settings.unit}}"
+                                    foreground-color="#b2d234" background-color="#000" class="ng-guage">
+                                </ng-gauge>
+                            </div>
+                        </center>
+                    </div>
+                    <div ng-if="data.type==='sparkline'">
+                        <div class="things-header">
+                            <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget" src="/modules/core/client/img/ic-linechart.svg" alt="">{{data.widgetName}}</h3>
                         </div>
-                        <div ng-if="data.type==='toggle'">
-                            <div class="things-header">
-                                <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-switch.svg" alt="">{{data.widgetName}}</h3>
-                            </div>
-                            <br>
-                            <center>
-                                <div class="wrapper-toggle-widget" ng-switch="data.datavalue[data.datavalue.length-1]">
-                                    <div ng-switch-when="1">
-                                        <label class="toggle-widget">
-                                            <input id="{{data.things.sendToken}}" type="checkbox" checked ng-click="toggleClick(data)">
-                                            <span class="slider round"></span>
-                                        </label>
-                                        <h2 ng-if="chVl === 1">{{data.settings.onText}}</h2>
-                                        <h2 ng-if="chVl === 0">{{data.settings.offText}}</h2>
-                                        <h2 ng-if="chVl != 0 && chVl != 1">{{data.settings.onText}}</h2>
-                                    </div>
-                                    <div ng-switch-when="0">
-                                        <label class="toggle-widget">
-                                            <input id="{{data.things.sendToken}}" type="checkbox" ng-click="toggleClick(data)"/>
-                                            <span class="slider round"></span>
-                                        </label>
-                                        <h2 ng-if="chVl === 1">{{data.settings.onText}}</h2>
-                                        <h2 ng-if="chVl === 0">{{data.settings.offText}}</h2>
-                                        <h2 ng-if="chVl != 0 && chVl != 1">{{data.settings.offText}}</h2>
-                                    </div>
-                                    <div ng-switch-default>
-                                        <p>Something Wrong</p>
-                                        <p>{{data.datavalue[0]}}</p>
-                                    </div>
-                                </div>
-                            </center>
-                        </div>
-                        <div ng-if="data.type==='battery'">
-                            <div class="things-header">
-                                <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-battery.svg" alt="">{{data.widgetName}}</h3>
-                            </div>
-                            <br>
-                            <center>
-                                <div class="wrapper-batter-widget">
-                                    <div ng-if="data.datavalue[data.datavalue.length-1] == 0">
-                                        <img src="/modules/core/client/img/ic-battery-0-44-px.svg" alt="">
-                                        <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
-                                    </div>
-                                    <div ng-if="data.datavalue[data.datavalue.length-1] > 0 && data.datavalue[data.datavalue.length-1] < 20">
-                                        <img src="/modules/core/client/img/ic-battery-20-44-px.svg" alt="">
-                                        <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
-                                    </div>
-                                    <div ng-if="data.datavalue[data.datavalue.length-1] > 20 && data.datavalue[data.datavalue.length-1] < 40">
-                                        <img src="/modules/core/client/img/ic-battery-40-44-px.svg" alt="">
-                                        <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
-                                    </div>
-                                    <div ng-if="data.datavalue[data.datavalue.length-1] > 40 && data.datavalue[data.datavalue.length-1] < 60">
-                                        <img src="/modules/core/client/img/ic-battery-60-44-px.svg" alt="">
-                                        <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
-                                    </div>
-                                    <div ng-if="data.datavalue[data.datavalue.length-1] > 60 && data.datavalue[data.datavalue.length-1] < 80">
-                                        <img src="/modules/core/client/img/ic-battery-80-44-px.svg" alt="">
-                                        <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
-                                    </div>
-                                    <div ng-if="data.datavalue[data.datavalue.length-1] > 80">
-                                        <img src="/modules/core/client/img/ic-battery-100-44-px.svg" alt="">
-                                        <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
-                                    </div>
-                                    <div ng-if="!data.datavalue[data.datavalue.length-1]">
-                                        <h2>Something went wrong !</h2>
-                                        <h2>{{data.datavalue[data.datavalue.length-1]}}</h2>
-                                    </div>
-                                    <div ng-if="data.datavalue[data.datavalue.length-1] < 0">
-                                        <img src="/modules/core/client/img/ic-battery-0-44-px.svg" alt="">
-                                        <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
-                                    </div>
-                                </div>
-                            </center>
+                        <div>
+                            <canvas class="chart chart-line" chart-colors="colors" chart-data="[data.datavalue]" chart-labels="data.datalabel" chart-options="options">
+                            </canvas>
                         </div>
                     </div>
+                    <div ng-if="data.type==='map'">
+                        <div class="things-header">
+                            <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-map.svg" alt="">{{data.widgetName}}</h3>
+                        </div>
+                        <div id="{{data._id}}"></div>                            
+                        <ng-map style="height:160px!important" id="map" zoom="11" center="{{data.datavalue | convertmapdata}}">
+                            <marker position="{{data.datavalue | convertmapdata}}"></marker>
+                        </ng-map>
+                        <!-- <ng-map style="height:160px!important" id="map" zoom="11">
+                            <marker></marker>
+                        </ng-map> -->
+                    </div>
+                    <div ng-if="data.type==='indicatorlight'">
+                        <div class="things-header">
+                            <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-lamp.svg" alt="">{{data.widgetName}}</h3>
+                        </div>
+                        <br>
+                        <center>
+                            <div ng-switch="data.datavalue[data.datavalue.length-1]">
+                                <div ng-switch-when="1">
+                                    <div class="indicator-light on"></div>
+                                    <h2>{{data.settings.onText}}</h2>
+                                </div>
+                                <div ng-switch-when="0">
+                                    <div class="indicator-light off"></div>
+                                    <h2>{{data.settings.offText}}</h2>
+                                </div>
+                                <div ng-switch-default>
+                                    <p>Something Wrong</p>
+                                    <p>{{data.datavalue[0]}}</p>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                    <div ng-if="data.type==='toggle'">
+                        <div class="things-header">
+                            <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-switch.svg" alt="">{{data.widgetName}}</h3>
+                        </div>
+                        <br>
+                        <center>
+                            <div class="wrapper-toggle-widget" ng-switch="data.datavalue[data.datavalue.length-1]">
+                                <div ng-switch-when="1">
+                                    <label class="toggle-widget">
+                                        <input id="{{data.things.sendToken}}" type="checkbox" checked ng-click="toggleClick(data)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <h2 ng-if="chVl === 1">{{data.settings.onText}}</h2>
+                                    <h2 ng-if="chVl === 0">{{data.settings.offText}}</h2>
+                                    <h2 ng-if="chVl != 0 && chVl != 1">{{data.settings.onText}}</h2>
+                                </div>
+                                <div ng-switch-when="0">
+                                    <label class="toggle-widget">
+                                        <input id="{{data.things.sendToken}}" type="checkbox" ng-click="toggleClick(data)"/>
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <h2 ng-if="chVl === 1">{{data.settings.onText}}</h2>
+                                    <h2 ng-if="chVl === 0">{{data.settings.offText}}</h2>
+                                    <h2 ng-if="chVl != 0 && chVl != 1">{{data.settings.offText}}</h2>
+                                </div>
+                                <div ng-switch-default>
+                                    <p>Something Wrong</p>
+                                    <p>{{data.datavalue[0]}}</p>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                    <div ng-if="data.type==='battery'">
+                        <div class="things-header">
+                            <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-battery.svg" alt="">{{data.widgetName}}</h3>
+                        </div>
+                        <br>
+                        <center>
+                            <div class="wrapper-batter-widget">
+                                <div ng-if="data.datavalue[data.datavalue.length-1] == 0">
+                                    <img src="/modules/core/client/img/ic-battery-0-44-px.svg" alt="">
+                                    <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
+                                </div>
+                                <div ng-if="data.datavalue[data.datavalue.length-1] > 0 && data.datavalue[data.datavalue.length-1] < 20">
+                                    <img src="/modules/core/client/img/ic-battery-20-44-px.svg" alt="">
+                                    <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
+                                </div>
+                                <div ng-if="data.datavalue[data.datavalue.length-1] > 20 && data.datavalue[data.datavalue.length-1] < 40">
+                                    <img src="/modules/core/client/img/ic-battery-40-44-px.svg" alt="">
+                                    <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
+                                </div>
+                                <div ng-if="data.datavalue[data.datavalue.length-1] > 40 && data.datavalue[data.datavalue.length-1] < 60">
+                                    <img src="/modules/core/client/img/ic-battery-60-44-px.svg" alt="">
+                                    <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
+                                </div>
+                                <div ng-if="data.datavalue[data.datavalue.length-1] > 60 && data.datavalue[data.datavalue.length-1] < 80">
+                                    <img src="/modules/core/client/img/ic-battery-80-44-px.svg" alt="">
+                                    <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
+                                </div>
+                                <div ng-if="data.datavalue[data.datavalue.length-1] > 80">
+                                    <img src="/modules/core/client/img/ic-battery-100-44-px.svg" alt="">
+                                    <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
+                                </div>
+                                <div ng-if="!data.datavalue[data.datavalue.length-1]">
+                                    <h2>Something went wrong !</h2>
+                                    <h2>{{data.datavalue[data.datavalue.length-1]}}</h2>
+                                </div>
+                                <div ng-if="data.datavalue[data.datavalue.length-1] < 0">
+                                    <img src="/modules/core/client/img/ic-battery-0-44-px.svg" alt="">
+                                    <h2>{{data.datavalue[data.datavalue.length-1]}} %</h2>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                    <div ng-if="data.type==='video'">
+                        <div class="things-header">
+                            <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/live-1.png" alt="">{{data.widgetName}}</h3>
+                        </div>
+                        <br>
+                        <center>
+                            <div class="wrapper-toggle-widget">
+                                <!-- <video ng-if="videoSrc" width="100%" controls>
+                                    <source src="{{data.settings.url  | trustUrl}}" type="application/x-mpegURL">
+                                </video> -->
+                                <video id="my_video_1" class="video-js vjs-default-skin" controls data-setup='{}'>
+                                    <source src="http://110.49.214.107:1935/IoT_live/For_Test.stream/playlist.m3u8" type="application/x-mpegURL">
+                                </video>
+                            </div>
+                        </center>
+                    </div>
                 </div>
-            </li>
-        </ul>
-        <!--<div class="fab-btn" ng-click="createWidget();">
-            <img src="data:image/png;base64,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"/>
-        </div>-->
-    </div>
+            </div>
+        </li>
+    </ul>
+    <!-- <div>
+        <div class="things-header">
+            <h3 id="thingName" class="name-widget ng-binding"><img class="ic-widget"  src="/modules/core/client/img/ic-gauge.svg" alt="">test</h3>
+        </div>
+        <center>
+            <div>
+                <video width="600" height="400" controls>
+                    <source src="http://110.49.214.107:1935/IoT_live/For_Test.stream/playlist.m3u8" type="application/x-mpegURL">
+                </video>
+                <video width="600" height="400" controls>
+                    <source src="rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov" type="application/x-mpegURL">
+                </video>
+                <embed type="application/x-vlc-plugin" pluginspage="http://www.videolan.org"
+                width="320"
+                height="240"
+                target="rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov"
+                id="vlc" />
+                <embed title="http://www.videolan.org" type="application/x-vlc-plugin" pluginspage="http://www.videolan.org" version="VideoLAN.VLCPlugin.2"  
+                width="100%"  height="100%" id="vlc" loop="yes" autoplay="yes" target="rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov"></embed>
+                <iframe src="http://110.49.214.107:1935/IoT_live/For_Test.stream/playlist.m3u8" width="800px" height="600px"/>
+
+            </div>
+        </center>
+    </div> -->
+    <!--<div class="fab-btn" ng-click="createWidget();">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAE4pJREFUeAHtnQuMXNV5x+899zXPfdhe4wSzwILd1I5DiClYIRUoTQoJCQ8jm4LiOBRBaEuTUvqIFFqEmrZKJGSVNkkLLdgVLYotCrRgSGgjDHGKE7soWHYSAwt+gMgO9j7meV/n9vvf2TN7drwzc2d2d9a7O1favc/z+H7fOd8599xzvlGUztYh0CHQIdAh0CHQIdAh0CHQIdB2AmrbU2wxwSAIms6rqqpBi8m1LZjetpQiJlQL9P3339+0AiiuKVM9kxTTtFBTSjTNi9XQZdiHDh0K85jJZCblNZvNTjpHFtLp9CTifX194fnatWsr1++7777KMcLMtTJOEwKZasdWCzqAC9hlyOuVUmlYtftz6irKWLFYrOTZtu3KsWVZFbDxeDx4nZ61jqWCWKyXrh+oKAdKEQo5E5RREaAd0JGGDF6U9MnQV6sA3k/AAdu2+1THKamua6u+76hejxvmeZmyVPG88jHi1XUjeF85iUNFHzECTTMDw7AC04wFlpUJoJRj4wpJp4+EyqqljHbWirYpoB74bHYC+sjICHOcZaSELAPsT234zJIL1n3kMsOI/ZpuaKuYpl/IFKWPIKXIfqRIgDjRLJJmc5RGjitKhvveG57rv+66pV++efC1ff/9ynOnoJRYLM1N8/2gp6eHy8qYS0XMugIagR9dfpytpJKezaYZoKdScbbptjsuT3R3X6Pr7BOM6euo3hDzVjeVc+4d9Dz+o8Lo6LO7/uWhvblckUMZ6XSWn6Ca0T10Dh0fCeZCEbOqgGr4wtSgxAN8H5X2fD7N7HSe3Xz9HecvP+fsLxiWeZOqqP0CN8yBHI+4HnVfHZ7iOuo6zs6h4+889vhTD71lZZM8mczyDNWKakXIbcRsmaVZUYAMTNj5F198kaFRHV2+vAI+nY6xqzbdvOass1fco+v6RjIlWlSw032OBPc9z/uPX73z3gPf3/X44Wy2JCliiGpEOrjyyivJoinKbCpixhVQDV+U+kymj/X1ZUgJaZaLndKuu/qWlQMfWvPXhmFcH4bBS1MLL1stK2I8PZRs13WfGvzF4a8//fy/n0iVlvgwTZRfTvmlv3KvabaUMKMKmAr+4OAgE6V+bMzSVq68wPzcFzf9QTyR+HPqhSdVFR0jZUbz0YxSJtIP8sVC4ZvP/Ouub5848abT1WX7ZbM0xAcGBji6rrOhhBkTXMCfbHJWq8vJ1g8N6RpK/Y3Xbb3g3IHV2zVNu6gZSO181vf9nx0dPPKlJ57e8SZqw/Llnj803khXm6SZaBdmRAEy/GqTc+qUqcXjmvY7d961Md3T9XcEs6udQFtMayw7MvbVx/5h25Ouy7wlSxy/lkmarhKmrYB68DMZRTcMRb/9z+6914pb97QIY86C2UX7gYe/9Y1vuK7i9fUp3mwoYRr968lvtXLJ7+o6oQF+18o+88tf+/qDgA9bO2ckW0gY+UW+kX/IEcoTytXHMFQCeUW0ohCK82b2LStAThR2H5lCTwfw0dgmV/RaW2+7c7thxbbQGys9PncNbTNAxLNhfinfyP8Xb7vzUcgDucqFq6wE0d4hjMxDxBFl37ICROTIBPr4gI9uJjLJmGfcevtd23TD/HxY8tvZvRQZm4k95Rv5NwzzWsgDuSAf5IS8kFtWQitJtqQAoW0kjqqIN9typso2/8tf+8t76Y12Xpb8aogTNcHcEspFbRrMEeSF3JBfKEFwqY6j3nnTChCJCPjo56Orid4OGtwtd929MZaI//G8LvnVxMZrAuSCfJAT8kJuyD8dJTStADlvsPt4yUI/3zC4fvVNmy/oXrpkG56ZbzZflmuqYyEP5IOckBdyQ37x/WKqcI2uNaUAufRX7D4NqOEly1r6Aev8VWseoQTnQz+/EZd697sgJ+SF3BhQrG4PBKd6kYh7TSkAgYTpwcCaaHTNMVW/acstv09vuB8RES/kPeS8ecstvwe5RaMMHrIpiip/ZAXIWhWmBwNrsZiufer6jSuTqeSfRE10ITwXTyX/FHJDfnCoNkUyr3ryRlYAIpko/dTrGTc9eS3QV6/76F9hYK1eQgvvnpqE3JBfmKLqXlEUmSMpQNZmufQfDz+kxPOGdsP1X1hjmua1Ya8nSooL5BnIC7khPzjgwxI+MskNssytltiRFIDA1aUfH1NKpqadM9D/R0hI9BJqJTTT1+ltT+lNJyp/OG/nBnkhN+QHB/CAVWi2FjSVa7n05/Nj2jVXbRywLPM6DDW0U3iktaQ7qWz8rY9V/nDe9o3khvzgAB5T1YJGeWqoAFGNxBsvPqDjGy603v+hgZvDz4hUEholtCDvo+bTZ1RwAA9wKU8wKL8hQ2bBr5b8DRWAgDA/KP2Yr4MWHzbPLGlaPJa4sVbEi+k6OIQ8iAv4gBN4gVsjDpEUICLBZClMHXFdi226dcvHGWOV2QvimcW4BwfwABfwAaeoHOoqQFQfYX4waQrzdmIxm/WeddbVURNZDM+BB7iADziJxhiyC45TcairAAQQ1QjVCjPWbLvIbFvTdNO4fKoIF+s18AAX8CnP7BsOa4HgV4tLQwUgIOyZbH7WffyjvTT8tma630NrZWq+XQcH8AAX2QyBWyNZIikA4xyYKIu5mi5Vs4s+tuFSqlisXtVqlPBCul/mELAPX/Qbl8IMgRN4gVsjORsu0ID9V5T1im0PqylnmHFuq2Yshpnina2KQDyZXMW5r6ZKcWbzXuK2Winzq/09vKECkAbsP/2n6eGe6nkmM0zrwqq0O6dEAFxc12S67oVT6svc6qOpqwA0ILBjdn9c1d7x6dXbU4O4ohqGPlA/2sV5F1yCuK/6JY+mZNvEzSN+RXW8IZ5ytKBmGyDbd9gbLI7gPEk1wGWqwvoWJ+L6UoML+IATeMl2WuYpx1K3BogHRQOsupoasy1VZTM79GzomvKBZd0iuUj77nR80nMrlnUpccuYdK3RybH3TjV6pKn74BLjlmonyVIYaIgbT8WJpACRi6Tvqy6NArIZVkAqbimf3rBGJNPS/tK15zcVjkqk8sjTe5sK0+hhcAkCriZ9Rc1FLAs1TZBITHSlsCZLbLSAIiaOO/sJAjIXwUvwm3hq8lFDBeBxrEYUC+JovQ9GAIuTo+mcgQC4gA+OwUtexYlrU20RTNB6CncwDIs+Ln16VCiRAg1ApaaKsJVrw9mCsv2/ftxU0L7etHLNJ2j52Pj27I8OKpnhrDhtvJ+yT9I4WL0nwAX3y5zEk+BXe4uggAMU2gxjYEyjbHMMLuVrR9naHd8PVwNFDlz9PM6rr0WObIYeFFzKnESk4PdBcXLaPpIJwiJorMNFaCr5Aee0JLeznUYAXMAHN8BLXjx+2sPjFxoqQCz/F4ugEc517LdqRbiYr8tcBC/BrxaXhgqQA+Y1jaYLs8CxS4Py9c5xmQC4gA84RWUSSQFY5h8u/8/rQYnZQT479kbUBBbTc+ACPhpxAi9wayR/TQXIY/1wfAHfC4zl0Rbww/t/up96Q1x+plFCC/l+mYMacgEfcAIvcBNbLVY1FYCAWJaJdbLwOgLHF/QdLFCLWvDaoUMjvuf8vNb4hkh0sezBATzABXzACbzADfzk5a3VTOoqQDwMly/wOlKO2OGa6/FCsbRP3O/sFQU8wMUwiA8pALzKrnLq02mogLJvnQMKXL7kYkWep3cBSoBnjp94oX7Ui+sueIAL+IATeMFPkfBNVItGQwUgILpSoiE2ShZ3dJc/873H9vncP1Er4sV0HRzAA1zARzTAjbqgYBRJAbBjZf86aapiNtdsk7vQ9tjYfy4m0LVkBQfwABfwgSsc8AK3WmHE9YYKEA1IuR14n97u4lS9fN8gtR859LNdNDhEg6/tnxvKaTi5UHIqfzQOI2Rq357khvzgAB7gAj5wCiXsv+BXK1N1x4LQdUILDzuWybxIZgiepookqcV5rOD/+AcvHP3wxZfujiUSn6+VwGxdPzmSUx5//iezFX20eIkNOfjYDQ6uEfh+KUFsiry/v4cXi0fIN92VYQ2o1QVFIg1rgJwT2QwZbpz8WnD/F68d/C4SWIzrAyA35AcH8JDNj8yt3nEkBaAawZ6hWsGXTjHp+k6M5kiYgbdn91O/LOTzz7d7fUA9odpxD/IW8/nnID84gAe4gA84Ner/izw2VICoPjBD8KsGH2tw8xVzqB1wYz43Fe+ne1/6GzJV4Vi4iHih7yHvT/a+9LeQHxzAA1zAB5xE91Pwq8WjoQLkgNAq/KrBx1oy2eV7CcUzedx79eU9757KDH1bfnahH0NeyA35wQE8wAV8ovR+BJ/ICoAZErUAnqTgYw1ad13uUwfE27l9xyPkDO+wiHgh7yEn5IXckB8cwANcROlv1PsRfCIpQK5Gci2AzYP2eUx1c/lR+/9eefmr9FEiJyJfiHvIBzkhL+SG/OAwVemXudViEUkBInB1LYBLr6SvejEqCZbC3P994aW33j329l/g+YXWKxLyQD7ICXkhN+QHh1ZKPzhFVoCszXItgGvHLC+VPHL/GHichuiCwHG/t+Ofnx09OfxPYa+IumlIZN5v4fuQokIuyAc5IS/khvzg0D00NMn2y7zqyR9ZASKSiVqQppezPg7vgk5XEDZEqJIBlYyHHvzmNvo48QR9vad81J4ZLOI8k/dh/kkOyAO5IJ8wPZA79K5IHDDugzYyqu0XModzWMRJlD3ejPEcJpzCYQd1u7Ru8hpCb4A0F8wzctw1LV+ztHgyfusffmVbIpn67XCoYjxclDTOmGdQgynfhXzuB4/+/YN3+8V80dZ8O8UMhz67u+S22h0lr4q0MtKHR0UBP2rph5xN1wAZjjBFcO0I74K+r1CbxFxV1R2vkC0h0/O1JsglH3JAHsgF+SAn5IXc1aZH5hPluOkagEjlWoAFCIODvYy6X6GjPjgz4tyhiUSmSdPZaa+bW79y9909y5bcESVDZ9IzI++femjHg9vI/5HnAL6iOA5jpiO8KNJCPH9gYHiSU9dmSj9kbUkBCCgroeI7KPSlpujwraaqCTJJTkUJN37p1s9+8Lzz76cJrDM2ow75mI0NXc13337rvie2P7p7Ar7p0MsvNb66K7uwbNX0iHxPWwGISLQHcFwkvCaWlcBJETEDNcFWfPOyy68Y2HDFJx8wLevXRQbOtL1j2z9/Zc8P79m3d8+gpWhhyQ+CEvXwqPEl+Gh0x8ZW+uQricvwIUezpT8MMx0AohYgjs2bN4eeQmQlwBypqm8UFFJEYJg0q9SIW4n45q2/u3XpihV3UoYTsLVzOZAn0qdMFE6+994/7tzxyI6iXSiitxOobmjzg0Aj/95K2OMR8NH+7dy5s/IRohX44DatRlhOFF0wZAolo5xJNFSKh8yj16BS74HKkO3knfy/ffc7D//Ps09dm6feRcUKtvudoZKeqiAfyA/yhfwhn8gv8i3gw+zI8MVgGyDKHHDezNayCZITETUBpgiNMtaVoSbApVnZmyLX4dhIL6B98A2bagJ5l9EZVYvLr/jM6rXrL749lUpdRW9tbf39gFwu9/1DB159eO+e545wKu4Y28EbbviShQE2ess9431HC0XISsA1NMxYri97T4ePNV1X9RLgl4JQCQ4pQdeYtv6S3zx37WWX3NDT0/tZml1wtogXpUvELa41s68OT18x3hkZGd59aN/+Jw/sf/moRx9TzHH4eMHC8ALecPGSNW+8pwsgMihRG6p/PwA+1kRtMAymOayoM4feakgpmqfqPlO1z92w6ZKzzuv/ZCqRusSwrNVYFC7SaH6vcte2j+QKuf2/evvYD595ctd+jdPnQz3wDIKN8XwMKWNUMxxWplKP4YV59/sBAsxUSpBNEty5wMcaXN7Axw7MUqgIp6hrVBN8nWmkCM3XPI2WJWurLrywe81lGy7u7uoeoB99OM+Kxc+lruxSVdUSTGMJpqoWfaC3aVC8EAR+gbqQJ+1S8Sh9q317dGx08PC+V159/Y03RmmulE+RAzxFzcPPqaY5AR5DyhjVRKnH2A6GWdCeoV2rHmKYjs0XnMR+RtoAEZnYVysB18sm6fTfkIGnKSgC/nZco6gZLu1JEYbvMd+HQjxGPlJp6afPAp2WRwXUoaKFcPoUQxsemSvMTlZpSEr1GM1l1Ti9sHLNoykjGvcxdQSzF1wDX/Pi4WdVgMfHlLn6DZm6syIE0Gb3ooRAEWJ8hOLg4w10kHXW8cLZx1lyJENg0zww8j5zDI2VEswgXwvog7hWwEysx/TxRsEYgaOVISqtVaaem8UU+gp0WuEhv3GBYlPXjtHEYY1+G0Zj1HNnXCP9ObpP83ZUbli0kIZmLzCav0NLSX1eStKMlgzlp4cbQ+v4SprN0DcwMKulXuZ5mhDyzZk4nqo2iJ4SGumpfkcMLl/gdQSOL7DeCsv/sQIdi6CxDhc1AHkjcpX8i5UpqAGYIo5Zypgoi7maWDJUohlrmLWAeTuL5nfEZAU2UgT8KsAlTvUv6cHxBXxU4C9cgU6LoMmCq2k58vFjLNGjFiScn1+eIq6HE4oxV3PR/pJeNad6isCzqBVCGZ3fkqymN4PnsiIQLbqt2AvzhOPyIufOr6mCxaxutZSBRKEQ7Ku9T02sQMc6XCwF7fyecAhhuv+qlSHiEzVEnEfZSz2wSY+LXtqki3N0UulFzFH6kZOtpZh6EZxJoOvls3OvQ6BDoEOgQ2BxEvh/NFTLsos/xyMAAAAASUVORK5CYII="/>
+    </div>-->
+</div>
 </section>
