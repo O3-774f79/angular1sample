@@ -10,8 +10,8 @@ module.exports = {
     // uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://103.20.205.104:27017/magellen',
     // uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://10.1.1.22:27019/magellen',
     // uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://localhost:27018/admin/myfarm',
-    // uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://10.1.2.11:27018/admin/myfarm',
-    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://103.20.204.176:27018/admin/myfarm',
+    uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://10.1.2.11:27018/admin/myfarm',
+    // uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://103.20.204.176:27018/admin/myfarm',
     options: {
       user: 'admin',
       pass: 'ais.co.th'

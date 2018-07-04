@@ -46,7 +46,6 @@ module.exports = {
         'public/lib/JavaScript-Load-Image/js/load-image.all.min.js',
         'public/lib/angular-numeric-input/dist/angular-numeric-input.min.js',
         'public/lib/angular-mqtt/src/angular-MQTT.js',
-        'public/lib/videojs-playlist/dist/vjs-video.js'
         // 'public/lib/angular-sanitize/angular-sanitize.js'
         // endbower
       ],
