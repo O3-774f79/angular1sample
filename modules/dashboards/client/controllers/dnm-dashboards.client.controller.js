@@ -342,7 +342,6 @@
               }
             }
             $scope.dashboardShowList = tmpListData;
-            console.log($scope.dashboardShowList);
           });
         }
         var canvas = document.getElementsByClassName('chart-line');
