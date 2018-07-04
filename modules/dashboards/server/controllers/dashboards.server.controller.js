@@ -401,7 +401,6 @@ exports.deleteWidget = function (req, res) {
         });
       return res.jsonp({ success: false, message: err });
     } else {
-      
       Dashboard.findOneAndUpdate({ _id: dashboardId }, { $pull: { widgetId: widgetId } }, { new: true }, function (err, dashboard) {
         if (err) {
           logController.logError(req, 'DashboardDeleteUpdateWidget', 'false',

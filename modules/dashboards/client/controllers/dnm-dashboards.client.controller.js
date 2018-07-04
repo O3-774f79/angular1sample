@@ -317,8 +317,7 @@
         $scope.arrtoken = [];
         for (var x = 0; x < $scope.dashboardsObj.length; x++) {
           let sendToken = $scope.dashboardsObj[x].things.sendToken.slice(0);
-          MQTTService.on('things/data/' + sendToken, function(results) {
-            console.log(results);
+          MQTTService.on('devices/data/' + sendToken, function(results) {
             for (var z = 0; z < $scope.dashboardsObj.length; z++) {
               if ($scope.dashboardsObj[z].datavalue[$scope.dashboardsObj[z].datavalue.length - 1] !== undefined && $scope.dashboardsObj[z].things.sendToken === sendToken) {
                 if ($scope.dashboardsObj[z].datavalue.length > 20) {
