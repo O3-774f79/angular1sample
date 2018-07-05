@@ -51,7 +51,7 @@
       var res = currentLocation.substring(n + 13);
       var thingId = res;
       vm.authentication = Authentication;
-      var refreshTime = 5000;
+      var refreshTime = 60000;
       $scope.copyToClip = function (myTextArea) {
         var textareaValue = document.getElementById(myTextArea).value;
         var textareaCopy = document.getElementById(myTextArea).select();
@@ -171,67 +171,67 @@
           $scope.getData = function () {
             $interval.cancel($scope.intervalthingdetail);
             var url = '/api/things/pullWithStatus/' + $scope.data.sendToken;
-            $http.get(url)
-              .success(function (data, status, headers, config) {
-                if (!data.success || !data.data.success || !data.data.data.succes) {
-                  $scope.jsonthings = '';
-                  $scope.thingsblock = null;
-                  $scope.checkdweet = null;
-                }
-                if (data.success === true && data && data.data.data !== undefined && data.data.data !== null) {
-                  if (typeof(data.data.data) === 'object') {
-                    $scope.thingsblock = angular.fromJson(data.data.data);
-                  } else if (typeof(data.data.data) === 'string') {
-                    data.data = data.data.data.replace('{', '');
-                    data.data = data.data.data.replace('}', '');
-                    var propertiesa = data.data.data.split(', ');
-                    var strobja = {};
-                    propertiesa.forEach(function(property) {
-                      var tup = property.split(':');
-                      strobja[tup[0]] = tup[1];
-                    });
-                    $scope.thingsblock = angular.fromJson(strobja);
-                  } else {
-                    $scope.thingsblock = angular.fromJson(data.data.data);
-                  }
-                  $scope.jsonthings = JSON.stringify(data.data);
-                  $scope.checkdweet = true;
-                } else if (data.success === true && data && data.data) {
-                  if (typeof(data.data) === 'object') {
-                    $scope.thingsblock = angular.fromJson(data.data);
-                  } else if (typeof(data.data) === 'string') {
-                    data.data = data.data.replace('{', '');
-                    data.data = data.data.replace('}', '');
-                    var properties = data.data.split(', ');
-                    var strobj = {};
-                    properties.forEach(function(property) {
-                      var tup = property.split(':');
-                      strobj[tup[0]] = tup[1];
-                    });
-                    $scope.thingsblock = angular.fromJson(strobj);
-                  } else {
-                    $scope.thingsblock = angular.fromJson(data.data);
-                  }
-                  $scope.jsonthings = JSON.stringify(data.data);
-                  $scope.checkdweet = true;
-                } else {
-                  $scope.jsonthings = '';
-                  $scope.checkdweet = null;
-                }
-                if (data.status === true) {
-                  $scope.statusThingsOnline = 'Connected';
-                  $scope.statusThingsOffline = null;
-                } else {
-                  $scope.statusThingsOnline = null;
-                  $scope.statusThingsOffline = 'Disconnect';
-                }
+            // $http.get(url)
+            //   .success(function (data, status, headers, config) {
+            //     if (!data.success || !data.data.success || !data.data.data.succes) {
+            //       $scope.jsonthings = '';
+            //       $scope.thingsblock = null;
+            //       $scope.checkdweet = null;
+            //     }
+            //     if (data.success === true && data && data.data.data !== undefined && data.data.data !== null) {
+            //       if (typeof(data.data.data) === 'object') {
+            //         $scope.thingsblock = angular.fromJson(data.data.data);
+            //       } else if (typeof(data.data.data) === 'string') {
+            //         data.data = data.data.data.replace('{', '');
+            //         data.data = data.data.data.replace('}', '');
+            //         var propertiesa = data.data.data.split(', ');
+            //         var strobja = {};
+            //         propertiesa.forEach(function(property) {
+            //           var tup = property.split(':');
+            //           strobja[tup[0]] = tup[1];
+            //         });
+            //         $scope.thingsblock = angular.fromJson(strobja);
+            //       } else {
+            //         $scope.thingsblock = angular.fromJson(data.data.data);
+            //       }
+            //       $scope.jsonthings = JSON.stringify(data.data);
+            //       $scope.checkdweet = true;
+            //     } else if (data.success === true && data && data.data) {
+            //       if (typeof(data.data) === 'object') {
+            //         $scope.thingsblock = angular.fromJson(data.data);
+            //       } else if (typeof(data.data) === 'string') {
+            //         data.data = data.data.replace('{', '');
+            //         data.data = data.data.replace('}', '');
+            //         var properties = data.data.split(', ');
+            //         var strobj = {};
+            //         properties.forEach(function(property) {
+            //           var tup = property.split(':');
+            //           strobj[tup[0]] = tup[1];
+            //         });
+            //         $scope.thingsblock = angular.fromJson(strobj);
+            //       } else {
+            //         $scope.thingsblock = angular.fromJson(data.data);
+            //       }
+            //       $scope.jsonthings = JSON.stringify(data.data);
+            //       $scope.checkdweet = true;
+            //     } else {
+            //       $scope.jsonthings = '';
+            //       $scope.checkdweet = null;
+            //     }
+            //     if (data.status === true) {
+            //       $scope.statusThingsOnline = 'Connected';
+            //       $scope.statusThingsOffline = null;
+            //     } else {
+            //       $scope.statusThingsOnline = null;
+            //       $scope.statusThingsOffline = 'Disconnect';
+            //     }
 
-                // $scope.thingsblock = angular.fromJson(data.data);
-                $scope.intervalthingdetail = $interval($scope.getData, refreshTime);
-              })
-              .error(function (error, status, headers, config) {
-                $scope.intervalthingdetail = $interval($scope.getData, refreshTime);
-              });
+            //     // $scope.thingsblock = angular.fromJson(data.data);
+            //     $scope.intervalthingdetail = $interval($scope.getData, refreshTime);
+            //   })
+            //   .error(function (error, status, headers, config) {
+            //     $scope.intervalthingdetail = $interval($scope.getData, refreshTime);
+            //   });
           };
           if ($scope.receivetokenactive === false) {
             $scope.receivetokenactive = null;

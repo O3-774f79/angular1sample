@@ -255,20 +255,34 @@
       password: accToken
     };
     $scope.toggleClick = function (data) {
+
       $http.get('/api/thingdashboard/pull/' + data.things.sendToken)
       .then(function (res) {
         var values = res.data[data.dataKey];
+        console.log(values);
         $scope.resdata = {};
         if (values === 1) {
           $scope.chVl = 0;
           $scope.resdata[data.dataKey] = 0;
           var topic2 = 'dashboards/data/' + data.things.sendToken;
-          MQTTService.send(topic2, $scope.resdata);
+          $http.post('/api/thingdashboard/push/',
+            {
+              token: data.things.sendToken,
+              playload: $scope.resdata
+            }).then(function (result) {
+              MQTTService.send(topic2, $scope.resdata);
+            });
         } else if (values === 0) {
           $scope.chVl = 1;
           $scope.resdata[data.dataKey] = 1;
           var topic = 'dashboards/data/' + data.things.sendToken;
-          MQTTService.send(topic, $scope.resdata);
+          $http.post('/api/thingdashboard/push/',
+            {
+              token: data.things.sendToken,
+              playload: $scope.resdata
+            }).then(function (result) {
+              MQTTService.send(topic, $scope.resdata);
+            });
         } else {
           return false;
         }
@@ -547,10 +561,11 @@ angular.module('dashboards').controller('manageWidget', function ($state, $windo
                             }
                           }
                         }
+                        var data = JSON.parse('{"' + param.dataKey + '": ' + $scope.objreplace[param.dataKey] + '}');
                         $http.post('/api/thingdashboard/push',
                           {
                             token: param.thingToken,
-                            playload: $scope.objreplace
+                            playload: data
                           }).then(function (result) {
                             location.reload();
                           });
@@ -610,10 +625,11 @@ angular.module('dashboards').controller('manageWidget', function ($state, $windo
                             }
                           }
                         }
+                        var data = JSON.parse('{"' + param.dataKey + '": ' + $scope.objreplace[param.dataKey] + '}');
                         $http.post('/api/thingdashboard/push',
                           {
                             token: param.thingToken,
-                            playload: $scope.objreplace
+                            playload: data
                           }).then(function (result) {
                             location.reload();
                           });
@@ -626,7 +642,7 @@ angular.module('dashboards').controller('manageWidget', function ($state, $windo
                           token: param.thingToken,
                           playload: $scope.objreplace
                         }).then(function (result) {
-                          location.reload();
+                          // location.reload();
                         });
                     }
                   });
