@@ -218,8 +218,16 @@
                                     <h2 ng-if="chVl != 0 && chVl != 1">{{data.settings.offText}}</h2>
                                 </div>
                                 <div ng-switch-default>
-                                    <p>Something Wrong</p>
+                                    <label class="toggle-widget">
+                                        <input id="{{data.things.sendToken}}" type="checkbox" checked ng-click="toggleClick(data)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <h2 ng-if="chVl === 1">{{data.settings.onText}}</h2>
+                                    <h2 ng-if="chVl === 0">{{data.settings.offText}}</h2>
+                                    <h2 ng-if="chVl != 0 && chVl != 1">{{data.settings.onText}}</h2>
+                                    <!-- <p>Something Wrong</p>
                                     <p>{{data.datavalue[0]}}</p>
+                                    <p>{{typeof(data.datavalue[0])}}</p> -->
                                 </div>
                             </div>
                         </center>
