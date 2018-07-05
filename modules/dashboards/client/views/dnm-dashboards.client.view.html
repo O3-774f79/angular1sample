@@ -198,10 +198,24 @@
                         </div>
                         <br>
                         <center>
-                            <div class="wrapper-toggle-widget" ng-switch="data.datavalue[data.datavalue.length-1]">
-                                <label class="toggle-widget">
-                                    <input id="{{data.things.sendToken}}" ng-model="data.selected" type="checkbox" ng-click="toggleClick(data)">
+                            <div class="wrapper-toggle-widget" ng-switch="checkType(data.datavalue[data.datavalue.length-1])">
+                                <label ng-switch-when="number" ng-switch="data.datavalue[data.datavalue.length-1]" class="toggle-widget">
+                                    <input  ng-switch-when="1" id="{{data.things.sendToken}}" ng-init="data.selected = true" ng-model="data.selected" type="checkbox" ng-click="toggleClick(data)">
+                                    <input ng-switch-when="0" id="{{data.things.sendToken}}" ng-init="data.selected = false" ng-model="data.selected" type="checkbox" ng-click="toggleClick(data)">
+                                    <input ng-switch-default id="{{data.things.sendToken}}" ng-init="data.selected = true"  ng-model="data.selected" type="checkbox" ng-click="toggleClick(data)">
                                     <span id="{{data.things.sendToken}}" class="slider round"></span>
+                                </label>
+                                <label ng-switch-when="string" ng-switch="data.datavalue[data.datavalue.length-1]" class="toggle-widget">
+                                    <input  ng-switch-when="'1'" id="{{data.things.sendToken}}" ng-init="data.selected = true" ng-model="data.selected" type="checkbox" ng-click="toggleClick(data)">
+                                    <input ng-switch-when="'0'" id="{{data.things.sendToken}}" ng-init="data.selected = false" ng-model="data.selected" type="checkbox" ng-click="toggleClick(data)">
+                                    <input ng-switch-default id="{{data.things.sendToken}}" ng-init="data.selected = true"  ng-model="data.selected" type="checkbox" ng-click="toggleClick(data)">
+                                    <span id="{{data.things.sendToken}}" class="slider round"></span>
+                                </label>
+                                <label ng-switch-default ng-switch="data.datavalue[data.datavalue.length-1]" class="toggle-widget">
+                                        <input  ng-switch-when="'1'" id="{{data.things.sendToken}}" ng-init="data.selected = true" ng-model="data.selected" type="checkbox" ng-click="toggleClick(data)">
+                                        <input ng-switch-when="'0'" id="{{data.things.sendToken}}" ng-init="data.selected = false" ng-model="data.selected" type="checkbox" ng-click="toggleClick(data)">
+                                        <input ng-switch-default id="{{data.things.sendToken}}" ng-init="data.selected = true"  ng-model="data.selected" type="checkbox" ng-click="toggleClick(data)">
+                                        <span id="{{data.things.sendToken}}" class="slider round"></span>
                                 </label>
                                 <h2 ng-if="data.selected">{{data.settings.onText}}</h2>
                                 <h2 ng-if="!data.selected">{{data.settings.offText}}</h2>

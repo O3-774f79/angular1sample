@@ -254,13 +254,18 @@
       username: 'user-' + accToken,
       password: accToken
     };
+
+    $scope.checkType = function(obj) {
+      return typeof obj;
+    };
+
     $scope.toggleClick = function (data) {
       // $http.get('/api/thingdashboard/pull/' + data.things.sendToken)
       // .then(function (res) {
       // var values = res.data[data.dataKey];
       var values = data.selected;
       $scope.resdata = {};
-      if (values) {
+      if (!values) {
         $scope.resdata[data.dataKey] = 0;
         var topic2 = 'dashboards/data/' + data.things.sendToken;
         $http.post('/api/thingdashboard/push/',
@@ -270,7 +275,7 @@
           }).then(function (result) {
             MQTTService.send(topic2, $scope.resdata);
           });
-      } else if (!values) {
+      } else if (values) {
         $scope.resdata[data.dataKey] = 1;
         var topic = 'dashboards/data/' + data.things.sendToken;
         $http.post('/api/thingdashboard/push/',
