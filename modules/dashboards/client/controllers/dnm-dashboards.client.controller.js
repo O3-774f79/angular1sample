@@ -284,7 +284,16 @@
               MQTTService.send(topic, $scope.resdata);
             });
         } else {
-          return false;
+          $scope.chVl = 0;
+          $scope.resdata[data.dataKey] = 0;
+          var topic3 = 'dashboards/data/' + data.things.sendToken;
+          $http.post('/api/thingdashboard/push/',
+            {
+              token: data.things.sendToken,
+              playload: $scope.resdata
+            }).then(function (result) {
+              MQTTService.send(topic3, $scope.resdata);
+            });
         }
       });
     };
