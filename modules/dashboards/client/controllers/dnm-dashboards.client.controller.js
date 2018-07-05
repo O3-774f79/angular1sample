@@ -255,47 +255,43 @@
       password: accToken
     };
     $scope.toggleClick = function (data) {
-
-      $http.get('/api/thingdashboard/pull/' + data.things.sendToken)
-      .then(function (res) {
-        var values = res.data[data.dataKey];
-        console.log(values);
-        $scope.resdata = {};
-        if (values === 1) {
-          $scope.chVl = 0;
-          $scope.resdata[data.dataKey] = 0;
-          var topic2 = 'dashboards/data/' + data.things.sendToken;
-          $http.post('/api/thingdashboard/push/',
-            {
-              token: data.things.sendToken,
-              playload: $scope.resdata
-            }).then(function (result) {
-              MQTTService.send(topic2, $scope.resdata);
-            });
-        } else if (values === 0) {
-          $scope.chVl = 1;
-          $scope.resdata[data.dataKey] = 1;
-          var topic = 'dashboards/data/' + data.things.sendToken;
-          $http.post('/api/thingdashboard/push/',
-            {
-              token: data.things.sendToken,
-              playload: $scope.resdata
-            }).then(function (result) {
-              MQTTService.send(topic, $scope.resdata);
-            });
-        } else {
-          $scope.chVl = 0;
-          $scope.resdata[data.dataKey] = 0;
-          var topic3 = 'dashboards/data/' + data.things.sendToken;
-          $http.post('/api/thingdashboard/push/',
-            {
-              token: data.things.sendToken,
-              playload: $scope.resdata
-            }).then(function (result) {
-              MQTTService.send(topic3, $scope.resdata);
-            });
-        }
-      });
+      // $http.get('/api/thingdashboard/pull/' + data.things.sendToken)
+      // .then(function (res) {
+      // var values = res.data[data.dataKey];
+      var values = data.selected;
+      $scope.resdata = {};
+      if (values) {
+        $scope.resdata[data.dataKey] = 0;
+        var topic2 = 'dashboards/data/' + data.things.sendToken;
+        $http.post('/api/thingdashboard/push/',
+          {
+            token: data.things.sendToken,
+            playload: $scope.resdata
+          }).then(function (result) {
+            MQTTService.send(topic2, $scope.resdata);
+          });
+      } else if (!values) {
+        $scope.resdata[data.dataKey] = 1;
+        var topic = 'dashboards/data/' + data.things.sendToken;
+        $http.post('/api/thingdashboard/push/',
+          {
+            token: data.things.sendToken,
+            playload: $scope.resdata
+          }).then(function (result) {
+            MQTTService.send(topic, $scope.resdata);
+          });
+      } else {
+        $scope.resdata[data.dataKey] = 0;
+        var topic3 = 'dashboards/data/' + data.things.sendToken;
+        $http.post('/api/thingdashboard/push/',
+          {
+            token: data.things.sendToken,
+            playload: $scope.resdata
+          }).then(function (result) {
+            MQTTService.send(topic3, $scope.resdata);
+          });
+      }
+      // });
     };
     // new API Start
     $http.get('/api/dashboards/' + dashBoardId + '/widgets').then(function (response) {

@@ -72,7 +72,7 @@ a:hover,a:focus,a:visited{
   left: 0;
   right: 0;
   height: 150px;
-  background: black;
+  /* background: black; */
   z-index: 900;
   padding-left: 25px;
   padding-right: 25px;
