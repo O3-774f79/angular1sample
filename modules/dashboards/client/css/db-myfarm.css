@@ -200,5 +200,6 @@ span.widget-value{
 }
 /* OVERRIDE VIDEO_JS LIB */
 .video-js{
+    width: 100%;
     max-height: 140px;
 }
