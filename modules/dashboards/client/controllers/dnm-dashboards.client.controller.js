@@ -308,14 +308,16 @@
         };
         var topicCon = 'dashboards/data/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a';
         if ($scope.humidCon < 30) {
+          console.log($scope.humidCon);
           if ($scope.prev !== 1) {
             objRelay.Relay = 1;
             $scope.prev = 1;
             MQTTService.send(topicCon, objRelay);
             setTimeout($scope.offPump(), 10000);
-          } else {
-            $scope.offPump();
           }
+        } else {
+          console.log('else');
+          $scope.offPump();
         }
       }
     };
