@@ -291,36 +291,36 @@
       var num = parseInt(st, 10);
       return num;
     };
-    $scope.prev = 0;
-    $scope.offPump = function() {
-      if ($scope.prev !== 0) {
-        var objRelay = {};
-        $scope.prev = 0;
-        objRelay.Relay = 0;
-        MQTTService.send('dashboards/data/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a', objRelay);
-      }
-    };
-    $scope.humidConFunc = function(results) {
-      if (results) {
-        $scope.humidCon = parseInt(results.Humidity, 10);
-        var objRelay = {
-          Relay: 0
-        };
-        var topicCon = 'dashboards/data/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a';
-        if ($scope.humidCon < 30) {
-          console.log($scope.humidCon);
-          if ($scope.prev !== 1) {
-            objRelay.Relay = 1;
-            $scope.prev = 1;
-            MQTTService.send(topicCon, objRelay);
-            setTimeout($scope.offPump(), 10000);
-          }
-        } else {
-          console.log('else');
-          $scope.offPump();
-        }
-      }
-    };
+    // $scope.prev = 0;
+    // $scope.offPump = function() {
+    //   if ($scope.prev !== 0) {
+    //     var objRelay = {};
+    //     $scope.prev = 0;
+    //     objRelay.Relay = 0;
+    //     MQTTService.send('dashboards/data/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a', objRelay);
+    //   }
+    // };
+    // $scope.humidConFunc = function(results) {
+    //   if (results) {
+    //     $scope.humidCon = parseInt(results.Humidity, 10);
+    //     var objRelay = {
+    //       Relay: 0
+    //     };
+    //     var topicCon = 'dashboards/data/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a';
+    //     if ($scope.humidCon < 30) {
+    //       console.log($scope.humidCon);
+    //       if ($scope.prev !== 1) {
+    //         objRelay.Relay = 1;
+    //         $scope.prev = 1;
+    //         MQTTService.send(topicCon, objRelay);
+    //         setTimeout($scope.offPump(), 10000);
+    //       }
+    //     } else {
+    //       console.log('else');
+    //       $scope.offPump();
+    //     }
+    //   }
+    // };
     $scope.tempConFunc = function(results) {
       if (results) {
         $scope.tempCon = parseFloat(results.Temp, 10);
@@ -410,7 +410,7 @@
           let sendToken = $scope.dashboardsObj[x].things.sendToken.slice(0);
           MQTTService.on('devices/data/' + sendToken, function(results) {
             if (sendToken === tokenHumid) {
-              $scope.humidConFunc(results);
+              // $scope.humidConFunc(results);
             } else if (sendToken === tokenTemp) {
               $scope.tempConFunc(results);
             }
