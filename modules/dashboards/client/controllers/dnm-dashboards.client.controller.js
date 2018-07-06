@@ -313,8 +313,9 @@
             $scope.prev = 1;
             MQTTService.send(topicCon, objRelay);
             setTimeout($scope.offPump(), 10000);
-        } else {
+          } else {
             $scope.offPump();
+          }
         }
       }
     };
