@@ -299,12 +299,12 @@
         };
         var topicCon = 'dashboards/data/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a';
         if ($scope.humidCon < 30) {
-          objRelay.Relay = 1;
-          MQTTService.send(topicCon, objRelay);
           setTimeout(function() {
+            objRelay.Relay = 1;
+            MQTTService.send(topicCon, objRelay);
             objRelay.Relay = 0;
             MQTTService.send(topicCon, objRelay);
-          }, 3000);
+          }, 1000);
         } else if ($scope.humidCon >= 50) {
           // objRelay.Relay = 0;
           // $http.get('/api/thingdashboard/pull/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a')
