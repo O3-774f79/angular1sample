@@ -304,7 +304,7 @@
             MQTTService.send(topicCon, objRelay);
             objRelay.Relay = 0;
             MQTTService.send(topicCon, objRelay);
-          }, 1000);
+          }, 10000);
         } else if ($scope.humidCon >= 50) {
           // objRelay.Relay = 0;
           // $http.get('/api/thingdashboard/pull/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a')
