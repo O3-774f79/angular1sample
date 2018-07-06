@@ -287,10 +287,13 @@
         $scope.tempCon = parseFloat(resinit.data.data.Temp, 10);
       }
     });
+    $scope.convertNum = function(st) {
+      var num = parseInt(st, 10);
+      return num;
+    };
     $scope.humidConFunc = function(results) {
       if (results) {
         $scope.humidCon = parseInt(results.Humidity, 10);
-        console.log($scope.humidCon);
         var objRelay = {
           Relay: 0
         };
@@ -298,16 +301,20 @@
         if ($scope.humidCon < 30) {
           objRelay.Relay = 1;
           MQTTService.send(topicCon, objRelay);
+          setTimeout(function() {
+            objRelay.Relay = 0;
+            MQTTService.send(topicCon, objRelay);
+          }, 3000);
         } else if ($scope.humidCon >= 50) {
-          objRelay.Relay = 0;
-          $http.get('/api/thingdashboard/pull/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a')
-          .then(function (res) {
-            if (res.data.Relay === 0) {
-              return false;
-            } else {
-              MQTTService.send(topicCon, objRelay);
-            }
-          });
+          // objRelay.Relay = 0;
+          // $http.get('/api/thingdashboard/pull/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a')
+          // .then(function (res) {
+          //   if (res.data.Relay === 0) {
+          //     return false;
+          //   } else {
+          //     MQTTService.send(topicCon, objRelay);
+          //   }
+          // });
         }
       }
     };
