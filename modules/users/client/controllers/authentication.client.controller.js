@@ -114,7 +114,7 @@
       // And redirect to the previous or home page
       $state.go($state.previous.state.name || 'home', $state.previous.params);
       $state.go('home', $state.previous.params);
-      window.location.href = '/things';
+      window.location.href = '/first-dashboards';
     }
 
     function onUserSignupError(response) {
@@ -136,7 +136,7 @@
       // And redirect to the previous or home page
       // $state.go($state.previous.state.name || 'home', $state.previous.params);
       // $state.go('home', $state.previous.params);
-      window.location.href = '/things';
+      window.location.href = '/first-dashboard';
     }
 
     function onUserSigninError(response) {

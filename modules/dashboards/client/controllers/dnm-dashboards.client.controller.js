@@ -277,15 +277,23 @@
     }
     minutes = minutes < 10 ? '0' + minutes : minutes;
     $scope.dtime = hours + ':' + minutes + ' ' + ampm;
-    MQTTService.on('devices/data/' + tokenHumid, function(results) {
+    $http.get('/api/things/pullWithStatus/' + tokenHumid).then(function (resinit) {
+      if (resinit.data.data) {
+        $scope.humidCon = parseInt(resinit.data.data.Humidity, 10);
+      }
+    });
+    $http.get('/api/things/pullWithStatus/' + tokenTemp).then(function (resinit) {
+      if (resinit.data.data) {
+        $scope.tempCon = parseFloat(resinit.data.data.Temp, 10);
+      }
+    });
+    $scope.humidConFunc = function(results) {
       if (results) {
         $scope.humidCon = parseInt(results.Humidity, 10);
-        // console.log(results);
-        // console.log($scope.humidCon);
+        console.log($scope.humidCon);
         var objRelay = {
           Relay: 0
         };
-        // console.log(objRelay);
         var topicCon = 'dashboards/data/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a';
         if ($scope.humidCon < 30) {
           objRelay.Relay = 1;
@@ -302,12 +310,12 @@
           });
         }
       }
-    });
-    MQTTService.on('devices/data/' + tokenTemp, function(results) {
+    };
+    $scope.tempConFunc = function(results) {
       if (results) {
         $scope.tempCon = parseFloat(results.Temp, 10);
       }
-    });
+    };
     $scope.toggleClick = function (data) {
       // $http.get('/api/thingdashboard/pull/' + data.things.sendToken)
       // .then(function (res) {
@@ -391,6 +399,11 @@
         for (var x = 0; x < $scope.dashboardsObj.length; x++) {
           let sendToken = $scope.dashboardsObj[x].things.sendToken.slice(0);
           MQTTService.on('devices/data/' + sendToken, function(results) {
+            if (sendToken === tokenHumid) {
+              $scope.humidConFunc(results);
+            } else if (sendToken === tokenTemp) {
+              $scope.tempConFunc(results);
+            }
             for (var z = 0; z < $scope.dashboardsObj.length; z++) {
               if ($scope.dashboardsObj[z].datavalue[$scope.dashboardsObj[z].datavalue.length - 1] !== undefined && $scope.dashboardsObj[z].things.sendToken === sendToken) {
                 if ($scope.dashboardsObj[z].datavalue.length > 20) {
