@@ -250,15 +250,64 @@
       });
     };
     // End Edit DashBoard Modal
-    $scope.optionnew = {
-      username: 'user-' + accToken,
-      password: accToken
-    };
-
     $scope.checkType = function(obj) {
       return typeof obj;
     };
-
+    var tokenHumid = 'a9057470-800c-11e8-ab5c-f5fb05055f9a';
+    var tokenTemp = 'c1aec760-800c-11e8-ab5c-f5fb05055f9a';
+    var d = new Date();
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var monthNames = [
+      'January', 'February', 'March',
+      'April', 'May', 'June', 'July',
+      'August', 'September', 'October',
+      'November', 'December'
+    ];
+    var day = d.getDate();
+    var monthIndex = d.getMonth();
+    var year = d.getFullYear();
+    $scope.dformat = monthNames[monthIndex] + ' ' + day + ', ' + year;
+    $scope.dayweek = days[d.getDay()];
+    var hours = d.getHours();
+    var minutes = d.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    if (hours === 0) {
+      hours = 12;
+    }
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    $scope.dtime = hours + ':' + minutes + ' ' + ampm;
+    MQTTService.on('devices/data/' + tokenHumid, function(results) {
+      if (results) {
+        $scope.humidCon = parseInt(results.Humidity, 10);
+        // console.log(results);
+        // console.log($scope.humidCon);
+        var objRelay = {
+          Relay: 0
+        };
+        // console.log(objRelay);
+        var topicCon = 'dashboards/data/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a';
+        if ($scope.humidCon < 30) {
+          objRelay.Relay = 1;
+          MQTTService.send(topicCon, objRelay);
+        } else if ($scope.humidCon >= 50) {
+          objRelay.Relay = 0;
+          $http.get('/api/thingdashboard/pull/d8dcc4f0-800c-11e8-ab5c-f5fb05055f9a')
+          .then(function (res) {
+            if (res.data.Relay === 0) {
+              return false;
+            } else {
+              MQTTService.send(topicCon, objRelay);
+            }
+          });
+        }
+      }
+    });
+    MQTTService.on('devices/data/' + tokenTemp, function(results) {
+      if (results) {
+        $scope.tempCon = parseFloat(results.Temp, 10);
+      }
+    });
     $scope.toggleClick = function (data) {
       // $http.get('/api/thingdashboard/pull/' + data.things.sendToken)
       // .then(function (res) {
