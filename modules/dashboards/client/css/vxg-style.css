@@ -1,0 +1,15 @@
+.vxgplayer{
+    width: 90%!important;
+    max-height: 100px!important;
+}
+
+@media screen and (min-width: 1080px) {
+    .vxgplayer{
+        max-height: 120px!important;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .vxgplayer{
+        max-height: 130px!important;
+    }
+}

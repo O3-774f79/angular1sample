@@ -265,18 +265,29 @@
                         <br>
                         <center>
                             <div class="wrapper-toggle-widget">
+                                <div ng-controller="vxgCtrl" 
+                                    id="{{data._id}}" 
+                                    class="vxgplayer" 
+                                    url="{{data.settings.url  | trustUrl}}" 
+                                     autostart controls avsync>
+                                </div>
+
                                 <!-- <video ng-if="videoSrc" width="100%" controls>
                                     <source src="{{data.settings.url  | trustUrl}}" type="application/x-mpegURL">
-                                </video> -->
+                                </video>
                                 <video id="my_video_1" class="video-js vjs-default-skin" controls data-setup='{}'>
                                     <source src="{{data.settings.url  | trustUrl}}" type="application/x-mpegURL">
-                                </video>
+                                </video> -->
                             </div>
                         </center>
                     </div>
+                    
                 </div>
+                
             </div>
         </li>
     </ul>
+    <!-- <div id="vxg_media_player2" class="vxgplayer" url="rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov" aspect-ratio latency="3000000" autostart controls avsync></div>     -->
+    
 </div>
 </section>
