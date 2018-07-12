@@ -1,15 +1,16 @@
 .vxgplayer{
-    width: 90%!important;
-    max-height: 100px!important;
+    margin: 0px!important
 }
-
-@media screen and (min-width: 1080px) {
+.vxgplayer-takescreenshot, .vxgplayer-controls-zoom{
+    display: none!important;
+}
+/* @media screen and (min-width: 1080px) {
     .vxgplayer{
-        max-height: 120px!important;
+        max-height: 119px!important;
     }
 }
 @media screen and (min-width: 1440px) {
     .vxgplayer{
         max-height: 130px!important;
     }
-}
+} */ 

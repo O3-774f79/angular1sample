@@ -88,7 +88,7 @@ window.vxgplayer = function(id, options_){
 			self.playerHeight=self.options.height || 480;
 			self.playerWidth = parseInt(self.player.getAttribute('width'),10) || self.playerWidth;
 			self.playerHeight = parseInt(self.player.getAttribute('height'),10) || self.playerHeight;
-			self.player.style.width = self.playerWidth + 'px';
+			self.player.style.width = self.playerWidth + '%';
 			self.player.style.height = self.playerHeight + 'px';
 
 			var html = ''
@@ -761,7 +761,7 @@ window.vxgplayer = function(id, options_){
 						var h = parseInt(height,10);
 						self.playerWidth = self.playerWidth != w ? w : self.playerWidth;
 						self.playerHeight = self.playerHeight != h ? h : self.playerHeight;
-						self.player.style.width = width + 'px';
+						self.player.style.width = width + '%';
 						self.player.style.height = height + 'px';
 					}else{
 						self.player.style.width = width;
@@ -778,7 +778,7 @@ window.vxgplayer = function(id, options_){
 					self.size('100%', '100%');
 					console.log('changedFullscreen -> fullscreen');
 				}else{
-					self.size(self.playerWidth + 'px', self.playerHeight + 'px');
+					self.size(self.playerWidth + '%', self.playerHeight + 'px');
 					console.log('changedFullscreen -> NOT fullscreen');
 				}
 			};
@@ -1389,10 +1389,8 @@ angular.element(function () {
 
 	// search all vxgplayers
 	var els = document.getElementsByClassName("vxgplayer");
-	console.log(els);
 	// vxgplayer('vxg_media_player1');
 	for (var i = 0; i < els.length; i++) {
-		console.log(els);
 		if(els[i].id){
 			vxgplayer(els[i].id);
 		}else{

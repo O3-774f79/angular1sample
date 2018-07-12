@@ -264,10 +264,11 @@
                         </div>
                         <br>
                         <center>
-                            <div class="wrapper-toggle-widget">
                                 <div ng-controller="vxgCtrl" 
                                     id="{{data._id}}" 
-                                    class="vxgplayer" 
+                                    class="vxgplayer"
+                                    width="100%"
+	                                height="130"
                                     url="{{data.settings.url  | trustUrl}}" 
                                      autostart controls avsync>
                                 </div>
@@ -278,7 +279,6 @@
                                 <video id="my_video_1" class="video-js vjs-default-skin" controls data-setup='{}'>
                                     <source src="{{data.settings.url  | trustUrl}}" type="application/x-mpegURL">
                                 </video> -->
-                            </div>
                         </center>
                     </div>
                     
