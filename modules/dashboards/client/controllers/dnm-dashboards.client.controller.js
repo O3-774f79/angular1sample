@@ -360,6 +360,7 @@
           'uiQuickRewindSeconds': '30'
         });
       /*eslint-enable */
+      $scope.vidload = true;
     };
     $scope.toggleClick = function (data) {
       // $http.get('/api/thingdashboard/pull/' + data.things.sendToken)
