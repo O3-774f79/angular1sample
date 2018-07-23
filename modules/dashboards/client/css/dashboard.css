@@ -6,7 +6,8 @@
     background-size: contain;
 }
 .cover-wrapper-db > h1{
-    color: white;
+    /* color: white; */
+    color: #b2d234;
     text-align: center;
 }
 .cover-wrapper-db > h2{
