@@ -344,30 +344,21 @@
     //   });
       /* eslint-enable */
     $scope.creVid = function (src, id) {
-      // console.log(src);
       /*eslint-disable */
-      var myPlayer = WowzaPlayer.get('playerElement'); // eslint-disable-next-line no-use-before-define
-      // var srcv = 'http%3A%2F%2Fsteamout.aisforthai.com%3A1935%2FIoT_live%2FIOT_CAM01.stream%2Fplaylist.m3u8';
-      // if(src === srcv){
-      //   console.log('same');
-      // } else {
-      //   console.log('not same');
-      // }
-      // console.log(srcv);
-      WowzaPlayer.create(id,
-        {
-          'license': 'PLAY1-39aBu-ndxa6-yNcDf-kB7mv-jr88a',
-          'title': '',
-          'description': '',
-          'sourceURL': src,
-          'autoPlay': false,
-          'volume': '75',
-          'mute': false,
-          'loop': false,
-          'audioOnly': false,
-          'uiShowQuickRewind': true,
-          'uiQuickRewindSeconds': '30'
-        });
+      // WowzaPlayer.create(id,
+      //   {
+      //     'license': 'PLAY1-39aBu-ndxa6-yNcDf-kB7mv-jr88a',
+      //     'title': '',
+      //     'description': '',
+      //     'sourceURL': src,
+      //     'autoPlay': false,
+      //     'volume': '75',
+      //     'mute': false,
+      //     'loop': false,
+      //     'audioOnly': false,
+      //     'uiShowQuickRewind': true,
+      //     'uiQuickRewindSeconds': '30'
+      //   });
       /*eslint-enable */
     };
     $scope.toggleClick = function (data) {
