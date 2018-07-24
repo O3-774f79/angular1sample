@@ -348,8 +348,8 @@
       WowzaPlayer.create(id,
         {
           'license': 'PLAY1-39aBu-ndxa6-yNcDf-kB7mv-jr88a',
-          'title': '',
-          'description': '',
+          // 'title': '',
+          // 'description': '',
           'sourceURL': src,
           'autoPlay': false,
           'volume': '75',
