@@ -348,8 +348,8 @@
       WowzaPlayer.create(id,
         {
           'license': 'PLAY1-39aBu-ndxa6-yNcDf-kB7mv-jr88a',
-          // 'title': '',
-          // 'description': '',
+          'title': '',
+          'description': '',
           'sourceURL': src,
           'autoPlay': false,
           'volume': '75',
@@ -357,7 +357,8 @@
           'loop': false,
           'audioOnly': false,
           'uiShowQuickRewind': true,
-          'uiQuickRewindSeconds': '30'
+          'uiQuickRewindSeconds': '30',
+          'useFlash': true
         });
       /*eslint-enable */
       $scope.vidload = true;
