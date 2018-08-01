@@ -345,21 +345,24 @@
       /* eslint-enable */
     $scope.creVid = function (src, id) {
       /*eslint-disable */
-      WowzaPlayer.create(id,
-        {
-          'license': 'PLAY1-39aBu-ndxa6-yNcDf-kB7mv-jr88a',
-          'title': '',
-          'description': '',
-          'sourceURL': src,
-          'autoPlay': false,
-          'volume': '75',
-          'mute': false,
-          'loop': false,
-          'audioOnly': false,
-          'uiShowQuickRewind': true,
-          'uiQuickRewindSeconds': '30',
-          'useFlash': true
-        });
+      setTimeout(() => {
+        WowzaPlayer.create(id,
+          {
+            'license': 'PLAY1-39aBu-ndxa6-yNcDf-kB7mv-jr88a',
+            'title': '',
+            'description': '',
+            'sourceURL': src,
+            'autoPlay': false,
+            'volume': '75',
+            'mute': false,
+            'loop': false,
+            'audioOnly': false,
+            'uiShowQuickRewind': true,
+            'uiQuickRewindSeconds': '30',
+            'useFlash': true
+          });
+      }, 2000);
+     
       /*eslint-enable */
       $scope.vidload = true;
     };
