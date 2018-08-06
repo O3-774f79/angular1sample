@@ -6,6 +6,7 @@
 var thingsPolicy = require('../policies/things.server.policy'),
   things = require('../controllers/things.server.controller'),
   thingdashboard = require('../controllers/thingdashboard.server.controller'),
+  thingconfig = require('../controllers/thingsconfig.server.controller'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   line = require('../controllers/line.server.controller');
@@ -49,4 +50,6 @@ module.exports = function (app) {
   // ThingDashboard
   app.post('/api/thingdashboard/push', thingdashboard.pushData);
   app.get('/api/thingdashboard/pull/:token', thingdashboard.pullData);
+  // ThingConfig
+  app.post('/api/thingconfig/save', thingconfig.Save);
 };
