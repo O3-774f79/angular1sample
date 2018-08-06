@@ -108,3 +108,21 @@ exports.Save = function (req, res) {
     // });
   }
 };
+
+exports.list = function (req, res) {
+  var userid = req.user._id;
+  ThingsConfig.find({
+    owner: userid
+  }).exec(function (err, ThingsCon) {
+    if (err) {
+      logController.logError(req, 'ThingsConfig', 'false',
+        JSON.stringify({ success: false, error: err.message }),
+        res, function (err, result) {
+
+        });
+      return res.jsonp({ success: false, message: err });
+    } else {
+      res.json({ success: true, message: ThingsCon });
+    }
+  });
+};

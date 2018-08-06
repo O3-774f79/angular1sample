@@ -52,4 +52,5 @@ module.exports = function (app) {
   app.get('/api/thingdashboard/pull/:token', thingdashboard.pullData);
   // ThingConfig
   app.post('/api/thingconfig/save', thingconfig.Save);
+  app.get('/api/thingconfig/list', thingconfig.list);
 };
