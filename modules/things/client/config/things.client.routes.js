@@ -52,6 +52,15 @@
         data: {
           pageTitle: 'Things Detail'
         }
+      })
+      .state('things.conf', {
+        url: '/config',
+        templateUrl: 'modules/things/client/views/config-things.client.view.html',
+        controller: 'ThingsConfigController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Config'
+        }
       });
   }
 

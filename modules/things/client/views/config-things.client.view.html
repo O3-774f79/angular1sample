@@ -1,0 +1,53 @@
+<section>
+<div class="top-content" id="topcontent">
+    <div class="warp-signin-lg">
+        <div class="topcontent-left col-xs-12 col-md-9 col-lg-10">
+            <h2 class="nameofpage">Config</h2>&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="topcontent-right col-xs-12 col-md-3 col-lg-2">
+            <!--<button ng-click="scanqrcode()" class="btn btn-action position">​
+                <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Scan QRCODE
+            </button>-->
+            <button ng-click="openCreate()" class="btn btn-action position">​
+                <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="16px" height="16px">&nbsp;Create Condition
+            </button>
+        </div>
+    </div>
+    <div class="warp-signin-mobile" >
+        <div style="padding-left: 0px;" class="col-xs-6 col-sm-4">
+            <h2 class="nameofpage" style="width:auto">Config&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+        </div>
+        <div class="col-xs-3 col-sm-4" style="float:right;">
+            <button style="min-width:0px;float: right;" ng-click="openCreate()" class="btn btn-cre position">​
+                    <img src="/modules/core/client/img/ic-create-16-px@3x.png" alt="" width="24px" height="24px">​
+            </button>
+        </div>
+        <div style="padding-left: 0px;" class="col-xs-12 col-sm-12">
+            <li style="display:inline;" class="dropdown sort-dropdown" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                    <span style="font-size:20px;">
+                        {{sort}}<span style="font-size:8px;"> {{symbol}}</span>
+                        <b class="glyphicon glyphicon-menu-down ic-dropdown"></b>
+                    </span>
+                </a>
+                <ul style="left: 0px!important; width: 181px;" class="dropdown-menu" role="menu">
+                    <li>
+                        <a ng-click="sortData('thingNameaz')">ThingsName A - Z</a>
+                    </li>
+                    <li>
+                        <a ng-click="sortData('thingNameza')">ThingsName Z - A</a>
+                    </li>
+                    <li>
+                        <a ng-click="sortData('datecreateaz')">DateCreate - Newest</a>
+                    </li>
+                    <li>
+                        <a ng-click="sortData('datecreateza')">DateCreate - The oldest</a>
+                    </li>
+                </ul>
+            </li>
+            <span style="font-size: 20px;color: #888b8f;float: right;">{{thingsobj.length}} Things, {{amountStatus}} Connect</span>
+        </div>
+    </div>
+</div>
+</section>
+
