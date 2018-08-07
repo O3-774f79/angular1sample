@@ -91,10 +91,10 @@ exports.save = function (req, res) {
 };
 
 exports.list = function (req, res) {
-  var userid = req.user._id;
   if (!req.user) {
     return res.jsonp({ success: false, message: ' User Not Found ' });
   } else {
+    var userid = req.user._id;
     ThingsConfig.find({
       owner: userid
     }).exec(function (err, ThingsCon) {
