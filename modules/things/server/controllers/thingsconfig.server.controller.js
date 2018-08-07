@@ -90,7 +90,9 @@ exports.save = function (req, res) {
   }
 };
 exports.listall = function (req, res) {
-  ThingsConfig.find({}).exec(function (err, ThingsCon) {
+  ThingsConfig.find({
+    Active: true
+  }).exec(function (err, ThingsCon) {
     if (err) {
       logController.logError(req, 'ThingsConfig', 'false',
         JSON.stringify({ success: false, error: err.message }),
