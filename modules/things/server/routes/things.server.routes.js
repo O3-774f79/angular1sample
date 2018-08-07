@@ -51,6 +51,8 @@ module.exports = function (app) {
   app.post('/api/thingdashboard/push', thingdashboard.pushData);
   app.get('/api/thingdashboard/pull/:token', thingdashboard.pullData);
   // ThingConfig
-  app.post('/api/thingconfig/save', thingconfig.Save);
-  app.get('/api/thingconfig/list', thingconfig.list);
+  app.post('/api/thingconfig/save', User.getUserByToken, thingconfig.save);
+  app.get('/api/thingconfig/list', User.getUserByToken, thingconfig.list);
+  app.post('/api/thingconfig/edit', User.getUserByToken, thingconfig.update);
+  app.route('/api/thingconfig/delete').post(thingconfig.delete);
 };

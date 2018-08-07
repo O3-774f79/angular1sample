@@ -30,6 +30,10 @@ var ThingsConfigSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  Active: {
+    type: Boolean,
+    default: true
+  },
   created: {
     type: Date,
     default: new Date(),
