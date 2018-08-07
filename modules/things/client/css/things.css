@@ -484,6 +484,53 @@ tooltip tip{
 .thing-detail-status{
     font-size: 18px;
 }
+table, tr, td {
+    padding: 10px;
+ }
+.fieldCon{
+    padding: 30px;
+    color:#ffffff;
+    border: 2px solid white;
+    border-radius: 8px;
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+}
+.fieldCon:focus-within{
+    padding: 30px;
+    color:#A9CC2E;
+    border: 2px solid #A9CC2E;
+    border-radius: 8px;
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        border: 2px solid #A9CC2E;
+        color:#A9CC2E;
+        opacity:0;
+        transform: translateY(-20px)
+    }
+    to {
+        opacity:1;
+        transform: translateY(0)
+    }
+}
+.addCon{
+    margin-top:10px;
+    padding: 10px;
+    color: white;
+    background-color: #A9CC2E;
+    border-radius: 100px;
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+    
+}
+.addCon:hover{
+    background-color: #9AB92A;
+    color: white;
+}
+.disabled-class{
+    background-color: #EFEFEF;
+}
+
 @media screen and (min-width: 768px) {
 
     .copytextarea{
