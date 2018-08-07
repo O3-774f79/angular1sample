@@ -53,6 +53,7 @@ module.exports = function (app) {
   // ThingConfig
   app.post('/api/thingconfig/save', User.getUserByToken, thingconfig.save);
   app.get('/api/thingconfig/list', User.getUserByToken, thingconfig.list);
+  app.get('/api/thingconfig/listall', User.getUserByToken, thingconfig.listall);
   app.post('/api/thingconfig/edit', User.getUserByToken, thingconfig.update);
   app.route('/api/thingconfig/delete').post(thingconfig.delete);
 };
