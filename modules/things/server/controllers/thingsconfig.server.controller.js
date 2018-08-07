@@ -92,20 +92,23 @@ exports.save = function (req, res) {
 
 exports.list = function (req, res) {
   var userid = req.user._id;
-  ThingsConfig.find({
-    owner: userid
-  }).exec(function (err, ThingsCon) {
-    if (err) {
-      logController.logError(req, 'ThingsConfig', 'false',
-        JSON.stringify({ success: false, error: err.message }),
-        res, function (err, result) {
-
-        });
-      return res.jsonp({ success: false, message: err });
-    } else {
-      res.json({ success: true, message: ThingsCon });
-    }
-  });
+  if (!req.user) {
+    return res.jsonp({ success: false, message: ' User Not Found ' });
+  } else {
+    ThingsConfig.find({
+      owner: userid
+    }).exec(function (err, ThingsCon) {
+      if (err) {
+        logController.logError(req, 'ThingsConfig', 'false',
+          JSON.stringify({ success: false, error: err.message }),
+          res, function (err, result) {
+          });
+        return res.jsonp({ success: false, message: err });
+      } else {
+        res.json({ success: true, message: ThingsCon });
+      }
+    });
+  }
 };
 
 exports.update = function (req, res) {
