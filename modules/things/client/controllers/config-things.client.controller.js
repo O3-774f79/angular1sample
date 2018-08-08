@@ -6,6 +6,18 @@
   // Things controller
   angular
     .module('things')
+    .config(['MQTTProvider', function(MQTTProvider) {
+      var option = {
+        username: 'admin',
+        password: 'admin'
+      };
+      var websocket_protocol = 'ws';
+      if (window.location.protocol === 'https:') {
+        websocket_protocol = 'wss';
+      }
+      MQTTProvider.setHref(websocket_protocol + '://104.125.191.117:15675/ws');
+      MQTTProvider.setOption(option);
+    }])
     .controller('ThingsConfigController', ThingsConfigController);
 
   ThingsConfigController.$inject = ['$interval', '$uibModal', '$document', '$log', '$http', '$stateParams', '$scope', '$state', '$window', 'Authentication'];
@@ -146,7 +158,7 @@
     }
   }
 }());
-angular.module('dashboards').controller('manageCondition', function ($http, $scope, $uibModalInstance, titleModal, widgetData) {
+angular.module('dashboards').controller('manageCondition', function (MQTTService, $http, $scope, $uibModalInstance, titleModal, widgetData) {
 
   var ctrl = this;
   ctrl.title = titleModal;
@@ -250,6 +262,9 @@ angular.module('dashboards').controller('manageCondition', function ($http, $sco
       })
       .then(
       function (result) {
+        var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
+        var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString() + '}';
+        MQTTService.send(topic, json);
         location.reload();
       },
       function (err) {
@@ -278,12 +293,18 @@ angular.module('dashboards').controller('manageCondition', function ($http, $sco
         $http.post('/api/thingconfig/edit',
         { param })
         .then(function(result) {
+          var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
+          var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString() + '}';
+          MQTTService.send(topic, json);
           location.reload();
         });
       } else {
         $http.post('/api/thingconfig/save',
         { param })
         .then(function(result) {
+          var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
+          var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString() + '}';
+          MQTTService.send(topic, json);
           location.reload();
         });
       }
