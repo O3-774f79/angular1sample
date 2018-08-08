@@ -37,74 +37,6 @@
         </div>
     </form>
 </script>
-<script type="text/ng-template" id="addCondition.html">
-    <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Add Condition<a class="closeModal" ng-click="cancelCreateThings()"><b class="ic-close"></b></a></h3>
-    </div>
-    <form ng-submit="saveDb()">
-        <div class="modal-body" id="modal-body">
-            <div class="row form-group">
-                <label class="control-label col-xs-4" for="thingName">Thing Name</label>
-                <div class="col-xs-8">
-                    <select class="form-control dropdown-ic" ng-model="thing" name="thingName" ng-change="getDataSourceByThing(thing)" class="ais-input-text">
-                        <option ng-repeat="thing in things" value="{{thing._id}}">{{thing.thingsName}}</option> 
-                        <option ng-if="things.length === 0" value="notfound">ไม่พบข้อมูล</option> 
-                    </select>
-                </div>     
-            </div>
-            <div class="row form-group">
-                <label class="control-label col-xs-4" for="dataSource">Data Source</label>
-                <div class="col-xs-8">
-                    <select class="form-control dropdown-ic" ng-model="data" name="dataName" class="ais-input-text">
-                        <option ng-show="dataSourceAction==='notfound'" value="notfound">Not Found</option> 
-                        <option ng-repeat="dataAction in dataSources" ng-selected="{{$index === 0}}" value="{{dataAction}}">{{dataAction}}</option> 
-                        <option ng-if="dataSources.length === 0" value="notfound">ไม่พบข้อมูล</option> 
-                    </select>
-                </div>     
-            </div>
-            <div class="row form-group">
-                <label class="control-label col-xs-4" for="thingName">Operation</label>
-                <div class="col-xs-8">
-                    <select class="form-control dropdown-ic" ng-model="ctrl.group" name="groupName" ng-change="ctrl.getThingsByGroup()" class="ais-input-text">
-                        <option value="{{Operation}}">=</option>
-                        <option value="{{Operation}}"><</option> 
-                        <option value="{{Operation}}">></option> 
-                    </select>
-                </div>     
-            </div>
-            <div class="row form-group">
-                <label class="control-label col-xs-4" for="thingName">Number</label>
-                <div class="col-xs-8">
-                    <input maxlength="15" type="number" name="widgetName" ng-model="ctrl.widgetName" class="form-control"/>           
-                </div>
-            </div>
-            <div class="row form-group">
-                <label class="control-label col-xs-4" for="thingNameAction">Action Thing Name</label>
-                <div class="col-xs-8">
-                    <select class="form-control dropdown-ic" ng-model="thingAction" name="thingAction" ng-change="getDataSourceByThingAction(thingAction)" class="ais-input-text">
-                        <option ng-repeat="thing in things" value="{{thing._id}}">{{thing.thingsName}}</option> 
-                        <option ng-if="things.length === 0" value="notfound">ไม่พบข้อมูล</option> 
-                    </select>            
-                </div>
-            </div>
-            <div class="row form-group">
-                <label class="control-label col-xs-4" for="dataSourceAction">Action Data Source</label>
-                <div class="col-xs-8">
-                    <select class="form-control dropdown-ic" ng-model="dataAction" name="dataName" class="ais-input-text">
-                        <option ng-show="dataSource==='notfound'" value="notfound">Not Found</option> 
-                        <option ng-repeat="dataAction in dataSourcesAction" ng-selected="{{$index === 0}}" value="{{dataAction}}">{{dataAction}}</option> 
-                        <option ng-if="dataSourcesAction.length === 0" value="notfound">ไม่พบข้อมูล</option> 
-                    </select>           
-                </div>
-            </div>
-        <div class="modal-footer">
-            <!--<button class="btn btn-cancel" type="button" ng-click="deleteDb()" style="float:left;">Delete</button>-->
-            <div class="row" style="margin:0px;">
-                <button class="btn btn-action" type="submit">Create Condition</button>
-            </div>
-        </div>
-    </form>
-</script>
 <script type="text/ng-template" id="manageWidget.html">
     <div class="modal-header">
         <h2 class="modal-title pull-left" id="modal-title">{{ctrl.title}}</h2>
@@ -279,6 +211,97 @@
                 <button class="btn btn-action" type="button" ng-click="ctrl.save()">{{ctrl.title}}</button>
             </div>
         </div>
+    </div>
+</script>
+<script type="text/ng-template" id="manageCondition.html">
+    <div class="modal-header">
+        <h2 class="modal-title pull-left" id="modal-title">{{ctrl.title}}</h2>
+        <button type="button" class="close-modal pull-right" data-dismiss="modal" ng-click="ctrl.dismiss()"></button>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="thingName">Thing Name</label>
+            <div class="col-xs-8">
+                <select class="form-control dropdown-ic" ng-model="ctrl.thingA" name="thingName" ng-change="ctrl.getDataSourceByThingA(ctrl.thingA)">
+                    <option ng-repeat="thing in ctrl.things" value="{{thing._id}}">{{thing.thingsName}}</option> 
+                    <option ng-if="ctrl.things.length === 0" value="notfound">ไม่พบข้อมูล</option> 
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="dataSource">Data Source</label>
+            <div class="col-xs-8">
+                <select class="form-control dropdown-ic" ng-model="ctrl.dataSourceA" name="dataSource">
+                    <option ng-show="ctrl.dataSourceA==='notfound'" value="notfound">Not Found</option> 
+                    <option ng-repeat="data in ctrl.dataSourcesA" ng-selected="{{$index === 0}}" value="{{data}}">{{data}}</option> 
+                    <option ng-if="ctrl.dataSourcesA.length === 0" value="notfound">ไม่พบข้อมูล</option> 
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="widgetName">Operation</label>
+            <div class="col-xs-8">
+                <select class="form-control dropdown-ic" ng-model="ctrl.operation" name="groupName" class="ais-input-text">
+                    <option value="=">=</option>
+                    <option value="<"><</option> 
+                    <option value=">">></option> 
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="widgetName">Number</label>
+            <div class="col-xs-8">
+                <input maxlength="15" type="number" name="widgetName" ng-model="ctrl.number" class="form-control"/>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="thingName">Thing Action</label>
+            <div class="col-xs-8">
+                <select class="form-control dropdown-ic" ng-model="ctrl.thingB" name="thingName" ng-change="ctrl.getDataSourceByThingB(ctrl.thingB)">
+                    <option ng-repeat="thing in ctrl.things" value="{{thing._id}}">{{thing.thingsName}}</option> 
+                    <option ng-if="ctrl.things.length === 0" value="notfound">ไม่พบข้อมูล</option> 
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="dataSourceb">Data Source Action</label>
+            <div class="col-xs-8">
+                <select class="form-control dropdown-ic" ng-model="ctrl.dataSourceB" name="dataSource">
+                    <option ng-show="ctrl.dataSourceB==='notfound'" value="notfound">Not Found</option> 
+                    <option ng-repeat="data in ctrl.dataSourcesB" ng-selected="{{$index === 0}}" value="{{data}}">{{data}}</option> 
+                    <option ng-if="ctrl.dataSourcesB.length === 0" value="notfound">ไม่พบข้อมูล</option> 
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="dataSourceb">Active</label>
+            <div class="col-xs-8">
+                <label class="toggle-widget">
+                    <input ng-model="ctrl.active" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <label class="col-xs-12 label-control text-danger">{{ctrl.errMsg}}</label>
+            <div class="col-xs-12">
+                <button class="btn btn-cancel" type="button" ng-click="ctrl.dismiss()">Cancel</button>
+                <button class="btn btn-action" type="button" ng-click="ctrl.save()">{{ctrl.title}}</button>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="deleteCondition.html">
+    <div class="modal-body" id="modal-body">
+        <center>
+            <h2>Delete Condition?</h2>
+            <p>Once you delete a Condition, you can't undo it !</p>
+        </center>
+    <div class="modal-footer">
+        <button class="btn dialog-cancel btn-cancel" type="button" ng-click="cancelConfirmDeleteCon()">Cancel</button>
+        <button class="btn dialog-action btn-action" type="button" ng-click="confirmDeleteCon()">Delete Thing</button>
     </div>
 </script>
 <script type="text/ng-template" id="confirmDeleteDB.html">

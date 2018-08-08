@@ -12,14 +12,11 @@
 
   function ThingsConfigController($interval, $uibModal, $document, $log, $http, $stateParams, $scope, $state, $window, Authentication) {
     var vm = this;
-    var reqThingsDataa = [];
-    var reqThingsData = [];
     $scope.thingsobj = [];
     $scope.tmpListData = [];
-    var dateV = [];
-    var refreshTime = 5000;
     $scope.toggle = true;
-    $scope.intervalthing = null;
+    $scope.thingTokenA = 'asds';
+    // $scope.selectedOption = $scope.options[0];
     vm.authentication = Authentication;
     if (!vm.authentication.user) {
       $state.go('authentication.signin');
@@ -28,54 +25,63 @@
         document.getElementById('topbar').style.display = 'block';
       }
       document.getElementById('main').classList.add('section-wrapper');
-      // Start Sort
-      // var up = '&#x25B2;';
-      // var down = '&#x25BC;';
-      // End Sort
-      // Start Create Thing Modal
       $scope.animationsEnabled = true;
-      $scope.openCreate = function (size, parentSelector) {
-        var parentElem = parentSelector;
-        angular.element($document[0].querySelector('.modal-demo ' + parentSelector));
+      $scope.createCondition = function () {
         var modalInstance = $uibModal.open({
           animation: $scope.animationsEnabled,
-          ariaLabelledBy: 'modal-title',
-          ariaDescribedBy: 'modal-body',
-          templateUrl: 'addCondition.html',
-          controller: 'addConditionCtrl',
-          size: size,
-          appendTo: parentElem
-        });
-      };
-      $scope.addField = function () {
-        $scope.thinglist.
-      };
-      $scope.deleteField = function (key) {
-        $scope.thinglist.splice(key, 1);
-      };
-      // End Create Thing Modal
-      $http.get('/api/thingconfig/list/')
-        .then(function (response) {
-          $scope.thinglist = response.data.message;
-          console.log(response.data.message);
-        });
-      $http.get('/api/things/list/')
-        .then(function (response) {
-          $scope.thingsobj = response.data.message;
-          if (response.data) {
-            $scope.things = response.data.message;
-            $scope.thingsTemp = response.data.message;
-            if ($scope.things.length > 0) {
-              $scope.thing = $scope.things[0]._id;
-              $scope.getDataSourceByThing($scope.thing); // update data source
-            }
-            if ($scope.widgetEdit) {
-              $scope.thing = $scope.widgetEdit.thingsId;
-              $scope.getDataSourceByThing($scope.thing);
+          templateUrl: 'manageCondition.html',
+          controller: 'manageCondition as ctrl',
+          resolve: {
+            titleModal: function () {
+              return 'Create Condition';
+            },
+            widgetData: function () {
+              return null;
             }
           }
         });
+      };
+      $scope.editCondition = function (data) {
+        var modalInstance = $uibModal.open({
+          animation: $scope.animationsEnabled,
+          templateUrl: 'manageCondition.html',
+          controller: 'manageCondition as ctrl',
+          resolve: {
+            titleModal: function () {
+              return 'Edit Condition';
+            },
+            widgetData: function () {
+              return data;
+            }
+          }
+        });
+      };
+      $scope.deleteCondition = function (data) {
+        var modalInstance = $uibModal.open({
+          animation: $scope.animationsEnabled,
+          templateUrl: 'deleteCondition.html',
+          controller: 'manageCondition',
+          resolve: {
+            titleModal: function () {
+              return 'Delete Condition';
+            },
+            widgetData: function () {
+              return data;
+            }
+          }
+        });
+      };
+      $http.get('/api/thingconfig/list/')
+      .then(function (response) {
+        if (response.data.message.length > 0) {
+          $scope.conditionlist = response.data.message;
+        }
+      });
       $scope.getDataSourceByThing = function (thingId) {
+        console.log(thingId);
+        $scope.allowDatasource = true;
+        // document.getElementById(thingId).removeAttr('disabled');
+        console.log(document.getElementById(thingId));
         $scope.dataSources = [];
         $http.get('/api/things/detail/' + thingId).then(function (response) {
           if (response.data.thingData) {
@@ -136,7 +142,154 @@
           $scope.allow = true;
           return false;
         }
-      }
+      };
     }
   }
 }());
+angular.module('dashboards').controller('manageCondition', function ($http, $scope, $uibModalInstance, titleModal, widgetData) {
+
+  var ctrl = this;
+  ctrl.title = titleModal;
+  ctrl.thingsTemp = [];
+  ctrl.errMsg = '';
+  ctrl.widgetEdit = widgetData;
+  ctrl.active = true;
+  if (ctrl.widgetEdit) {
+    ctrl.dataSourceA = ctrl.widgetEdit.DatasourceA;
+    ctrl.dataSourceB = ctrl.widgetEdit.DatasourceB;
+    ctrl.operation = ctrl.widgetEdit.Operator;
+    ctrl.number = ctrl.widgetEdit.Number;
+    ctrl.active = ctrl.widgetEdit.Active;
+  } else {
+    ctrl.widget = ctrl.widgetType;
+  }
+  $http.get('/api/things/list/').then(function (result) {
+    if (result.data) {
+      ctrl.things = result.data.message;
+      ctrl.thingList = result.data.message;
+      if (ctrl.things.length > 0) {
+        ctrl.thingA = ctrl.things[0]._id;
+        ctrl.thingB = ctrl.things[0]._id;
+        ctrl.getDataSourceByThingA(ctrl.thingA);
+        ctrl.getDataSourceByThingB(ctrl.thingB);
+      }
+      if (ctrl.widgetEdit) {
+        ctrl.thingA = ctrl.widgetEdit.thingsIdA;
+        ctrl.thingB = ctrl.widgetEdit.thingsIdB;
+        ctrl.getDataSourceByThingA(ctrl.thingA);
+        ctrl.getDataSourceByThingB(ctrl.thingB);
+      }
+    }
+  }, function (err) {
+    // console.log(err);
+  });
+
+  ctrl.getDataSourceByThingA = function (thingId) {
+    ctrl.dataSourcesA = [];
+    $http.get('/api/things/detail/' + thingId).then(function (response) {
+      if (response.data.thingData) {
+        ctrl.dataSourcesA = Object.keys(response.data.thingData);
+      }
+      setSelectedDataSourceA();
+    }, function (err) {
+      // console.log(err);
+    });
+  };
+  ctrl.getDataSourceByThingB = function (thingId) {
+    ctrl.dataSourcesB = [];
+    $http.get('/api/things/detail/' + thingId).then(function (response) {
+      if (response.data.thingData) {
+        ctrl.dataSourcesB = Object.keys(response.data.thingData);
+      }
+      setSelectedDataSourceB();
+    }, function (err) {
+      // console.log(err);
+    });
+  };
+  ctrl.dismiss = function () {
+    $uibModalInstance.dismiss();
+  };
+
+  function setSelectedDataSourceA() {
+    if (ctrl.dataSourcesA.length > 0) {
+      if (ctrl.widgetEdit) {
+        ctrl.dataSourceA = ctrl.widgetEdit.DatasourceA;
+      } else {
+        ctrl.dataSourceA = ctrl.dataSourcesA[0];
+      }
+    } else {
+      ctrl.dataSourceA = 'notfound';
+    }
+  }
+  function setSelectedDataSourceB() {
+    if (ctrl.dataSourcesB.length > 0) {
+      if (ctrl.widgetEdit) {
+        ctrl.dataSourceB = ctrl.widgetEdit.DatasourceB;
+      } else {
+        ctrl.dataSourceB = ctrl.dataSourcesB[0];
+      }
+    } else {
+      ctrl.dataSourceB = 'notfound';
+    }
+  }
+  function findTokenByThingId(thingId) {
+    var sendToken = '';
+    for (var i = 0; i < ctrl.thingList.length; i++) {
+      if (ctrl.thingList[i]._id === thingId) {
+        sendToken = ctrl.thingList[i].sendToken;
+      }
+    }
+
+    return sendToken;
+  }
+
+  $scope.confirmDeleteCon = function () {
+    $http.post('/api/thingconfig/delete',
+      {
+        conId: ctrl.widgetEdit._id
+      })
+      .then(
+      function (result) {
+        location.reload();
+      },
+      function (err) {
+      });
+  };
+  $scope.cancelConfirmDeleteCon = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+
+  ctrl.save = function () {
+    if (ctrl.thingA !== 'notfound' && ctrl.thingB !== 'notfound'
+    && ctrl.dataSourceA !== 'notfound' && ctrl.dataSourceB !== 'notfound'
+    && ctrl.operation !== '' && ctrl.operation !== undefined
+    && ctrl.number !== '' && ctrl.number !== undefined) {
+      ctrl.errMsg = '';
+      var param = {};
+      param.sendTokenA = findTokenByThingId(ctrl.thingA, ctrl.thingsA);
+      param.sendTokenB = findTokenByThingId(ctrl.thingB, ctrl.thingsB);
+      param.DatasourceA = ctrl.dataSourceA;
+      param.DatasourceB = ctrl.dataSourceB;
+      param.Operator = ctrl.operation;
+      param.Number = ctrl.number;
+      param.active = ctrl.active;
+      if (ctrl.widgetEdit) {
+        param.conId = ctrl.widgetEdit._id;
+        $http.post('/api/thingconfig/edit',
+        { param })
+        .then(function(result) {
+          location.reload();
+        });
+      } else {
+        $http.post('/api/thingconfig/save',
+        { param })
+        .then(function(result) {
+          location.reload();
+        });
+      }
+    } else {
+      ctrl.errMsg = 'Please fill in the specific field';
+    }
+
+  };
+});

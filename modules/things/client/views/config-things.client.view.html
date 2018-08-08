@@ -1,84 +1,143 @@
 <section>
-<div class="top-content" id="topcontent">
+<div class="top-content" id="topcontent" style="height: 100px;">
     
     <div class="topcontent-left col-xs-12 col-md-8 col-lg-8">
-        <h2 class="nameofpage">Config</h2>&nbsp;&nbsp;&nbsp;
+        <h2 class="nameofpage">Things Condition</h2>&nbsp;&nbsp;&nbsp;
     </div>
-    <div class="topcontent-right col-xs-12 col-md-4 col-lg-4">
-        <button ng-click="toggleEdit()" class="btn btn-action position" style="display: inline-block;">​
-            Edit
-        </button>
-        <button ng-click="openCreate()" class="btn btn-action position" style="display: inline-block;" ng-disabled="allow" ng-class="{'disabled-class': allow}">​
-            Save
+    <div class="col-lg-3 col-md-3 col-sm3 col-xs-12">
+        <button ng-click="createCondition()" class="btn crewidget position">​
+            <img src="/modules/core/client/img/fill-4.png" alt="" width="16px" height="16px">&nbsp;Create Condition
         </button>
     </div>
+    <!-- <div class="col-xs-12 col-md-4 col-lg-4">
+        <button ng-click="toggleEdit()" class="btn btn-action position" style="display: inline-block;">​Edit</button>
+        <button ng-click="openCreate()" class="btn btn-action position" style="display: inline-block;" ng-disabled="allow" ng-class="{'disabled-class': allow}">​Save</button>
+    </div> -->
 </div>
 <div class="container-fluid contentinpage content-normal" style="margin-top: 150px;">
-    <div ng-repeat="item in thinglist" style="margin-bottom:5px;">
-            <div class="fieldCon">
-                <table width=100%>
-                    <tr>
-                        <td>
-                            <p>ThingSendToken</p>
-                            <select class="form-control dropdown-ic focus" ng-model="thing" name="thingName" ng-change="getDataSourceByThing(thing)" class="ais-input-text" ng-disabled="allow" required>
-                                <option ng-repeat="thing in things" value="{{thing._id}}">{{thing.sendToken}}</option> 
-                                <option ng-if="things.length === 0" value="notfound">ไม่พบข้อมูล</option> 
-                            </select>
-                        </td>
-                        <td>
-                            <p>Data Source</p>
-                            <select class="form-control dropdown-ic focus" ng-model="data" name="dataName" class="ais-input-text" ng-disabled="allow"required>
-                                <option ng-show="dataSourceAction==='notfound'" value="notfound">Not Found</option> 
-                                <option ng-repeat="dataAction in dataSources" ng-selected="{{$index === 0}}" value="{{dataAction}}">{{dataAction}}</option> 
-                                <option ng-if="dataSources.length === 0" value="notfound">ไม่พบข้อมูล</option> 
-                            </select>
-                        </td>
-                        <td>
-                            <p>Operation</p>
-                            <select class="form-control dropdown-ic focus" ng-model="ctrl.group" name="groupName" ng-change="ctrl.getThingsByGroup()" class="ais-input-text" ng-disabled="allow" required>
-                                <option value="{{Operation}}">=</option>
-                                <option value="{{Operation}}"><</option> 
-                                <option value="{{Operation}}">></option> 
-                            </select>
-                        </td>
-                        <td>
-                            <p>Number</p>
-                            <input maxlength="3" type="number" name="widgetName" ng-model="ctrl.widgetName" class="form-control focus" ng-disabled="allow" required/>           
-                        </td>
-                        <td>
-                            <p>Action Thing Name</p>
-                            <select class="form-control dropdown-ic" ng-model="thingAction" name="thingAction" ng-change="getDataSourceByThingAction(thingAction)" class="ais-input-text" ng-disabled="allow" required>
-                                <option ng-repeat="thing in things" value="{{thing._id}}">{{thing.thingsName}}</option> 
-                                <option ng-if="things.length === 0" value="notfound">ไม่พบข้อมูล</option> 
-                            </select>                      
-                        </td>
-                        <td>
-                            <p>Action Data Source</p>
-                            <select class="form-control dropdown-ic" ng-model="dataAction" name="dataName" class="ais-input-text" ng-disabled="allow" required>
-                                <option ng-show="dataSource==='notfound'" value="notfound">Not Found</option> 
-                                <option ng-repeat="dataAction in dataSourcesAction" ng-selected="{{$index === 0}}" value="{{dataAction}}">{{dataAction}}</option> 
-                                <option ng-if="dataSourcesAction.length === 0" value="notfound">ไม่พบข้อมูล</option> 
-                            </select>                     
-                        </td>
-                        <td>
-                            <p>Active</p>
-                            <input type="checkbox" ng-model="toggle" checked ng-disabled="allow" required>
-                            <div ng-if="toggle" style="font-size:22px;color:#A9CC2E;display: inline;">&nbsp; ON&nbsp;</div>
-                            <div ng-if!="toggle" ng-hide="toggle" style="font-size:22px;color:white;display: inline;">&nbsp; OFF</div>
-                            <!-- <div ng-if="toggle===false"><input type="checkbox" name="toggle" ng-model="toggle" checked><div style="font-size:22px;display: inline;">&nbsp; OFF</div></div>   -->
-                        </td>
-                        <td>
-                            <center><button ng-click="deleteField($index)" class="btn btn-danger" style="display: inline-block;" ng-disabled="allow" ng-class="{'disabled-class': allow}">​
-                                Delete
-                            </button></center>
-                        </td>
-                    </tr>
-                </table>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 things-box" ng-repeat='things in conditionlist'>
+        <div class="things-wrapper" >
+            <li class="dropdown remove-group-btn" uib-dropdown>
+                <a class="dropdown-toggle" uib-dropdown-toggle role="button">
+                <b class="glyphicon glyphicon-option-horizontal"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="editCondition(things)">Edit Condition</a></li>
+                    <li><a ng-click="deleteCondition(things)">Delete</a></li>
+                </ul>
+            </li>
+            <a>
+            <div class="things-content">
+                <div class="things-header" >
+                    <h3 id="thingName" style="display: inline-block;">
+                        <div ng-show="things.Active" class="con-online"></div>
+                        <div ng-show="!things.Active" class="con-offline"></div>
+                    </h3>
+                    <h3 id="thingName" class="h3-condition">
+                        {{things.ThingNameA}}
+                    </h3>
+                    <h3 id="thingName" class="h3-condition">
+                        {{things.DatasourceA}}
+                    </h3>
+                    <h3 id="thingName" class="h3-condition">
+                        {{things.Operator}}
+                    </h3>
+                    <h3 id="thingName" class="h3-condition">
+                        {{things.Number}}
+                    </h3>
+                    <h3 id="thingName" class="h3-condition">
+                        ->
+                    </h3>
+                    <h3 id="thingName" class="h3-condition">
+                        {{things.ThingNameB}}
+                    </h3>
+                    <h3 id="thingName" class="h3-condition">
+                        {{things.DatasourceB}}
+                    </h3>
+                </div>
+                <div class="things-des">
+                    <h4>{{things.created | date : 'MMMM d, yyyy'}}</h4>
+                </div>
             </div>
-            </div>
-            <div ng-click="addField()">
-                <p class="addCon"><img src="/modules/core/client/img/ic-create-16-px@3x.png" width="16px" height="16px">Add Condition</p> 
-            </div>
+            </a>
+        </div>
+    </div>
+    <!-- <div ng-repeat="item in thinglist" style="margin-bottom:5px;">
+        <div class="fieldCon">
+            <table class="thingcon"width=100%>
+                <tr>
+                    <td>
+                    <p>ThingSendToken</p>
+                    <select class="form-control dropdown-ic focus ais-input-text" 
+                    ng-model="thingTokenA" 
+                    ng-options="option.sendToken for option in things"
+                    ng-change="getDataSourceByThing(thingTokenA._id)">
+                        <option ng-if="item.sendTokenA" value="" disabled>{{item.sendTokenA}}</option>
+                        <option ng-if="!item.sendTokenA" value="" disabled>--Default--</option>
+                    </select>
+                    </td>
+                    <td>
+                    <p>Data Source</p>
+                    {{item.DatasourceA}}
+                    <select id="item._id" class="form-control dropdown-ic focus ais-input-text" 
+                        ng-model="thingTokenA" 
+                        ng-options="option for option in dataSources"
+                        ng-change="getDataSourceByThing(thingTokenA._id)"
+                        disabled>
+                        <option ng-if="item.DatasourceA" value="" disabled>{{item.DatasourceA}}</option>
+                        <option ng-if="!item.DatasourceA" value="" disabled>--Default--</option>
+                    </select>
+                    </td>
+                    <td>
+                        <p>Operation</p>
+                        {{item.Operator}}
+                        <select class="form-control dropdown-ic focus" ng-model="ctrl.group" name="groupName" ng-change="ctrl.getThingsByGroup()" class="ais-input-text" ng-disabled="allow" required>
+                            <option value="{{Operation}}">=</option>
+                            <option value="{{Operation}}"><</option> 
+                            <option value="{{Operation}}">></option> 
+                        </select>
+                    </td>
+                    <td>
+                        <p>Number</p>
+                        {{item.Number}}
+                        <input maxlength="3" type="number" name="widgetName" ng-model="ctrl.widgetName" class="form-control focus" ng-disabled="allow" required/>           
+                    </td>
+                    <td>
+                        <p>Action Thing Name</p>
+                        {{item.sendTokenB}}
+                        <select class="form-control dropdown-ic" ng-model="thingAction" name="thingAction" ng-change="getDataSourceByThingAction(thingAction)" class="ais-input-text" ng-disabled="allow" required>
+                            <option ng-repeat="thing in things" value="{{thing._id}}">{{thing.thingsName}}</option> 
+                            <option ng-if="things.length === 0" value="notfound">ไม่พบข้อมูล</option> 
+                        </select>                      
+                    </td>
+                    <td>
+                        {{item.DatasourceB}}
+                        <p>Action Data Source</p>
+                        <select class="form-control dropdown-ic" ng-model="dataAction" name="dataName" class="ais-input-text" ng-disabled="allow" required>
+                            <option ng-show="dataSource==='notfound'" value="notfound">Not Found</option> 
+                            <option ng-repeat="dataAction in dataSourcesAction" ng-selected="{{$index === 0}}" value="{{dataAction}}">{{dataAction}}</option> 
+                            <option ng-if="dataSourcesAction.length === 0" value="notfound">ไม่พบข้อมูล</option> 
+                        </select>                     
+                    </td>
+                    <td>
+                        {{item.Active}}
+                        <p>Active</p>
+                        <input type="checkbox" ng-model="toggle" checked ng-disabled="allow" required>
+                        <div ng-if="toggle" style="font-size:22px;color:#A9CC2E;display: inline;">&nbsp; ON&nbsp;</div>
+                        <div ng-if!="toggle" ng-hide="toggle" style="font-size:22px;color:white;display: inline;">&nbsp; OFF</div>
+                    </td>
+                    <td>
+                        <center><button ng-click="deleteField($index)" class="btn btn-danger" style="display: inline-block;" ng-disabled="allow" ng-class="{'disabled-class': allow}">​
+                            Delete
+                        </button></center>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div> -->
+    <!-- <div ng-click="addField()">
+        <p class="addCon"><img src="/modules/core/client/img/ic-create-16-px@3x.png" width="16px" height="16px">Add Condition</p> 
+    </div> -->
 </div>
 </section>
 

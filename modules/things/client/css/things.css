@@ -499,6 +499,7 @@ table, tr, td {
     color:#A9CC2E;
     border: 2px solid #A9CC2E;
     border-radius: 8px;
+    pointer-events:none;
 }
 @-webkit-keyframes fadein { /* Safari and Chrome */
     from {
@@ -544,4 +545,33 @@ table, tr, td {
     /* .copytextarea{
         float: left;
     } */
+}
+.h3-condition{
+    display: inline-block;
+    border: 1px solid #a4c736;
+    padding: 8px;
+    margin-left: 10px!important;
+    border-radius: 4px;
+}
+.con-offline {
+    width: 20px;
+    height: 20px;
+    background: #4c5354;
+    border: solid 1.4px #4c5354;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+.con-online {
+    width: 20px;
+    height: 20px;
+    background: #b2d234;
+    border: solid 1.4px #b2d234;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
 }

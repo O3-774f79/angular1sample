@@ -16,6 +16,7 @@ var ThingsConfigSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Thing'
   },
+  ThingNameA: String,
   sendTokenA: String,
   DatasourceA: String,
   Operator: String,
@@ -24,6 +25,7 @@ var ThingsConfigSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Thing'
   },
+  ThingNameB: String,
   sendTokenB: String,
   DatasourceB: String,
   owner: {
