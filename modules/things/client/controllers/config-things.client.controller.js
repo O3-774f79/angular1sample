@@ -265,7 +265,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
         var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
         var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
         MQTTService.send(topic, json);
-        location.reload();
+        setTimeout(function() { location.reload(); }, 3000);
       },
       function (err) {
       });
@@ -296,7 +296,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
           var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
           var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
           MQTTService.send(topic, json);
-          location.reload();
+          setTimeout(function() { location.reload(); }, 3000);
         });
       } else {
         $http.post('/api/thingconfig/save',
@@ -305,7 +305,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
           var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
           var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
           MQTTService.send(topic, json);
-          location.reload();
+          setTimeout(function() { location.reload(); }, 3000);
         });
       }
     } else {
