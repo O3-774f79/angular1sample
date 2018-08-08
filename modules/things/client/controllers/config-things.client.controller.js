@@ -263,7 +263,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
       .then(
       function (result) {
         var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
-        var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString() + '}';
+        var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
         MQTTService.send(topic, json);
         location.reload();
       },
@@ -294,7 +294,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
         { param })
         .then(function(result) {
           var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
-          var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString() + '}';
+          var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
           MQTTService.send(topic, json);
           location.reload();
         });
@@ -303,7 +303,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
         { param })
         .then(function(result) {
           var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
-          var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString() + '}';
+          var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
           MQTTService.send(topic, json);
           location.reload();
         });
