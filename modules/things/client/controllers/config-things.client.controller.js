@@ -87,6 +87,7 @@
       .then(function (response) {
         if (response.data.message.length > 0) {
           $scope.conditionlist = response.data.message;
+          console.log($scope.conditionlist);
         }
       });
       $scope.getDataSourceByThing = function (thingId) {
@@ -171,6 +172,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
     ctrl.dataSourceB = ctrl.widgetEdit.DatasourceB;
     ctrl.operation = ctrl.widgetEdit.Operator;
     ctrl.number = ctrl.widgetEdit.Number;
+    ctrl.action = ctrl.widgetEdit.Action;
     ctrl.active = ctrl.widgetEdit.Active;
   } else {
     ctrl.widget = ctrl.widgetType;
@@ -265,7 +267,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
         var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
         var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
         MQTTService.send(topic, json);
-        setTimeout(function() { location.reload(); }, 3000);
+        setTimeout(function() { location.reload(); }, 2000);
       },
       function (err) {
       });
@@ -278,7 +280,8 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
     if (ctrl.thingA !== 'notfound' && ctrl.thingB !== 'notfound'
     && ctrl.dataSourceA !== 'notfound' && ctrl.dataSourceB !== 'notfound'
     && ctrl.operation !== '' && ctrl.operation !== undefined
-    && ctrl.number !== '' && ctrl.number !== undefined) {
+    && ctrl.number !== '' && ctrl.number !== undefined
+    && ctrl.action !== '' && ctrl.action !== undefined) {
       ctrl.errMsg = '';
       var param = {};
       param.sendTokenA = findTokenByThingId(ctrl.thingA, ctrl.thingsA);
@@ -287,6 +290,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
       param.DatasourceB = ctrl.dataSourceB;
       param.Operator = ctrl.operation;
       param.Number = ctrl.number;
+      param.action = ctrl.action;
       param.active = ctrl.active;
       if (ctrl.widgetEdit) {
         param.conId = ctrl.widgetEdit._id;
@@ -296,7 +300,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
           var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
           var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
           MQTTService.send(topic, json);
-          setTimeout(function() { location.reload(); }, 3000);
+          setTimeout(function() { location.reload(); }, 2000);
         });
       } else {
         $http.post('/api/thingconfig/save',

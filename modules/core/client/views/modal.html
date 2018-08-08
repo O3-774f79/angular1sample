@@ -243,15 +243,18 @@
             <div class="col-xs-8">
                 <select class="form-control dropdown-ic" ng-model="ctrl.operation" name="groupName" class="ais-input-text">
                     <option value="=">=</option>
+                    <option value="!=">!=</option>
                     <option value="<"><</option> 
+                    <option value="<="><=</option> 
                     <option value=">">></option> 
+                    <option value="=>">=></option> 
                 </select>
             </div>
         </div>
         <div class="row form-group">
             <label class="control-label col-xs-4" for="widgetName">Number</label>
             <div class="col-xs-8">
-                <input maxlength="15" type="number" name="widgetName" ng-model="ctrl.number" class="form-control"/>
+                <input maxlength="15" type="number" ng-model="ctrl.number" class="form-control"/>
             </div>
         </div>
         <div class="row form-group">
@@ -271,6 +274,12 @@
                     <option ng-repeat="data in ctrl.dataSourcesB" ng-selected="{{$index === 0}}" value="{{data}}">{{data}}</option> 
                     <option ng-if="ctrl.dataSourcesB.length === 0" value="notfound">ไม่พบข้อมูล</option> 
                 </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="widgetName">Out put</label>
+            <div class="col-xs-8">
+                <input maxlength="15" type="number" ng-model="ctrl.action" class="form-control"/>
             </div>
         </div>
         <div class="row form-group">
