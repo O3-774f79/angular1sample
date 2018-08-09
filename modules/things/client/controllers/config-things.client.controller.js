@@ -87,7 +87,6 @@
       .then(function (response) {
         if (response.data.message.length > 0) {
           $scope.conditionlist = response.data.message;
-          console.log($scope.conditionlist);
         }
       });
       $scope.getDataSourceByThing = function (thingId) {
