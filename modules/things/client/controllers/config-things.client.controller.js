@@ -264,8 +264,8 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
       .then(
       function (result) {
         var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
-        var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
-        MQTTService.send(topic, json);
+        var d = $scope.getDateTrigger();
+        MQTTService.send(topic, d);
         setTimeout(function() { location.reload(); }, 2000);
       },
       function (err) {
@@ -274,7 +274,11 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
   $scope.cancelConfirmDeleteCon = function () {
     $uibModalInstance.dismiss('cancel');
   };
-
+  $scope.getDateTrigger = function () {
+    var d = new Date();
+    var json = '{ "EditTime": ' + d.getDate() + d.getMonth() + d.getFullYear() + ' ' + d.getHours() + d.getMinutes() + d.getSeconds() + '}';
+    return json;
+  };
   ctrl.save = function () {
     if (ctrl.thingA !== 'notfound' && ctrl.thingB !== 'notfound'
     && ctrl.dataSourceA !== 'notfound' && ctrl.dataSourceB !== 'notfound'
@@ -297,17 +301,17 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
         { param })
         .then(function(result) {
           var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
-          var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
-          MQTTService.send(topic, json);
-          setTimeout(function() { location.reload(); }, 2000);
+          var d = $scope.getDateTrigger();
+          MQTTService.send(topic, d);
+          // setTimeout(function() { location.reload(); }, 2000);
         });
       } else {
         $http.post('/api/thingconfig/save',
         { param })
         .then(function(result) {
           var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
-          var json = '{ "EditTime": ' + new Date(Date.now()).toLocaleString().replace(',', '') + '}';
-          MQTTService.send(topic, json);
+          var d = $scope.getDateTrigger();
+          MQTTService.send(topic, d);
           setTimeout(function() { location.reload(); }, 3000);
         });
       }
