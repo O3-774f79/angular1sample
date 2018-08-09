@@ -28,7 +28,7 @@ var ThingsConfigSchema = new Schema({
   ThingNameB: String,
   sendTokenB: String,
   DatasourceB: String,
-  Action: String,
+  Action: Number,
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
