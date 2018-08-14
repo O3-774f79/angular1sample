@@ -173,6 +173,7 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
     ctrl.number = ctrl.widgetEdit.Number;
     ctrl.action = ctrl.widgetEdit.Action;
     ctrl.active = ctrl.widgetEdit.Active;
+    ctrl.timer = ctrl.widgetEdit.Timer;
   } else {
     ctrl.widget = ctrl.widgetType;
   }
@@ -294,6 +295,10 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
       param.Operator = ctrl.operation;
       param.Number = ctrl.number;
       param.action = ctrl.action;
+      if (!ctrl.timer || ctrl.timer === 0) {
+        ctrl.timer = null;
+      }
+      param.timer = ctrl.timer;
       param.active = ctrl.active;
       if (ctrl.widgetEdit) {
         param.conId = ctrl.widgetEdit._id;

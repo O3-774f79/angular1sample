@@ -277,9 +277,15 @@
             </div>
         </div>
         <div class="row form-group">
-            <label class="control-label col-xs-4" for="widgetName">Out put</label>
+            <label class="control-label col-xs-4" for="widgetName">Action</label>
             <div class="col-xs-8">
-                <input maxlength="15" type="number" ng-model="ctrl.action" class="form-control"/>
+                <input maxlength="15" type="text" ng-model="ctrl.action" class="form-control"/>
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="control-label col-xs-4" for="widgetName">Timer</label>
+            <div class="col-xs-8">
+                <input maxlength="4" placeholder="Seconds" type="number" step="1" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" min="0" ng-model="ctrl.timer" class="form-control"/>
             </div>
         </div>
         <div class="row form-group">

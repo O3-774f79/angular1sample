@@ -69,6 +69,7 @@ exports.save = function (req, res) {
         thingsConfig.sendTokenB = param.sendTokenB;
         thingsConfig.DatasourceB = param.DatasourceB;
         thingsConfig.Action = param.action;
+        thingsConfig.Timer = param.timer;
         thingsConfig.owner = req.user._id;
         thingsConfig.save(function (err) {
           if (err) {
@@ -191,6 +192,7 @@ exports.update = function (req, res) {
               _things.sendTokenB = param.sendTokenB;
               _things.DatasourceB = param.DatasourceB;
               _things.Action = param.action;
+              _things.Timer = param.timer;
               _things.Active = param.active;
               _things.save(function (err, _things) {
                 if (err) {
