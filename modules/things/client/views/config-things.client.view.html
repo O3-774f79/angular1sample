@@ -60,6 +60,15 @@
                     <h3 id="thingName" class="h3-condition">
                         {{things.Action}}
                     </h3>
+                    <h3 id="thingName" class="h3-condition" style="border: none;">
+                        timer
+                    </h3>
+                    <h3 ng-if="things.Timer" id="thingName" class="h3-condition">
+                        {{things.Timer}}
+                    </h3>
+                    <h3 ng-if="!things.Timer"id="thingName" class="h3-condition">
+                        0
+                    </h3>
                 </div>
                 <div class="things-des">
                     <h4>{{things.created | date : 'MMMM d, yyyy'}}</h4>
