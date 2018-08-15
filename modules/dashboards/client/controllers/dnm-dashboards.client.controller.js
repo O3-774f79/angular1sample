@@ -373,7 +373,7 @@
       var values = data.selected;
       $scope.resdata = {};
       if (!values) {
-        $scope.resdata[data.dataKey] = 0;
+        $scope.resdata[data.dataKey] = '0';
         var topic2 = 'dashboards/data/' + data.things.sendToken;
         $http.post('/api/thingdashboard/push/',
           {
@@ -383,7 +383,7 @@
             MQTTService.send(topic2, $scope.resdata);
           });
       } else if (values) {
-        $scope.resdata[data.dataKey] = 1;
+        $scope.resdata[data.dataKey] = '1';
         var topic = 'dashboards/data/' + data.things.sendToken;
         $http.post('/api/thingdashboard/push/',
           {
