@@ -69,7 +69,7 @@
           $scope.receivetokenactive = $scope.data.receiveTokenActive;
           $scope.sendtoken = response.data.data.sendToken;
           $scope.sendtokenactive = $scope.data.sendTokenActive;
-          $scope.datasource = 'https://www.aismagellan.io/api/things/pull/' + $scope.data.sendToken;
+          $scope.datasource = 'http://103.20.204.176/api/things/pull/' + $scope.data.sendToken;
           $scope.lastEdit = $scope.data.created;
 
           var url = '/api/things/pullWithStatus/' + $scope.data.sendToken;

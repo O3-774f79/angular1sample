@@ -370,10 +370,15 @@
       // $http.get('/api/thingdashboard/pull/' + data.things.sendToken)
       // .then(function (res) {
       // var values = res.data[data.dataKey];
+      var num = 1;
       var values = data.selected;
       $scope.resdata = {};
       if (!values) {
-        $scope.resdata[data.dataKey] = '0';
+        if (typeof(data.datavalue[data.datavalue.length - 1]) === 'string') {
+          $scope.resdata[data.dataKey] = '0';
+        } else if (typeof(data.datavalue[data.datavalue.length - 1]) === 'number') {
+          $scope.resdata[data.dataKey] = 0;
+        }
         var topic2 = 'dashboards/data/' + data.things.sendToken;
         $http.post('/api/thingdashboard/push/',
           {
@@ -383,7 +388,11 @@
             MQTTService.send(topic2, $scope.resdata);
           });
       } else if (values) {
-        $scope.resdata[data.dataKey] = '1';
+        if (typeof(data.datavalue[data.datavalue.length - 1]) === 'string') {
+          $scope.resdata[data.dataKey] = '1';
+        } else if (typeof(data.datavalue[data.datavalue.length - 1]) === 'number') {
+          $scope.resdata[data.dataKey] = 1;
+        }
         var topic = 'dashboards/data/' + data.things.sendToken;
         $http.post('/api/thingdashboard/push/',
           {
@@ -393,7 +402,11 @@
             MQTTService.send(topic, $scope.resdata);
           });
       } else {
-        $scope.resdata[data.dataKey] = 0;
+        if (typeof(data.datavalue[data.datavalue.length - 1]) === 'string') {
+          $scope.resdata[data.dataKey] = '0';
+        } else if (typeof(data.datavalue[data.datavalue.length - 1]) === 'number') {
+          $scope.resdata[data.dataKey] = 0;
+        }
         var topic3 = 'dashboards/data/' + data.things.sendToken;
         $http.post('/api/thingdashboard/push/',
           {
