@@ -303,21 +303,21 @@ angular.module('dashboards').controller('manageCondition', function (MQTTService
       if (ctrl.widgetEdit) {
         param.conId = ctrl.widgetEdit._id;
         $http.post('/api/thingconfig/edit',
-        { param })
+        { param: param })
         .then(function(result) {
           var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
           var d = $scope.getDateTrigger();
           MQTTService.send(topic, d);
-          // setTimeout(function() { location.reload(); }, 2000);
+          setTimeout(function() { location.reload(); }, 1000);
         });
       } else {
         $http.post('/api/thingconfig/save',
-        { param })
+        { param: param })
         .then(function(result) {
           var topic = 'devices/data/26541900-9a10-11e8-a640-21f45c789e66';
           var d = $scope.getDateTrigger();
           MQTTService.send(topic, d);
-          setTimeout(function() { location.reload(); }, 3000);
+          setTimeout(function() { location.reload(); }, 1000);
         });
       }
     } else {
