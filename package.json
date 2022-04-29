@@ -38,7 +38,7 @@
     "angucomplete-alt": "^3.0.0",
     "angular-chart.js": "^1.1.1",
     "angular-numeric-input": "^1.0.4",
-    "async": "~2.3.0",
+    "async": "~2.6.4",
     "body-parser": "~1.17.1",
     "bower": "^1.8.4",
     "chalk": "~1.1.3",
